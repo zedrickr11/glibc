@@ -15,7 +15,7 @@
   <meta name="author" content="Łukasz Holeczek">
   <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,jQuery,CSS,HTML,RWD,Dashboard,Vue,Vue.js,React,React.js">
   <link rel="shortcut icon" href="img/favicon.png">
-  <title>Prime - Bootstrap 4 Admin Template</title>
+  <title>GlibColegio</title>
 
   <!-- Icons -->
   <link href="vendors/css/font-awesome.min.css" rel="stylesheet">
@@ -77,7 +77,7 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
+            <a class="nav-link" href="#"><i class="icon-speedometer"></i> Inicio </a>
           </li>
 
         </ul>
@@ -95,8 +95,8 @@
 
   </div>
   <footer class="app-footer">
-    <span><a href="https://genesisui.com">Prime</a> © 2017 creativeLabs.</span>
-    <span class="ml-auto">Powered by <a href="https://genesisui.com">GenesisUI</a></span>
+    <span><a href="https://genesisui.com">GlibColegio</a> © 2018 GlibSoftware.</span>
+    <span class="ml-auto">Creado por <a href="#">GlibSoftware</a></span>
   </footer>
 
   <!-- Bootstrap and necessary plugins -->
