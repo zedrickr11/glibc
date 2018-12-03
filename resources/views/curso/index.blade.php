@@ -16,11 +16,11 @@
             <div class="card">
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Curso
-                <a href="curso/create"> <button type="button" class="btn btn-success"> Nuevo</button></a>
+                <a href="curso/create"> <button type="button" class="pull-right  btn btn-success"> <span class="fa fa-plus-square"></button></a>
 
               </div>
               <div class="card-body">
-                <table class="table table-responsive-sm table-striped">
+                <table id="tabla-curso" class="display table table-responsive-sm table-striped">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -36,21 +36,28 @@
                       <td>{{ $cur->id_curso }}</td>
                       <td>{{ $cur->nombre }}</td>
                       <td>{{ $cur->descripcion }}</td>
-                      <td>{{ $cur->condicion }}</td>
+                      <td>
+                        @if ($cur->condicion==1)
+                          <span class="badge badge-success">Activo</span>
+                        @else
+                          <span class="badge badge-danger">Inactivo</span>
+                        @endif
+
+                      </td>
 
                       <td>
 
                         <a href="{{route('curso.edit',$cur->id_curso )}}">
-                          <button type="button" class="btn btn-warning btn-sm" name="button">Editar</button>
+                          <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
 
-                        <a href="{{route('curso.show',$cur->id_curso)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button">Ver</button>
-                        </a>
+                        <!-- <a href="{{route('curso.show',$cur->id_curso)}}">
+                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
+                        </a>-->
                    <form style="display: inline" method="POST" action="{{route('curso.destroy', $cur->id_curso )}}">
                    {!!method_field('DELETE')!!}
                    {!!csrf_field()!!}
-                     <button type="submit" class="btn btn-danger btn-sm" name="button">Eliminar</button>
+                     <button type="submit" class="btn btn-danger btn-sm" name="button"> <span class="fa fa-trash-o"></span></button>
                    </form>
 
                       </td>
@@ -68,4 +75,36 @@
 
     </div>
     <!-- /.conainer-fluid -->
+    @push ('scripts')
+      <script type="text/javascript">
+        $('#tabla-curso').DataTable({
+        "pagingType": "full_numbers",
+        "language": {
+          "sProcessing":     "Procesando...",
+          "sLengthMenu":     "Mostrar _MENU_ registros",
+          "sZeroRecords":    "No se encontraron resultados",
+          "sEmptyTable":     "Ningún dato disponible en esta tabla",
+          "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+          "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+          "sInfoPostFix":    "",
+          "sSearch":         "Buscar:",
+          "sUrl":            "",
+          "sInfoThousands":  ",",
+          "sLoadingRecords": "Cargando...",
+          "oPaginate": {
+              "sFirst":    "Primero",
+              "sLast":     "Último",
+              "sNext":     "Siguiente",
+              "sPrevious": "Anterior"
+          },
+          "oAria": {
+              "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+              "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+          }
+        }
+          });
+      </script>
+
+    @endpush
 @endsection

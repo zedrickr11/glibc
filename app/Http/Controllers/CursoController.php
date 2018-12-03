@@ -36,7 +36,7 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CursoFormRequest $request)
     {
         Curso::create($request->all());
         return redirect()->route('curso.index');
@@ -74,8 +74,9 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CursoFormRequest $request, $id)
     {
+      
         Curso::findOrFail($id)->update($request->all());
         return redirect()->route('curso.index');
     }

@@ -29,14 +29,25 @@
                 <div class="form-group">
                   <label for="nombre">Nombre</label>
                   <input type="text" class="form-control" name="nombre" value="{{ $curso->nombre }}">
+                  <span class="help-block">{{ $errors->first('nombre') }}</span>
                 </div>
                 <div class="form-group">
                   <label for="descripcion">Descripción</label>
                   <input type="text" class="form-control" name="descripcion" value="{{ $curso->descripcion }}">
+                  <span class="help-block">{{ $errors->first('descripcion') }}</span>
                 </div>
                 <div class="form-group">
                   <label for="condicion">Estado</label>
-                  <input type="text" class="form-control" name="condicion" value="{{ $curso->condicion }}">
+                  <select class="form-control" name="condicion">
+                    @if ($curso->condicion==1)
+                      <option value="1" selected>ACTIVO</option>
+                      <option value="0" >INACTIVO</option>
+                    @else
+                      <option value="1" >ACTIVO</option>
+                      <option value="0" selected>INACTIVO</option>
+                    @endif
+                  </select>
+                  {!!$errors->first('condicion','<span class=error>:message</span>')!!}
                 </div>
 
               </div>
