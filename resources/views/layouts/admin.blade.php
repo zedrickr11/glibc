@@ -80,6 +80,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="icon-speedometer"></i> Inicio </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('curso') }}"><i class="icon-notebook"></i> Curso </a>
+          </li>
 
         </ul>
       </nav>
