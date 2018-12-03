@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('layouts.admin');
 });
+
+Route::resource('curso','CursoController');
