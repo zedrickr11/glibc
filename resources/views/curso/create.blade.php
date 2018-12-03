@@ -34,7 +34,11 @@
                 </div>
                 <div class="form-group">
                   <label for="condicion">Estado</label>
-                  <input type="text" class="form-control" name="condicion" placeholder="Estado...">
+                  <select class="form-control" name="condicion">
+                    <option value="1">ACTIVO</option>
+                    <option value="0">INACTIVO</option>
+                  </select>
+
                 </div>
 
               </div>
