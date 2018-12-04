@@ -4,7 +4,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">GlibColegio</li>
-      <li class="breadcrumb-item"><a href="#">Curso</a></li>
+      <li class="breadcrumb-item"><a href="#">Ciclo Escolar</a></li>
       <li class="breadcrumb-item active">Nuevo</li>
       <!-- Breadcrumb Menu-->
 
@@ -17,10 +17,10 @@
 
             <div class="card">
               <div class="card-header">
-                <strong>Curso</strong>
+                <strong>Ciclo Escolar</strong>
                 <small>Form</small>
               </div>
-              <form class="" action="{{ route('curso.store') }}" method="post">
+              <form class="" action="{{ route('ciclo.store') }}" method="post">
                 {!! csrf_field() !!}
 
               <div class="card-body">
@@ -30,9 +30,19 @@
                   {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                 </div>
                 <div class="form-group">
-                  <label for="descripcion">Descripción</label>
-                  <input type="text" class="form-control" name="descripcion" placeholder="Descripción...">
-                  {!!$errors->first('descripcion','<span class=text-danger>:message</span>')!!}
+                  <label for="año">Año</label>
+                  <input type="number" class="form-control" name="año" placeholder="Año escolar...">
+                  {!!$errors->first('año','<span class=text-danger>:message</span>')!!}
+                </div>
+                <div class="form-group">
+                  <label for="fecha_inicio">Fecha de inicio</label>
+                  <input type="date" class="form-control" name="fecha_inicio" >
+                  {!!$errors->first('fecha_inicio','<span class=text-danger>:message</span>')!!}
+                </div>
+                <div class="form-group">
+                  <label for="fecha_fin">Fecha de finalización</label>
+                  <input type="date" class="form-control" name="fecha_fin" >
+                  {!!$errors->first('fecha_fin','<span class=text-danger>:message</span>')!!}
                 </div>
                 <div class="form-group">
                   <label for="condicion">Estado</label>
@@ -45,6 +55,7 @@
 
               </div>
               <div class="card-footer">
+                <a href="{{ route('ciclo.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
                 <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Guardar</button>
                 <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancelar</button>
               </div>
