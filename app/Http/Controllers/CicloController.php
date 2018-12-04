@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests\CursoFormRequest;
-use App\Curso;
+use App\Http\Requests\CicloFormRequest;
+use App\Ciclo;
 
-class CursoController extends Controller
+class CicloController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $curso=Curso::all();
-        return view ('curso.index',compact('curso'));
+      $ciclo=Ciclo::all();
+      return view ('ciclo.index',compact('ciclo'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('curso.create');
+        return view('ciclo.create');
     }
 
     /**
@@ -36,10 +36,10 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CursoFormRequest $request)
+    public function store(CicloFormRequest $request)
     {
-        Curso::create($request->all());
-        return redirect()->route('curso.index');
+      Ciclo::create($request->all());
+      return redirect()->route('ciclo.index');
     }
 
     /**
@@ -50,8 +50,8 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        $curso=Curso::findOrFail($id);
-        return view('curso.show', compact('curso'));
+      $ciclo=Ciclo::findOrFail($id);
+      return view('ciclo.show', compact('ciclo'));
     }
 
     /**
@@ -62,9 +62,8 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        $curso=Curso::findOrFail($id);
-        return view('curso.edit',compact('curso'));
-
+      $ciclo=Ciclo::findOrFail($id);
+      return view('ciclo.edit',compact('ciclo'));
     }
 
     /**
@@ -74,11 +73,10 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CursoFormRequest $request, $id)
+    public function update(CicloFormRequest $request, $id)
     {
-
-        Curso::findOrFail($id)->update($request->all());
-        return redirect()->route('curso.index');
+        Ciclo::findOrFail($id)->update($request->all());
+        return redirect()->route('ciclo.index');
     }
 
     /**
@@ -89,9 +87,10 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-      $curso = Curso::findOrFail($id);
-      $curso->condicion = '0';
-      $curso->update();
-      return redirect()->route('curso.index');
+
+      $ciclo = Ciclo::findOrFail($id);
+      $ciclo->condicion = '0';
+      $ciclo->update();
+      return redirect()->route('ciclo.index');
     }
 }
