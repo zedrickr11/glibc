@@ -86,6 +86,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('ciclo') }}"><i class="icon-notebook"></i> Ciclo Escolar </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('seccion') }}"><i class="icon-notebook"></i> Sección </a>
+          </li>
 
         </ul>
       </nav>
