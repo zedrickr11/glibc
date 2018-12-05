@@ -19,3 +19,4 @@ Route::resource('curso','CursoController');
 Route::resource('ciclo','CicloController');
 Route::resource('seccion','SeccionController');
 Route::resource('plan','PlanController');
+Route::resource('tipo-actividad','TipoActividadController');

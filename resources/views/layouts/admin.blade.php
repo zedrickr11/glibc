@@ -92,7 +92,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('plan') }}"><i class="icon-notebook"></i> Plan </a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('tipo-actividad') }}"><i class="icon-notebook"></i> Tipo actividad </a>
+          </li>
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
