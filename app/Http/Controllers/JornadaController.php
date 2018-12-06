@@ -3,82 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\JornadaFormRequest;
 use App\Jornada;
 
 class JornadaController extends Controller
 {
-    public function list(Request $request)
-    {  
-        $request->validate([
-            'many' => 'nullable|integer',
-            'sort_by' => 'nullable|string',
-            'direction' => 'nullable|string'
-        ]);
+    public function index()
+    {
+        $jornadas = Jornada::all();
+        return view ('jornada.index',compact('jornadas'));
+    }
 
-        //Asignar valores de paginacion, ordenamiento y direccion de ordenamiento
-        $many = 10;
-        if($request->has('many')) $many = $request->many;
-        
-        $sort_by = 'nombre';
-        if($request->has('sort_by')) $sort_by = $request->sort_by;
-
-        $direction = 'asc';
-        if($request->has('direction')) $direction = $request->direction;
-        
-        if($request->has('all')) {
-            $jornadas = Jornada::orderBy($sort_by, $direction)->get();
-        }
-        else {
-            $jornadas = Jornada::orderBy($sort_by, $direction)->paginate($many);
-        }
-        
-        return response()->json($jornadas);
+    public function create()
+    {
+        return view('jornada.create');
     }
 
     
-    public function view(Request $request)
+    public function show($id)
     {
-        $jornada = Jornada::findOrFail($request->id);
-
-        return response()->json($jornada);
+        $jornada = Jornada::findOrFail($id);
+        return view('jornada.show', compact('jornada'));
     }
 
-    public function add(Request $request)
+    public function edit($id)
     {
-        $request->validate([
-            'nombre' => 'required|string',
-            'condicion' => 'required|boolean'
-        ]);
-
-        $jornada = new Jornada();
-        $jornada->nombre = $request->nombre;
-        $jornada->condicion = $request->condicion;
-        $jornada->save();
-        
-        return response()->json(['id' => $jornada->id]);
+        $jornada = Jornada::findOrFail($id);
+        return view('jornada.edit',compact('jornada'));
     }
 
-    public function edit(Request $request)
+    public function store(JornadaFormRequest $request)
     {
-        $request->validate([
-            'nombre' => 'nullable|string',
-            'condicion' => 'nullable|boolean'
-        ]);
-        
-        $jornada = Jornada::findOrFail($request->id);
-        $jornada->nombre = $request->has('nombre') ? $request->nombre : $jornada->nombre;
-        $jornada->condicion = $request->has('condicion') ? $request->condicion : $jornada->condicion;
-        
-        $condicion = $jornada->save();
-
-        return response()->json(['success' => $condicion]);
+        Jornada::create($request->all());
+        return redirect()->route('jornada.index');
     }
 
-    public function delete(Request $request)
+    public function update(JornadaFormRequest $request, $id)
     {
-        $jornada = Jornada::findOrFail($request->id);
-        $condicion = $jornada->delete();
+        Jornada::findOrFail($id)->update($request->all());
+        return redirect()->route('jornada.index');
+    }
 
-        return response()->json(['success' => $condicion]);
+    public function destroy($id)
+    {
+        $jornada = jornada::findOrFail($id);
+        $jornada->condicion = '0';
+        $jornada->update();
+        return redirect()->route('jornada.index');
     }
 }

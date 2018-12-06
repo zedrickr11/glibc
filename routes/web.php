@@ -21,3 +21,5 @@ Route::resource('seccion','SeccionController');
 Route::resource('plan','PlanController');
 Route::resource('rol','RolController');
 Route::resource('nivel','NivelController');
+Route::resource('jornada','JornadaController');
+
