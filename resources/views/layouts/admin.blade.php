@@ -92,7 +92,15 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('plan') }}"><i class="icon-notebook"></i> Plan </a>
           </li>
-
+          <li>
+            <a class="nav-link" href="{{ url('rol') }}"><i class="icon-speedometer"></i> Roles </a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ url('nivel') }}"><i class="icon-speedometer"></i> Niveles </a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ url('jornada') }}"><i class="icon-speedometer"></i> Jornada </a>
+          </li>
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
