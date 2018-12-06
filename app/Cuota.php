@@ -8,8 +8,9 @@ class Cuota extends Model
 {
     protected $table = 'cuota';
     protected $primaryKey = 'id_cuota';
+    public $timestamps=false;
 
-    protected $fillable = ['nombre', 'cantidad'];
+    protected $fillable = ['nombre', 'cantidad', 'condicion'];
 
     public function pagocuotas()
     {

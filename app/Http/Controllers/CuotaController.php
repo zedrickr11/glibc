@@ -3,82 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CuotaFormRequest;
 use App\Cuota;
 
 class CuotaController extends Controller
 {
-    public function list(Request $request)
-    {  
-        $request->validate([
-            'many' => 'nullable|integer',
-            'sort_by' => 'nullable|string',
-            'direction' => 'nullable|string'
-        ]);
+    public function index()
+    {
+        $cuotas = Cuota::all();
+        return view ('cuota.index',compact('cuotas'));
+    }
 
-        //Asignar valores de paginacion, ordenamiento y direccion de ordenamiento
-        $many = 10;
-        if($request->has('many')) $many = $request->many;
-        
-        $sort_by = 'nombre';
-        if($request->has('sort_by')) $sort_by = $request->sort_by;
-
-        $direction = 'asc';
-        if($request->has('direction')) $direction = $request->direction;
-        
-        if($request->has('all')) {
-            $cuotas = Cuota::orderBy($sort_by, $direction)->get();
-        }
-        else {
-            $cuotas = Cuota::orderBy($sort_by, $direction)->paginate($many);
-        }
-        
-        return response()->json($cuotas);
+    public function create()
+    {
+        return view('cuota.create');
     }
 
     
-    public function view(Request $request)
+    public function show($id)
     {
-        $cuota = Cuota::findOrFail($request->id);
-
-        return response()->json($cuota);
+        $cuota = Cuota::findOrFail($id);
+        return view('cuota.show', compact('cuota'));
     }
 
-    public function add(Request $request)
+    public function edit($id)
     {
-        $request->validate([
-            'nombre' => 'required|string',
-            'cantidad' => 'required|float'
-        ]);
-
-        $cuota = new Cuota();
-        $cuota->nombre = $request->nombre;
-        $cuota->cantidad = $request->cantidad;
-        $cuota->save();
-        
-        return response()->json(['id' => $cuota->id]);
+        $cuota = Cuota::findOrFail($id);
+        return view('cuota.edit',compact('cuota'));
     }
 
-    public function edit(Request $request)
+    public function store(CuotaFormRequest $request)
     {
-        $request->validate([
-            'nombre' => 'nullable|string',
-            'cantidad' => 'nullable|float'
-        ]);
-        
-        $cuota = Cuota::findOrFail($request->id);
-        $cuota->nombre = $request->has('nombre') ? $request->nombre : $cuota->nombre;
-        $cuota->cantidad = $request->has('cantidad') ? $request->cantidad : $cuota->cantidad;
-        
-        $condicion = $cuota->save();
-
-        return response()->json(['success' => $condicion]);
+        Cuota::create($request->all());
+        return redirect()->route('cuota.index');
     }
 
-    public function delete(Request $request)
+    public function update(CuotaFormRequest $request, $id)
     {
-        $cuota = Cuota::findOrFail($request->id);
-        $condicion = $cuota->delete();
+        Cuota::findOrFail($id)->update($request->all());
+        return redirect()->route('cuota.index');
+    }
 
-        return response()->json(['success' => $condicion]);
+    public function destroy($id)
+    {
+        $cuota = Cuota::findOrFail($id);
+        $cuota->condicion = '0';
+        $cuota->update();
+        return redirect()->route('cuota.index');
     }
 }
