@@ -8,8 +8,8 @@ class Unidad extends Model
 {
     protected $table = 'unidad';
     protected $primaryKey = 'id_unidad';
-
-    protected $fillable = ['nombre'];
+    public $timestamps=false;
+    protected $fillable = ['nombre', 'condicion'];
 
     public function notaunidades()
     {

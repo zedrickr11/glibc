@@ -101,6 +101,9 @@
           <li>
             <a class="nav-link" href="{{ url('jornada') }}"><i class="icon-speedometer"></i> Jornada </a>
           </li>
+          <li>
+            <a class="nav-link" href="{{ url('unidad') }}"><i class="icon-speedometer"></i> Unidad </a>
+          </li>
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>

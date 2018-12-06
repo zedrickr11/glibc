@@ -3,78 +3,93 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UnidadFormRequest;
 use App\Unidad;
 
 class UnidadController extends Controller
 {
-    public function list(Request $request)
-    {
-        $request->validate([
-            'many' => 'nullable|integer',
-            'sort_by' => 'nullable|string',
-            'direction' => 'nullable|string'
-        ]);
+    /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+    $unidades = Unidad::all();
+    return view ('unidad.index',compact('unidades'));
+  }
 
-        //Asignar valores de paginacion, ordenamiento y direccion de ordenamiento
-        $many = 10;
-        if($request->has('many')) $many = $request->many;
-        
-        $sort_by = 'nombre';
-        if($request->has('sort_by')) $sort_by = $request->sort_by;
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+      return view('unidad.create');
+  }
 
-        $direction = 'asc';
-        if($request->has('direction')) $direction = $request->direction;
-        
-        if($request->has('all')) {
-            $unidades = Unidad::orderBy($sort_by, $direction)->get();
-        }
-        else {
-            $unidades = Unidad::orderBy($sort_by, $direction)->paginate($many);
-        }
-        
-        return response()->json($unidades);
-    }
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(UnidadFormRequest $request)
+  {
+    Unidad::create($request->all());
+    return redirect()->route('unidad.index');
+  }
 
-    
-    public function view(Request $request)
-    {
-        $unidad = Unidad::findOrFail($request->id);
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+    $unidad = Unidad::findOrFail($id);
+    return view('unidad.show', compact('unidad'));
+  }
 
-        return response()->json($unidad);
-    }
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id)
+  {
+    $unidad = Unidad::findOrFail($id);
+    return view('unidad.edit',compact('unidad'));
+  }
 
-    public function add(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required|string'
-        ]);
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(UnidadFormRequest $request, $id)
+  {
+      Unidad::findOrFail($id)->update($request->all());
+      return redirect()->route('unidad.index');
+  }
 
-        $unidad = new Unidad();
-        $unidad->nombre = $request->nombre;
-        $unidad->save();
-        
-        return response()->json(['id' => $unidad->id]);
-    }
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($id)
+  {
+    $unidad = Unidad::findOrFail($id);
+    $unidad->condicion = '0';
+    $unidad->update();
+    return redirect()->route('unidad.index');
+  }
 
-    public function edit(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'nullable|string'
-        ]);
-        
-        $unidad = Unidad::findOrFail($request->id);
-        $unidad->nombre = $request->has('nombre') ? $request->nombre : $unidad->nombre;
-        
-        $condicion = $unidad->save();
-
-        return response()->json(['success' => $condicion]);
-    }
-
-    public function delete(Request $request)
-    {
-        $unidad = Unidad::findOrFail($request->id);
-        $condicion = $unidad->delete();
-
-        return response()->json(['success' => $condicion]);
-    }
 }
