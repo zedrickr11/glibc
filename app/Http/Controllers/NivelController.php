@@ -3,82 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\NivelFormRequest;
 use App\Nivel;
 
 class NivelController extends Controller
 {
-    public function list(Request $request)
+    public function index()
     {
-        $request->validate([
-            'many' => 'nullable|integer',
-            'sort_by' => 'nullable|string',
-            'direction' => 'nullable|string'
-        ]);
+        $niveles = Nivel::all();
+        return view ('nivel.index',compact('niveles'));
+    }
 
-        //Asignar valores de paginacion, ordenamiento y direccion de ordenamiento
-        $many = 10;
-        if($request->has('many')) $many = $request->many;
-        
-        $sort_by = 'nombre';
-        if($request->has('sort_by')) $sort_by = $request->sort_by;
-
-        $direction = 'asc';
-        if($request->has('direction')) $direction = $request->direction;
-        
-        if($request->has('all')) {
-            $niveles = Nivel::orderBy($sort_by, $direction)->get();
-        }
-        else {
-            $niveles = Nivel::orderBy($sort_by, $direction)->paginate($many);
-        }
-        
-        return response()->json($niveles);
+    public function create()
+    {
+        return view('nivel.create');
     }
 
     
-    public function view(Request $request)
+    public function show($id)
     {
-        $nivel = Nivel::findOrFail($request->id);
-
-        return response()->json($nivel);
+        $nivel = Nivel::findOrFail($id);
+        return view('nivel.show', compact('nivel'));
     }
 
-    public function add(Request $request)
+    public function edit($id)
     {
-        $request->validate([
-            'nombre' => 'required|string',
-            'descripcion' => 'nullable|string'
-        ]);
-
-        $nivel = new Nivel();
-        $nivel->nombre = $request->nombre;
-        $nivel->descripcion = $request->descripcion;
-        $nivel->save();
-        
-        return response()->json(['id' => $nivel->id]);
+        $nivel = Nivel::findOrFail($id);
+        return view('nivel.edit',compact('nivel'));
     }
 
-    public function edit(Request $request)
+    public function store(NivelFormRequest $request)
     {
-        $request->validate([
-            'nombre' => 'nullable|string',
-            'descripcion' => 'nullable|string'
-        ]);
-        
-        $nivel = Nivel::findOrFail($request->id);
-        $nivel->nombre = $request->has('nombre') ? $request->nombre : $nivel->nombre;
-        $nivel->descripcion = $request->has('descripcion') ? $request->descripcion : $nivel->descripcion;
-        
-        $condicion = $nivel->save();
-
-        return response()->json(['success' => $condicion]);
+        Nivel::create($request->all());
+        return redirect()->route('nivel.index');
     }
 
-    public function delete(Request $request)
+    public function update(NivelFormRequest $request, $id)
     {
-        $nivel = Nivel::findOrFail($request->id);
-        $condicion = $nivel->delete();
+        Nivel::findOrFail($id)->update($request->all());
+        return redirect()->route('nivel.index');
+    }
 
-        return response()->json(['success' => $condicion]);
+    public function destroy($id)
+    {
+        $nivel = Nivel::findOrFail($id);
+        $nivel->condicion = '0';
+        $nivel->update();
+        return redirect()->route('nivel.index');
     }
 }

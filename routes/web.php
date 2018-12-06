@@ -20,3 +20,4 @@ Route::resource('ciclo','CicloController');
 Route::resource('seccion','SeccionController');
 Route::resource('plan','PlanController');
 Route::resource('rol','RolController');
+Route::resource('nivel','NivelController');

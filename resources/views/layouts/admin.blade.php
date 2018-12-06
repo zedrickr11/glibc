@@ -95,6 +95,9 @@
           <li>
             <a class="nav-link" href="{{ url('rol') }}"><i class="icon-speedometer"></i> Roles </a>
           </li>
+          <li>
+            <a class="nav-link" href="{{ url('nivel') }}"><i class="icon-speedometer"></i> Niveles </a>
+          </li>
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
