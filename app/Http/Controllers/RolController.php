@@ -3,36 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RolFormRequest;
+
 use App\Rol;
 
 class RolController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $request->validate([
-            'many' => 'nullable|integer',
-            'sort_by' => 'nullable|string',
-            'direction' => 'nullable|string'
-        ]);
-
-        //Asignar valores de paginacion, ordenamiento y direccion de ordenamiento
-        $many = 10;
-        if($request->has('many')) $many = $request->many;
-        
-        $sort_by = 'nombre';
-        if($request->has('sort_by')) $sort_by = $request->sort_by;
-
-        $direction = 'asc';
-        if($request->has('direction')) $direction = $request->direction;
-        
-        if($request->has('all')) {
-            $roles = Rol::orderBy($sort_by, $direction)->get();
-        }
-        else {
-            $roles = Rol::orderBy($sort_by, $direction)->paginate($many);
-        }
-        
-        return view('rol.index', compact('roles'));
+        $roles = Rol::all();
+        return view ('rol.index',compact('roles'));
     }
 
     public function create()
@@ -41,65 +21,35 @@ class RolController extends Controller
     }
 
     
-    public function show(Request $request)
+    public function show($id)
     {
-        $rol = Rol::findOrFail($request->id);
-
-        return response()->json($rol);
+        $rol = Rol::findOrFail($id);
+        return view('rol.show', compact('rol'));
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
-        $rol = Rol::findOrFail($request->id);
-
-        return response()->json($rol);
+        $rol = Rol::findOrFail($id);
+        return view('rol.edit',compact('rol'));
     }
 
-    public function store(Request $request)
+    public function store(RolFormRequest $request)
     {
-        $request->validate([
-            'nombre' => 'required|string',
-            'descripcion' => 'nullable|string',
-            'condicion' => 'required|integer',
-            'display_name' => 'nullable|string',
-        ]);
-
-        $rol = new Rol();
-        $rol->nombre = $request->nombre;
-        $rol->descripcion = $request->descripcion;
-        $rol->condicion = $request->condicion;
-        $rol->display_name = $request->display_name;
-
-        $rol->save();
-        
-        return response()->json(['id' => $rol->id]);
+        Rol::create($request->all());
+        return redirect()->route('rol.index');
     }
 
-    public function update(Request $request)
+    public function update(RolFormRequest $request, $id)
     {
-        $request->validate([
-            'nombre' => 'required|string',
-            'descripcion' => 'nullable|string',
-            'condicion' => 'required|integer',
-            'display_name' => 'nullable|string',
-        ]);
-        
-        $rol = Rol::findOrFail($request->id);
-        $rol->nombre = $request->has('nombre') ? $request->nombre : $rol->nombre;
-        $rol->descripcion = $request->has('descripcion') ? $request->descripcion : $rol->descripcion;
-        $rol->condicion = $request->has('condicion') ? $request->condicion : $rol->condicion;
-        $rol->display_name = $request->has('display_name') ? $request->display_name : $rol->display_name;
-        
-        $condicion = $rol->save();
-
-        return response()->json(['success' => $condicion]);
+        Rol::findOrFail($id)->update($request->all());
+        return redirect()->route('rol.index');
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $rol = Rol::findOrFail($request->id);
-        $condicion = $rol->delete();
-
-        return response()->json(['success' => $condicion]);
+        $rol = Rol::findOrFail($id);
+        $rol->condicion = '0';
+        $rol->update();
+        return redirect()->route('rol.index');
     }
 }
