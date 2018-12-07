@@ -9,6 +9,7 @@ class Carrera extends Model
     protected $table = 'carrera';
 
     protected $fillable = ['nombre', 'condicion', 'id_nivel'];
+    public $timestamps=false;
 
     public function nivel()
     {

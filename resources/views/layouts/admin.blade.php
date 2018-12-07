@@ -110,6 +110,9 @@
           <li>
             <a class="nav-link" href="{{ url('mensualidad') }}"><i class="icon-speedometer"></i> Mensualidad </a>
           </li>
+          <li>
+            <a class="nav-link" href="{{ url('carrera') }}"><i class="icon-speedometer"></i> Carreras </a>
+          </li>
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
