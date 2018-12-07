@@ -8,8 +8,9 @@ class Mensualidad extends Model
 {
     protected $table = 'mensualidad';
     protected $primaryKey = 'id_mensualidad';
+    public $timestamps=false;
 
-    protected $fillable = ['nombre', 'fecha_limite'];
+    protected $fillable = ['nombre', 'dia_limite', 'condicion'];
 
     public function pagomensualidades()
     {

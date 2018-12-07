@@ -24,5 +24,7 @@ Route::resource('nivel','NivelController');
 Route::resource('jornada','JornadaController');
 Route::resource('unidad','UnidadController');
 Route::resource('cuota','CuotaController');
+Route::resource('mensualidad','MensualidadController');
+
 
 

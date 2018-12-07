@@ -107,6 +107,9 @@
           <li>
             <a class="nav-link" href="{{ url('cuota') }}"><i class="icon-speedometer"></i> Cuota </a>
           </li>
+          <li>
+            <a class="nav-link" href="{{ url('mensualidad') }}"><i class="icon-speedometer"></i> Mensualidad </a>
+          </li>
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
