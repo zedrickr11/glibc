@@ -3,82 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\MensualidadFormRequest;
 use App\Mensualidad;
 
 class MensualidadController extends Controller
 {
-    public function list(Request $request)
-    {  
-        $request->validate([
-            'many' => 'nullable|integer',
-            'sort_by' => 'nullable|string',
-            'direction' => 'nullable|string'
-        ]);
 
-        //Asignar valores de paginacion, ordenamiento y direccion de ordenamiento
-        $many = 10;
-        if($request->has('many')) $many = $request->many;
-        
-        $sort_by = 'nombre';
-        if($request->has('sort_by')) $sort_by = $request->sort_by;
-
-        $direction = 'asc';
-        if($request->has('direction')) $direction = $request->direction;
-        
-        if($request->has('all')) {
-            $mensualidades = Mensualidad::orderBy($sort_by, $direction)->get();
-        }
-        else {
-            $mensualidades = Mensualidad::orderBy($sort_by, $direction)->paginate($many);
-        }
-        
-        return response()->json($mensualidades);
+    public function index()
+    {
+      $mensualidades = Mensualidad::all();
+      return view ('mensualidad.index',compact('mensualidades'));
     }
 
-    
-    public function view(Request $request)
+   
+    public function create()
     {
-        $mensualidad = Mensualidad::findOrFail($request->id);
-
-        return response()->json($mensualidad);
+        return view('mensualidad.create');
     }
 
-    public function add(Request $request)
+    public function store(MensualidadFormRequest $request)
     {
-        $request->validate([
-            'nombre' => 'required|string',
-            'fecha_limite' => 'required|date'
-        ]);
-
-        $mensualidad = new Mensualidad();
-        $mensualidad->nombre = $request->nombre;
-        $mensualidad->fecha_limite = $request->fecha_limite;
-        $mensualidad->save();
-        
-        return response()->json(['id' => $mensualidad->id]);
+        Mensualidad::create($request->all());
+        return redirect()->route('mensualidad.index');
     }
 
-    public function edit(Request $request)
+    public function show($id)
     {
-        $request->validate([
-            'nombre' => 'nullable|string',
-            'fecha_limite' => 'nullable|date'
-        ]);
-        
-        $mensualidad = Mensualidad::findOrFail($request->id);
-        $mensualidad->nombre = $request->has('nombre') ? $request->nombre : $mensualidad->nombre;
-        $mensualidad->fecha_limite = $request->has('fecha_limite') ? $request->fecha_limite : $mensualidad->fecha_limite;
-        
-        $condicion = $mensualidad->save();
-
-        return response()->json(['success' => $condicion]);
+      $mensualidad = Mensualidad::findOrFail($id);
+      return view('mensualidad.show', compact('mensualidad'));
     }
 
-    public function delete(Request $request)
+    public function edit($id)
     {
-        $mensualidad = Mensualidad::findOrFail($request->id);
-        $condicion = $mensualidad->delete();
+      $mensualidad = Mensualidad::findOrFail($id);
+      return view('mensualidad.edit',compact('mensualidad'));
+    }
 
-        return response()->json(['success' => $condicion]);
+    public function update(MensualidadFormRequest $request, $id)
+    {
+        Mensualidad::findOrFail($id)->update($request->all());
+        return redirect()->route('mensualidad.index');
+    }
+
+    public function destroy($id)
+    {
+      $mensualidad = Mensualidad::findOrFail($id);
+      $mensualidad->condicion = '0';
+      $mensualidad->update();
+      return redirect()->route('mensualidad.index');
     }
 }
