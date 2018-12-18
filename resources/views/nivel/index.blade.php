@@ -25,6 +25,7 @@
                       <th>#</th>
                       <th>Nombre</th>
                       <th>Descripción</th>
+                      <th>Estado</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -35,18 +36,29 @@
                       <td>{{ $nivel->nombre }}</td>
                       <td>{{ $nivel->descripcion }}</td>
                       <td>
+                        @if ($nivel->condicion==1)
+                          <span class="badge badge-success">Activo</span>
+                        @else
+                          <span class="badge badge-danger">Inactivo</span>
+                        @endif
+                      </td>
+                      <td>
                         <a href="{{route('nivel.edit',$nivel->id_nivel )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
-                        <!--<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$nivel->id_nivel}}">
+                        @if($nivel->condicion)
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$nivel->id_nivel}}">
                           <span class="fa fa-trash-o"></span>
-                        </button>-->
-                        <!-- <a href="{{route('plan.show',$nivel->id_nivel)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
+                        </button>
+                        @else
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$nivel->id_nivel}}">
+                          <span class="icon-check"></span>
+                        </button>
+                        @endif
                       </td>
                     </tr>
-                    @include('nivel.modal')
+                    @include('nivel.deshabilitar')
+                    @include('nivel.habilitar')
                     @endforeach
                   </tbody>
                 </table>

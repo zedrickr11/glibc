@@ -49,15 +49,19 @@
                         <a href="{{route('rol.edit',$rol->id_rol )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
+                        @if($rol->condicion)
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$rol->id_rol}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
-                        <!-- <a href="{{route('plan.show',$rol->id_rol)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
+                        @else
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$rol->id_rol}}">
+                          <span class="icon-check"></span>
+                        </button>
+                        @endif
                       </td>
                     </tr>
-                    @include('rol.modal')
+                    @include('rol.deshabilitar')
+                    @include('rol.habilitar')
                     @endforeach
                   </tbody>
                 </table>

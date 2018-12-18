@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NivelFormRequest extends FormRequest
+class GradoFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,9 @@ class NivelFormRequest extends FormRequest
         return [
           'nombre' => 'required|string',
           'descripcion' => 'nullable|string',
+          'id_persona' => 'required|integer',
+          'id_ciclo' => 'required|integer',
+          'id_seccion' => 'required|integer',
           'condicion' => 'required|boolean'
         ];
     }

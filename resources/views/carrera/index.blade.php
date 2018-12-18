@@ -41,20 +41,27 @@
                           <span class="badge badge-danger">Inactivo</span>
                         @endif
                       </td>
-                      <td>{{ $carrera->id_nivel }}</td>
+                      <td>{{ $carrera->nivel->nombre }}</td>
                       <td>
+                        <a href="{{route('carrera.show',$carrera->id)}}">
+                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
+                        </a>
                         <a href="{{route('carrera.edit',$carrera->id )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$carrera->id}}">
+                        @if($carrera->condicion)
+                        <button title="Deshabilitar" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$carrera->id}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
-                        <!-- <a href="{{route('carrera.show',$carrera->id)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
+                        @else
+                        <button title="Habilitar" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$carrera->id}}">
+                          <span class="icon-check"></span>
+                        </button>
+                        @endif
                       </td>
                     </tr>
-                    @include('carrera.modal')
+                    @include('carrera.deshabilitar')
+                    @include('carrera.habilitar')
                     @endforeach
                   </tbody>
                 </table>

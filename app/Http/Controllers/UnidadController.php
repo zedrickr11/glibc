@@ -84,11 +84,13 @@ class UnidadController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(Request $request, $id)
   {
-    $unidad = Unidad::findOrFail($id);
-    $unidad->condicion = '0';
-    $unidad->update();
+    if($request->has('valor')){
+      $unidad = Unidad::findOrFail($id);
+      $unidad->condicion = $request->valor;
+      $unidad->update();
+    }
     return redirect()->route('unidad.index');
   }
 

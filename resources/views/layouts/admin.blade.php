@@ -106,6 +106,9 @@
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Configuracion</a>
             <ul class="nav-dropdown-items">
+              <li>
+                <a class="nav-link" href="{{ url('inscripcion') }}"><i class="icon-speedometer"></i> Inscripciones </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('curso') }}"><i class="icon-notebook"></i> Curso </a>
               </li>
@@ -129,6 +132,9 @@
               </li>
               <li>
                 <a class="nav-link" href="{{ url('carrera') }}"><i class="icon-speedometer"></i> Carreras </a>
+              </li>
+              <li>
+                <a class="nav-link" href="{{ url('alumno') }}"><i class="icon-speedometer"></i> Alumnos </a>
               </li>
             </ul>
           </li>

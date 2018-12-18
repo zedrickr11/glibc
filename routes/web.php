@@ -29,3 +29,12 @@ Route::resource('unidad','UnidadController');
 Route::resource('cuota','CuotaController');
 Route::resource('mensualidad','MensualidadController');
 Route::resource('carrera','CarreraController');
+
+Route::resource('alumno','AlumnoController');
+Route::get('alumno/downloadFeEdad/{file}', 'AlumnoController@downloadFeEdad');
+
+Route::resource('inscripcion','InscripcionController');
+Route::resource('grado','GradoController');
+Route::get('grado/{grado}/cursos', ['as' => 'grado.cursos', 'uses' => 'GradoController@listCursos']);
+Route::post('grado/{grado}/addcursos', ['as' => 'grado.addcursos', 'uses' => 'GradoController@addCursos']);
+

@@ -12,10 +12,11 @@
               </div>
               <div class="modal-body">
                 <p>Confirme si desea deshabilitar la unidad</p>
+                <input type="hidden" name="valor" value="0">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <button type="submit" class="btn btn-danger">Deshabilitar</button>
               </div>
             </div>
             <!-- /.modal-content -->

@@ -46,15 +46,19 @@
                         <a href="{{route('cuota.edit',$cuota->id_cuota )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
+                        @if($cuota->condicion)
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$cuota->id_cuota}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
-                        <!-- <a href="{{route('cuota.show',$cuota->id_cuota)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
+                        @else
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$cuota->id_cuota}}">
+                          <span class="icon-check"></span>
+                        </button>
+                        @endif
                       </td>
                     </tr>
-                    @include('cuota.modal')
+                    @include('cuota.deshabilitar')
+                    @include('cuota.habilitar')
                     @endforeach
                   </tbody>
                 </table>

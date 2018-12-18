@@ -10,7 +10,7 @@ class Nivel extends Model
     protected $primaryKey = 'id_nivel';
     public $timestamps=false;
 
-    protected $fillable = ['nombre', 'descripcion'];
+    protected $fillable = ['nombre', 'descripcion', 'condicion'];
 
     public function carreras()
     {
