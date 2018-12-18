@@ -45,11 +45,13 @@ class RolController extends Controller
         return redirect()->route('rol.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $rol = Rol::findOrFail($id);
-        $rol->condicion = '0';
-        $rol->update();
+        if($request->has('valor')){
+            $rol = Rol::findOrFail($id);
+            $rol->condicion = $request->valor;
+            $rol->update();
+        }
         return redirect()->route('rol.index');
     }
 }

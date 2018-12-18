@@ -45,11 +45,13 @@ class MensualidadController extends Controller
         return redirect()->route('mensualidad.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-      $mensualidad = Mensualidad::findOrFail($id);
-      $mensualidad->condicion = '0';
-      $mensualidad->update();
+      if($request->has('valor')){
+        $mensualidad = Mensualidad::findOrFail($id);
+        $mensualidad->condicion = $request->valor;
+        $mensualidad->update();
+      }
       return redirect()->route('mensualidad.index');
     }
 }

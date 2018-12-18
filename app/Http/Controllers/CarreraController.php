@@ -47,11 +47,13 @@ class CarreraController extends Controller
         return redirect()->route('carrera.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-      $carrera = Carrera::findOrFail($id);
-      $carrera->condicion = '0';
-      $carrera->update();
-      return redirect()->route('carrera.index');
+        if($request->has('valor')){
+            $carrera = Carrera::findOrFail($id);
+            $carrera->condicion = $request->valor;
+            $carrera->update();
+        }
+        return redirect()->route('carrera.index');
     }
 }

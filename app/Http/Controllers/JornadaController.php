@@ -44,11 +44,13 @@ class JornadaController extends Controller
         return redirect()->route('jornada.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $jornada = jornada::findOrFail($id);
-        $jornada->condicion = '0';
-        $jornada->update();
+        if($request->has('valor')){
+            $jornada = jornada::findOrFail($id);
+            $jornada->condicion = $request->valor;
+            $jornada->update();
+        }
         return redirect()->route('jornada.index');
     }
 }

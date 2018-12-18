@@ -1,5 +1,5 @@
-<div class="modal fade" id="dangerModal-{{$cuota->id_cuota}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form method="POST" action="{{route('cuota.destroy', $cuota->id_cuota )}}">
+<div class="modal fade" id="dangerModal-{{$rol->id_rol}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <form method="POST" action="{{route('rol.destroy', $rol->id_rol )}}">
   {!!method_field('DELETE')!!}
   {!!csrf_field()!!}
 
@@ -7,13 +7,14 @@
           <div class="modal-dialog modal-danger" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Deshabilitar cuota</h4>
+                <h4 class="modal-title">Deshabilitar Rol</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p>Confirme si desea deshabilitar la cuota</p>
+                <p>Confirme si desea deshabilitar el rol</p>
+                <input type="hidden" name="valor" value="0">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

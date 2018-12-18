@@ -3,9 +3,10 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">GlibColegio</li>
-      <li class="breadcrumb-item"><a href="#">Unidad</a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item"><a href="#">Inscripciones</a></li>
+      <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
+
     </ol>
 
     <div class="container-fluid">
@@ -14,48 +15,47 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <i class="fa fa-align-justify"></i> Unidad
-                <a href="unidad/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
+                <i class="fa fa-align-justify"></i> Inscripciones
+                <a href="inscripcion/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
               </div>
               <div class="card-body">
-                <table id="tabla-plan" class="table table-responsive-sm table-striped">
+                <table id="tabla-inscripcion" class="display table table-responsive-sm table-striped">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Nombre</th>
-                      <th>Estado</th>
+                      <th>Alumno</th>
+                      <th>Grado</th>
+                      <th>Jornada</th>
+                      <th>Cuota</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($unidades as $unidad)
+                    @foreach ($inscripciones as $inscripcion)
                     <tr>
-                      <td>{{ $unidad->id_unidad }}</td>
-                      <td>{{ $unidad->nombre }}</td>
+                      <td>{{ $inscripcion->alumno->primer_nombre }} {{ $inscripcion->alumno->segundo_nombre }} {{ $inscripcion->alumno->primer_apellido }}  {{ $inscripcion->alumno->segundo_apellido }}</td>
+                      <td>{{ $inscripcion->detalle->grado->nombre }}</td>
+                      <td>{{ $inscripcion->detalle->jornada->nombre }}</td>
+                      <td>{{ $inscripcion->cuota }}</td>
                       <td>
-                        @if ($unidad->condicion==1)
-                          <span class="badge badge-success">Activo</span>
-                        @else
-                          <span class="badge badge-danger">Inactivo</span>
-                        @endif
-                      </td>
-                      <td>
-                        <a href="{{route('unidad.edit',$unidad->id_unidad )}}">
+                        <a href="{{route('inscripcion.show',$inscripcion->id_inscripcion)}}">
+                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
+                        </a>
+                        <a href="{{route('inscripcion.edit',$inscripcion->id_inscripcion )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
-                        @if($unidad->condicion)
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$unidad->id_unidad}}">
+                        @if($inscripcion->condicion)
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$inscripcion->id_inscripcion}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
                         @else
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$unidad->id_unidad}}">
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$inscripcion->id_inscripcion}}">
                           <span class="icon-check"></span>
                         </button>
                         @endif
                       </td>
                     </tr>
-                    @include('unidad.deshabilitar')
-                    @include('unidad.habilitar')
+                    @include('inscripcion.deshabilitar')
+                    @include('inscripcion.habilitar')
                     @endforeach
                   </tbody>
                 </table>
@@ -68,7 +68,7 @@
     <!-- /.conainer-fluid -->
     @push ('scripts')
       <script type="text/javascript">
-        $('#tabla-plan').DataTable({
+        $('#tabla-inscripcion').DataTable({
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",
@@ -96,5 +96,6 @@
         }
           });
       </script>
+
     @endpush
 @endsection

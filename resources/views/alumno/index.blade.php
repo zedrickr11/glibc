@@ -3,9 +3,10 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">GlibColegio</li>
-      <li class="breadcrumb-item"><a href="#">Unidad</a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item"><a href="#">Alumnos</a></li>
+      <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
+
     </ol>
 
     <div class="container-fluid">
@@ -14,11 +15,11 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <i class="fa fa-align-justify"></i> Unidad
-                <a href="unidad/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
+                <i class="fa fa-align-justify"></i> Alumnos
+                <a href="alumno/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
               </div>
               <div class="card-body">
-                <table id="tabla-plan" class="table table-responsive-sm table-striped">
+                <table id="tabla-alumno" class="display table table-responsive-sm table-striped">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -28,34 +29,37 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($unidades as $unidad)
+                    @foreach ($alumnos as $alumno)
                     <tr>
-                      <td>{{ $unidad->id_unidad }}</td>
-                      <td>{{ $unidad->nombre }}</td>
+                      <td>{{ $alumno->id }}</td>
+                      <td>{{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }} {{ $alumno->primer_apellido }}  {{ $alumno->segundo_apellido }}</td>
                       <td>
-                        @if ($unidad->condicion==1)
+                        @if ($alumno->condicion==1)
                           <span class="badge badge-success">Activo</span>
                         @else
                           <span class="badge badge-danger">Inactivo</span>
                         @endif
                       </td>
                       <td>
-                        <a href="{{route('unidad.edit',$unidad->id_unidad )}}">
+                        <a href="{{route('alumno.show',$alumno->id)}}">
+                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
+                        </a>
+                        <a href="{{route('alumno.edit',$alumno->id )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
-                        @if($unidad->condicion)
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$unidad->id_unidad}}">
+                        @if($alumno->condicion)
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$alumno->id}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
                         @else
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$unidad->id_unidad}}">
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$alumno->id}}">
                           <span class="icon-check"></span>
                         </button>
                         @endif
                       </td>
                     </tr>
-                    @include('unidad.deshabilitar')
-                    @include('unidad.habilitar')
+                    @include('alumno.deshabilitar')
+                    @include('alumno.habilitar')
                     @endforeach
                   </tbody>
                 </table>
@@ -68,7 +72,7 @@
     <!-- /.conainer-fluid -->
     @push ('scripts')
       <script type="text/javascript">
-        $('#tabla-plan').DataTable({
+        $('#tabla-alumno').DataTable({
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",
@@ -96,5 +100,6 @@
         }
           });
       </script>
+
     @endpush
 @endsection

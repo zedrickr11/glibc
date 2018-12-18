@@ -45,15 +45,19 @@
                         <a href="{{route('mensualidad.edit',$mensualidad->id_mensualidad )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
+                        @if($mensualidad->condicion)
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$mensualidad->id_mensualidad}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
-                        <!-- <a href="{{route('mensualidad.show',$mensualidad->id_mensualidad)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
+                        @else
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$mensualidad->id_mensualidad}}">
+                          <span class="icon-check"></span>
+                        </button>
+                        @endif
                       </td>
                     </tr>
-                    @include('mensualidad.modal')
+                    @include('mensualidad.deshabilitar')
+                    @include('mensualidad.habilitar')
                     @endforeach
                   </tbody>
                 </table>

@@ -44,11 +44,13 @@ class CuotaController extends Controller
         return redirect()->route('cuota.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $cuota = Cuota::findOrFail($id);
-        $cuota->condicion = '0';
-        $cuota->update();
+        if($request->has('valor')){
+            $cuota = Cuota::findOrFail($id);
+            $cuota->condicion = $request->valor;
+            $cuota->update();
+        }
         return redirect()->route('cuota.index');
     }
 }

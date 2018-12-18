@@ -44,11 +44,13 @@ class NivelController extends Controller
         return redirect()->route('nivel.index');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $nivel = Nivel::findOrFail($id);
-        $nivel->condicion = '0';
-        $nivel->update();
+        if($request->has('valor')){
+            $nivel = Nivel::findOrFail($id);
+            $nivel->condicion = $request->valor;
+            $nivel->update();
+        }
         return redirect()->route('nivel.index');
     }
 }

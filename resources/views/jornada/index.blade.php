@@ -6,7 +6,6 @@
       <li class="breadcrumb-item"><a href="#">Jornadas</a></li>
       <li class="breadcrumb-item active">Index</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
@@ -17,7 +16,6 @@
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Jornadas
                 <a href="jornada/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
-
               </div>
               <div class="card-body">
                 <table id="tabla-plan" class="table table-responsive-sm table-striped">
@@ -42,18 +40,22 @@
                         @endif
                       </td>
                       <td>
-                        <a href="{{route('jornada.edit',$jornada->id_jornada )}}">
+                        <a title="Editar" href="{{route('jornada.edit',$jornada->id_jornada )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$jornada->id_jornada}}">
+                        @if($jornada->condicion)
+                        <button title="Deshabilitar" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$jornada->id_jornada}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
-                        <!-- <a href="{{route('jornada.show',$jornada->id_jornada)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
+                        @else
+                        <button title="Habilitar" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$jornada->id_jornada}}">
+                          <span class="icon-check"></span>
+                        </button>
+                        @endif
                       </td>
                     </tr>
-                    @include('jornada.modal')
+                    @include('jornada.deshabilitar')
+                    @include('jornada.habilitar')
                     @endforeach
                   </tbody>
                 </table>

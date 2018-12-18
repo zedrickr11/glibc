@@ -35,6 +35,14 @@
                   {!!$errors->first('descripcion','<span class=text-danger>:message</span>')!!}
                 </div>
               </div>
+              <div class="form-group">
+                <label for="condicion">Estado</label>
+                <select class="form-control" name="condicion">
+                  <option value="1">ACTIVO</option>
+                  <option value="0">INACTIVO</option>
+                </select>
+                {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
+              </div>
               <div class="card-footer">
                 <a href="{{ route('nivel.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
                 <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Guardar</button>
@@ -42,10 +50,8 @@
               </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
 @endsection
