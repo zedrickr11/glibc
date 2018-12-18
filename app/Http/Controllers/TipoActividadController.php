@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests\CursoFormRequest;
-use App\Curso;
+use App\Http\Requests\TipoActividadFormRequest;
+use App\TipoActividad;
 
-class CursoController extends Controller
+class TipoActividadController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +17,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $curso=Curso::all()->where('condicion','1');;
-        return view ('curso.index',compact('curso'));
+      $tipoactividad=TipoActividad::all()->where('condicion','1');;
+      return view ('tipoactividad.index',compact('tipoactividad'));
     }
 
     /**
@@ -27,7 +28,7 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('curso.create');
+        return view('tipoactividad.create');
     }
 
     /**
@@ -36,10 +37,10 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CursoFormRequest $request)
+    public function store(TipoActividadFormRequest $request)
     {
-        Curso::create($request->all());
-        return redirect()->route('curso.index');
+      TipoActividad::create($request->all());
+      return redirect()->route('tipo-actividad.index');
     }
 
     /**
@@ -50,8 +51,8 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        $curso=Curso::findOrFail($id);
-        return view('curso.show', compact('curso'));
+      $tipoactividad=TipoActividad::findOrFail($id);
+      return view('tipoactividad.show', compact('tipoactividad'));
     }
 
     /**
@@ -62,9 +63,8 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        $curso=Curso::findOrFail($id);
-        return view('curso.edit',compact('curso'));
-
+      $tipoactividad=TipoActividad::findOrFail($id);
+      return view('tipoactividad.edit',compact('tipoactividad'));
     }
 
     /**
@@ -74,11 +74,10 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CursoFormRequest $request, $id)
+    public function update(TipoActividadFormRequest $request, $id)
     {
-
-        Curso::findOrFail($id)->update($request->all());
-        return redirect()->route('curso.index');
+        TipoActividad::findOrFail($id)->update($request->all());
+        return redirect()->route('tipo-actividad.index');
     }
 
     /**
@@ -89,9 +88,10 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-      $curso = Curso::findOrFail($id);
-      $curso->condicion = '0';
-      $curso->update();
-      return redirect()->route('curso.index');
+
+      $tipoactividad = TipoActividad::findOrFail($id);
+      $tipoactividad->condicion = '0';
+      $tipoactividad->update();
+      return redirect()->route('tipo-actividad.index');
     }
 }

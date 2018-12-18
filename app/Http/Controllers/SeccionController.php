@@ -16,7 +16,7 @@ class SeccionController extends Controller
    */
   public function index()
   {
-    $seccion=Seccion::all();
+    $seccion=Seccion::all()->where('condicion','1');;
     return view ('seccion.index',compact('seccion'));
   }
 
@@ -87,7 +87,7 @@ class SeccionController extends Controller
    */
   public function destroy($id)
   {
- 
+
     $seccion = Seccion::findOrFail($id);
     $seccion->condicion = '0';
     $seccion->update();

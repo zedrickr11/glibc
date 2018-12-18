@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests\CursoFormRequest;
-use App\Curso;
+use App\Http\Requests\MoraFormRequest;
+use App\Mora;
 
-class CursoController extends Controller
+class MoraController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +17,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $curso=Curso::all()->where('condicion','1');;
-        return view ('curso.index',compact('curso'));
+      $mora=Mora::all()->where('condicion','1');
+      return view ('mora.index',compact('mora'));
     }
 
     /**
@@ -27,7 +28,7 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('curso.create');
+        return view('mora.create');
     }
 
     /**
@@ -36,10 +37,10 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CursoFormRequest $request)
+    public function store(MoraFormRequest $request)
     {
-        Curso::create($request->all());
-        return redirect()->route('curso.index');
+      Mora::create($request->all());
+      return redirect()->route('mora.index');
     }
 
     /**
@@ -50,8 +51,8 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        $curso=Curso::findOrFail($id);
-        return view('curso.show', compact('curso'));
+      $mora=Mora::findOrFail($id);
+      return view('mora.show', compact('mora'));
     }
 
     /**
@@ -62,9 +63,8 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        $curso=Curso::findOrFail($id);
-        return view('curso.edit',compact('curso'));
-
+      $mora=Mora::findOrFail($id);
+      return view('mora.edit',compact('mora'));
     }
 
     /**
@@ -74,11 +74,10 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CursoFormRequest $request, $id)
+    public function update(MoraFormRequest $request, $id)
     {
-
-        Curso::findOrFail($id)->update($request->all());
-        return redirect()->route('curso.index');
+        Mora::findOrFail($id)->update($request->all());
+        return redirect()->route('mora.index');
     }
 
     /**
@@ -89,9 +88,10 @@ class CursoController extends Controller
      */
     public function destroy($id)
     {
-      $curso = Curso::findOrFail($id);
-      $curso->condicion = '0';
-      $curso->update();
-      return redirect()->route('curso.index');
+
+      $mora = Mora::findOrFail($id);
+      $mora->condicion = '0';
+      $mora->update();
+      return redirect()->route('mora.index');
     }
 }

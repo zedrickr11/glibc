@@ -12,7 +12,7 @@ class Ciclo extends Model
   public $timestamps=false;
 
   protected $fillable = [
-      'id_ciclo',
+    
       'año',
       'fecha_inicio',
       'fecha_fin',

@@ -16,7 +16,7 @@ class PlanController extends Controller
    */
   public function index()
   {
-    $plan=Plan::all();
+    $plan=Plan::all()->where('condicion','1');;
     return view ('plan.index',compact('plan'));
   }
 

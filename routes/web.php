@@ -19,6 +19,9 @@ Route::resource('curso','CursoController');
 Route::resource('ciclo','CicloController');
 Route::resource('seccion','SeccionController');
 Route::resource('plan','PlanController');
+Route::resource('tipo-actividad', 'TipoActividadController');
+Route::resource('mora','MoraController');
+
 Route::resource('rol','RolController');
 Route::resource('nivel','NivelController');
 Route::resource('jornada','JornadaController');
@@ -26,7 +29,3 @@ Route::resource('unidad','UnidadController');
 Route::resource('cuota','CuotaController');
 Route::resource('mensualidad','MensualidadController');
 Route::resource('carrera','CarreraController');
-
-
-
-

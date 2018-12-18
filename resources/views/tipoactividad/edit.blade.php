@@ -4,7 +4,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">GlibColegio</li>
-      <li class="breadcrumb-item"><a href="#">Sección</a></li>
+      <li class="breadcrumb-item"><a href="#">Ciclo</a></li>
       <li class="breadcrumb-item active">Editar</li>
       <!-- Breadcrumb Menu-->
 
@@ -20,37 +20,25 @@
                 <strong>Ciclo</strong>
                 <small>Form</small>
               </div>
-              <form class="" action="{{ route('seccion.update',$seccion->id) }}" method="post">
+              <form class="" action="{{ route('tipo-actividad.update',$tipoactividad->id_tipo_actividad) }}" method="post">
                 {!!method_field('PUT')!!}
                   {!!csrf_field()!!}
 
                   <div class="card-body">
                     <div class="form-group">
                       <label for="nombre">Nombre</label>
-                      <input type="text" class="form-control" name="nombre" value="{{ $seccion->nombre }}">
+                      <input type="text" class="form-control" name="nombre" value="{{ $tipoactividad->nombre }}">
                       {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                     </div>
 
 
 
-                    <div class="form-group">
-                      <label for="condicion">Estado</label>
-                      <select class="form-control" name="condicion">
-                        @if ($seccion->condicion==1)
-                          <option value="1" selected>ACTIVO</option>
-                          <option value="0" >INACTIVO</option>
-                        @else
-                          <option value="1" >ACTIVO</option>
-                          <option value="0" selected>INACTIVO</option>
-                        @endif
-                      </select>
-                      {!!$errors->first('condicion','<span class=error>:message</span>')!!}
-                    </div>
+              
 
                   </div>
 
               <div class="card-footer">
-                <a href="{{ route('seccion.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
+                <a href="{{ route('tipo-actividad.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
                 <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Guardar</button>
                 <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Cancelar</button>
               </div>

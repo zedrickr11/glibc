@@ -16,7 +16,7 @@ class CicloController extends Controller
      */
     public function index()
     {
-      $ciclo=Ciclo::all();
+      $ciclo=Ciclo::all()->where('condicion','1');;
       return view ('ciclo.index',compact('ciclo'));
     }
 
