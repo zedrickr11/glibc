@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests\TipoActividadFormRequest;
-use App\TipoActividad;
+use App\Http\Requests\MoraFormRequest;
+use App\Mora;
 
-class TipoActividadController extends Controller
+class MoraController extends Controller
 {
 
     /**
@@ -17,8 +17,8 @@ class TipoActividadController extends Controller
      */
     public function index()
     {
-      $tipoactividad=TipoActividad::all()->where('condicion','1');;
-      return view ('tipoactividad.index',compact('tipoactividad'));
+      $mora=Mora::all()->where('condicion','1');
+      return view ('mora.index',compact('mora'));
     }
 
     /**
@@ -28,7 +28,7 @@ class TipoActividadController extends Controller
      */
     public function create()
     {
-        return view('tipoactividad.create');
+        return view('mora.create');
     }
 
     /**
@@ -37,10 +37,10 @@ class TipoActividadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TipoActividadFormRequest $request)
+    public function store(MoraFormRequest $request)
     {
-      TipoActividad::create($request->all());
-      return redirect()->route('tipo-actividad.index');
+      Mora::create($request->all());
+      return redirect()->route('mora.index');
     }
 
     /**
@@ -51,8 +51,8 @@ class TipoActividadController extends Controller
      */
     public function show($id)
     {
-      $tipoactividad=TipoActividad::findOrFail($id);
-      return view('tipoactividad.show', compact('tipoactividad'));
+      $mora=Mora::findOrFail($id);
+      return view('mora.show', compact('mora'));
     }
 
     /**
@@ -63,8 +63,8 @@ class TipoActividadController extends Controller
      */
     public function edit($id)
     {
-      $tipoactividad=TipoActividad::findOrFail($id);
-      return view('tipoactividad.edit',compact('tipoactividad'));
+      $mora=Mora::findOrFail($id);
+      return view('mora.edit',compact('mora'));
     }
 
     /**
@@ -74,10 +74,10 @@ class TipoActividadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TipoActividadFormRequest $request, $id)
+    public function update(MoraFormRequest $request, $id)
     {
-        TipoActividad::findOrFail($id)->update($request->all());
-        return redirect()->route('tipo-actividad.index');
+        Mora::findOrFail($id)->update($request->all());
+        return redirect()->route('mora.index');
     }
 
     /**
@@ -89,9 +89,9 @@ class TipoActividadController extends Controller
     public function destroy($id)
     {
 
-      $tipoactividad = TipoActividad::findOrFail($id);
-      $tipoactividad->condicion = '0';
-      $tipoactividad->update();
-      return redirect()->route('tipo-actividad.index');
+      $mora = Mora::findOrFail($id);
+      $mora->condicion = '0';
+      $mora->update();
+      return redirect()->route('mora.index');
     }
 }

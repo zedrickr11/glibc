@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CicloTableSeeder::class);
         $this->call(SeccionTableSeeder::class);
         $this->call(TipoActividadTableSeeder::class);
+        $this->call(MoraTableSeeder::class);
+        $this->call(PlanTableSeeder::class);
 
     }
 }

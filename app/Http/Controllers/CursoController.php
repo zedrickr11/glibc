@@ -16,7 +16,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $curso=Curso::all();
+        $curso=Curso::all()->where('condicion','1');;
         return view ('curso.index',compact('curso'));
     }
 

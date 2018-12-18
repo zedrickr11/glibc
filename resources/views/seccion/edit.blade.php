@@ -4,7 +4,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">GlibColegio</li>
-      <li class="breadcrumb-item"><a href="#">Ciclo</a></li>
+      <li class="breadcrumb-item"><a href="#">Sección</a></li>
       <li class="breadcrumb-item active">Editar</li>
       <!-- Breadcrumb Menu-->
 

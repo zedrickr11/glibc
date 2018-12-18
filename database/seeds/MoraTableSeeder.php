@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\TipoActividad;
-class TipoActividadTableSeeder extends Seeder
+use App\Mora;
+class MoraTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,11 +11,11 @@ class TipoActividadTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('tipo_actividad')->delete();
+      DB::table('mora')->delete();
       for ($i=1; $i<26 ; $i++) {
 
-        TipoActividad::create([
-          'nombre' => "Actividad {$i}",
+        Mora::create([
+          'cantidad' => "10{$i}",
           'condicion' => "1"
 
 
