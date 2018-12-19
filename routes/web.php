@@ -34,7 +34,11 @@ Route::resource('alumno','AlumnoController');
 Route::get('alumno/downloadFeEdad/{file}', 'AlumnoController@downloadFeEdad');
 
 Route::resource('inscripcion','InscripcionController');
+
 Route::resource('grado','GradoController');
-Route::get('grado/{grado}/cursos', ['as' => 'grado.cursos', 'uses' => 'GradoController@listCursos']);
-Route::post('grado/{grado}/addcursos', ['as' => 'grado.addcursos', 'uses' => 'GradoController@addCursos']);
+
+Route::get('grado/{grado}/asignacion', ['as' => 'grado.asignacion', 'uses' => 'GradoController@asignacion']);
+Route::post('grado/addasignacion', ['as' => 'grado.addasignacion', 'uses' => 'GradoController@addAsignacion']);
+Route::put('grado/{asignacion}/editasignacion', ['as' => 'grado.editasignacion', 'uses' => 'GradoController@editAsignacion']);
+Route::delete('grado/{asignacion}/deleteasignacion', ['as' => 'grado.deleteasignacion', 'uses' => 'GradoController@deleteAsignacion']);
 

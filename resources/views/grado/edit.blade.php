@@ -38,7 +38,7 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_persona">Maestro encargado</label>
+                    <label for="id_persona">Maestro encargado*</label>
                     <select name="id_persona" class="form-control">
                       <option value="">Seleccione maestro: </option>
                       @foreach($personas as $persona)
@@ -50,7 +50,7 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_ciclo">Ciclo escolar</label>
+                    <label for="id_ciclo">Ciclo escolar*</label>
                     <select name="id_ciclo" class="form-control">
                       <option value="">Seleccione ciclo: </option>
                       @foreach($ciclos as $ciclo)
@@ -62,7 +62,7 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_seccion">Seccion</label>
+                    <label for="id_seccion">Seccion*</label>
                     <select name="id_seccion" class="form-control">
                       <option value="">Seleccione seccion: </option>
                       @foreach($secciones as $seccion)
@@ -74,7 +74,7 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="condicion">Estado</label>
+                    <label for="condicion">Estado*</label>
                     <select class="form-control" name="condicion">
                       @if ($grado->condicion==1)
                         <option value="1" selected>ACTIVO</option>

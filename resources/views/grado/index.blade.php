@@ -25,7 +25,7 @@
                       <th>Nombre</th>
                       <th>Seccion</th>
                       <th>Ciclo</th>
-                      <th>Maestro</th>
+                      <th>Maestro Guia</th>
                       <th>Estado</th>
                       <th>Opciones</th>
                     </tr>
@@ -34,7 +34,7 @@
                     @foreach ($grados as $grado)
                     <tr>
                       <td>{{ $grado->nombre }}</td>
-                      <td>{{ $grado->seccion }}</td>
+                      <td>{{ $grado->seccionAsignada->nombre }}</td>
                       <td>{{ $grado->ciclo->año }}</td>
                       <td>{{ $grado->persona->nombres }} {{ $grado->persona->apellidos }}</td>
                       <td>
@@ -45,23 +45,20 @@
                         @endif
                       </td>
                       <td>
-                        <a href="{{route('grado.cursos', $grado->id_grado)}}">
+                        <a href="{{route('grado.asignacion', $grado->id_grado)}}">
                           <button type="button" class="btn btn-primary btn-sm" name="button"> Cursos</button>
-                        </a>
-                        <a href="{{route('grado.show', $grado->id_grado)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
                         </a>
                         <a href="{{route('grado.edit', $grado->id_grado)}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
                         @if($grado->condicion)
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$grado->id_grado}}">
+                        <!--<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$grado->id_grado}}">
                           <span class="fa fa-trash-o"></span>
-                        </button>
+                        </button>-->
                         @else
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$grado->id_grado}}">
+                        <!--<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$grado->id_grado}}">
                           <span class="icon-check"></span>
-                        </button>
+                        </button>-->
                         @endif
                       </td>
                     </tr>
