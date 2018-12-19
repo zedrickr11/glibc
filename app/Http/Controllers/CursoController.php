@@ -39,7 +39,14 @@ class CursoController extends Controller
     public function store(CursoFormRequest $request)
     {
         Curso::create($request->all());
-        return redirect()->route('curso.index');
+
+        if($request->has('opcion')){
+            if($request->opcion == 'modal')
+                return redirect()->back();
+        }
+        else {
+            return redirect()->route('curso.index');
+        }
     }
 
     /**
