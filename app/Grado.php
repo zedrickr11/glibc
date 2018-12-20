@@ -8,6 +8,8 @@ class Grado extends Model
 {
     protected $table = 'grado';
     protected $primaryKey = 'id_grado';
+    protected $fillable = ['nombre', 'descripcion', 'seccion', 'condicion', 'id_persona', 'id_ciclo', 'id_seccion'];
+
     public $timestamps=false;
 
     public function detalles()
@@ -17,7 +19,7 @@ class Grado extends Model
 
     public function cursos()
     {
-        return $this->belongsToMany('App\Curso', 'asignacion_curso', 'id_grado', 'id_curso');
+        return $this->belongsToMany('App\Curso', 'asignacion_curso', 'id_grado', 'id_curso')->withPivot('id_asignacion_curso', 'id_persona');
     }
 
     public function persona()
@@ -30,7 +32,7 @@ class Grado extends Model
         return $this->belongsTo('App\Ciclo', 'id_ciclo');
     }
 
-    public function seccion()
+    public function seccionAsignada()
     {
         return $this->belongsTo('App\Seccion', 'id_seccion');
     }
