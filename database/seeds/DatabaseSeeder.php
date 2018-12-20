@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TipoActividadTableSeeder::class);
         $this->call(MoraTableSeeder::class);
         $this->call(PlanTableSeeder::class);
+        $this->call(PersonaTableSeeder::class);
 
     }
 }

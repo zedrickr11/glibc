@@ -93,14 +93,14 @@ class AlumnoController extends Controller
         $alumno->fe_edad = $request->hasFile('fe_edad') ? $nombre_fe_edad : $al->fe_edad;
 
         $alumno->save();
-        
+
         return redirect()->route('alumno.index');
     }
 
     public function destroy(Request $request, $id)
     {
         if($request->has('valor')){
-            $alumno = Alumno::findOrFail($id);        
+            $alumno = Alumno::findOrFail($id);
             $alumno->condicion = $request->valor;
             $alumno->update();
         }
