@@ -26,7 +26,7 @@ class CursoFormRequest extends FormRequest
         return [
           'nombre' => 'required',
           'decripcion' => 'max:300',
-          'condicion' => 'required',
+          'id_nivel' => 'required|integer'
         ];
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\GradoFormRequest;
 use App\Grado;
 use App\Persona;
-use App\Ciclo;
+use App\Carrera;
 use App\Seccion;
 use App\Curso;
 use App\AsignacionCurso;
@@ -15,16 +15,16 @@ class GradoController extends Controller
 {
     public function index()
     {
-        $grados = Grado::orderBy('id_ciclo', 'asc')->get();
+        $grados = Grado::all();
         return view ('grado.index',compact('grados'));
     }
 
     public function create()
     {
         $personas = Persona::where('tipo_persona', 'maestro')->get();
-        $ciclos = Ciclo::where('condicion', '1')->get();
+        $carreras = Carrera::where('condicion', '1')->get();
         $secciones = Seccion::where('condicion', '1')->get();
-        return view('grado.create', compact('personas', 'ciclos', 'secciones'));
+        return view('grado.create', compact('personas', 'carreras', 'secciones'));
     }
 
     
@@ -37,15 +37,18 @@ class GradoController extends Controller
     public function edit($id)
     {
         $personas = Persona::where('tipo_persona', 'maestro')->get();
-        $ciclos = Ciclo::all();
+        $carreras = Carrera::all();
         $secciones = Seccion::where('condicion', '1')->get();
         $grado = Grado::findOrFail($id);
-        return view('grado.edit',compact('grado', 'personas', 'ciclos', 'secciones'));
+        return view('grado.edit',compact('grado', 'personas', 'carreras', 'secciones'));
     }
 
     public function store(GradoFormRequest $request)
     {
-        Grado::create($request->all());
+        $grado = (new Grado)->fill($request->all());
+        $grado->condicion = 1;
+        $grado->save();
+        
         return redirect()->route('grado.index');
     }
 

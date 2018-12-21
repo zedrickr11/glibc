@@ -32,14 +32,6 @@
                   <input type="number" min="0" step="0.01" class="form-control" name="cantidad" placeholder="Cantidad...">
                   {!!$errors->first('cantidad','<span class=text-danger>:message</span>')!!}
                 </div>
-                <div class="form-group">
-                  <label for="condicion">Estado</label>
-                  <select class="form-control" name="condicion">
-                    <option value="1">ACTIVO</option>
-                    <option value="0">INACTIVO</option>
-                  </select>
-                  {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
-                </div>
               </div>
               <div class="card-footer">
                 <a href="{{ route('cuota.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>

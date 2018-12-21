@@ -7,48 +7,27 @@
       <li class="breadcrumb-item"><a href="#">Sección</a></li>
       <li class="breadcrumb-item active">Editar</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-sm-12">
-
             <div class="card">
               <div class="card-header">
-                <strong>Ciclo</strong>
-                <small>Form</small>
+                <strong>Editar Seccion</strong>
+                <small></small>
               </div>
               <form class="" action="{{ route('seccion.update',$seccion->id) }}" method="post">
                 {!!method_field('PUT')!!}
                   {!!csrf_field()!!}
-
                   <div class="card-body">
                     <div class="form-group">
                       <label for="nombre">Nombre</label>
                       <input type="text" class="form-control" name="nombre" value="{{ $seccion->nombre }}">
                       {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                     </div>
-
-
-
-                    <div class="form-group">
-                      <label for="condicion">Estado</label>
-                      <select class="form-control" name="condicion">
-                        @if ($seccion->condicion==1)
-                          <option value="1" selected>ACTIVO</option>
-                          <option value="0" >INACTIVO</option>
-                        @else
-                          <option value="1" >ACTIVO</option>
-                          <option value="0" selected>INACTIVO</option>
-                        @endif
-                      </select>
-                      {!!$errors->first('condicion','<span class=error>:message</span>')!!}
-                    </div>
-
                   </div>
-
               <div class="card-footer">
                 <a href="{{ route('seccion.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
                 <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Guardar</button>
@@ -56,10 +35,8 @@
               </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
 @endsection

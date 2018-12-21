@@ -15,7 +15,7 @@
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <strong>Unidad</strong>
+                <strong>Registrar Unidad</strong>
                 <small></small>
               </div>
               <form class="" action="{{ route('unidad.store') }}" method="post">
@@ -25,14 +25,6 @@
                   <label for="nombre">Nombre</label>
                   <input type="text" class="form-control" name="nombre" placeholder="Nombre...">
                   {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
-                </div>
-                <div class="form-group">
-                  <label for="condicion">Estado</label>
-                  <select class="form-control" name="condicion">
-                    <option value="1">ACTIVO</option>
-                    <option value="0">INACTIVO</option>
-                  </select>
-                  {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
                 </div>
               </div>
               <div class="card-footer">

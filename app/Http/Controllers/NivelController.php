@@ -34,7 +34,9 @@ class NivelController extends Controller
 
     public function store(NivelFormRequest $request)
     {
-        Nivel::create($request->all());
+        $nivel = (new Nivel)->fill($request->all());
+        $nivel->condicion = 1;
+        $nivel->save();
         return redirect()->route('nivel.index');
     }
 

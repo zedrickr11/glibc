@@ -77,31 +77,18 @@
                   </div>
                 </div><br>
                 <div class="row">
-                  <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="direccion">Direccion</label>
                     <input type="text" class="form-control" name="direccion" value="{{ $alumno->direccion }}">
                     {!!$errors->first('direccion','<span class=text-danger>:message</span>')!!}
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <label for="condicion">Estado</label>
-                    <select class="form-control" name="condicion">
-                      @if ($alumno->condicion==1)
-                        <option value="1" selected>ACTIVO</option>
-                        <option value="0" >INACTIVO</option>
-                      @else
-                        <option value="1" >ACTIVO</option>
-                        <option value="0" selected>INACTIVO</option>
-                      @endif
-                    </select>
-                    {!!$errors->first('condicion','<span class=error>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="id_persona">Persona encargada</label>
-                    <select name="id_persona" class="form-control">
+                    <select name="id_persona" class="form-control select2-single" id="select-busqueda">
                       @foreach($personas as $persona)
-                        <option value="{{ $persona->id_persona }}" {{ $alumno->id_persona == $persona->id_persona ? 'selected': null }}>{{ $persona->nombres }}</option>
+                        <option value="{{ $persona->id_persona }}" {{ $alumno->id_persona == $persona->id_persona ? 'selected': null }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
                       @endforeach
                     </select>
                     {!!$errors->first('id_persona','<span class=text-danger>:message</span>')!!}
@@ -141,4 +128,11 @@
         </div>
       </div>
     </div>
+    @push ('scripts')
+      <script type="text/javascript">
+      $('#select-busqueda').select2({
+        theme: "bootstrap"
+      });
+      </script>
+    @endpush
 @endsection

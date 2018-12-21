@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\CursoFormRequest;
 use App\Curso;
+use App\Nivel;
 
 class CursoController extends Controller
 {
@@ -27,7 +28,8 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('curso.create');
+        $niveles = Nivel::all();
+        return view('curso.create', compact('niveles'));
     }
 
     /**
@@ -38,7 +40,9 @@ class CursoController extends Controller
      */
     public function store(CursoFormRequest $request)
     {
-        Curso::create($request->all());
+        $curso = (new Curso)->fill($request->all());
+        $curso->condicion = 1;
+        $curso->save();
 
         if($request->has('opcion')){
             if($request->opcion == 'modal')
@@ -69,9 +73,9 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
+        $niveles = Nivel::all();
         $curso=Curso::findOrFail($id);
-        return view('curso.edit',compact('curso'));
-
+        return view('curso.edit',compact('curso', 'niveles'));
     }
 
     /**
@@ -83,7 +87,6 @@ class CursoController extends Controller
      */
     public function update(CursoFormRequest $request, $id)
     {
-
         Curso::findOrFail($id)->update($request->all());
         return redirect()->route('curso.index');
     }

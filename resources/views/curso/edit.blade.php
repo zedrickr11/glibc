@@ -37,19 +37,16 @@
                   <span class="help-block">{{ $errors->first('descripcion') }}</span>
                 </div>
                 <div class="form-group">
-                  <label for="condicion">Estado</label>
-                  <select class="form-control" name="condicion">
-                    @if ($curso->condicion==1)
-                      <option value="1" selected>ACTIVO</option>
-                      <option value="0" >INACTIVO</option>
-                    @else
-                      <option value="1" >ACTIVO</option>
-                      <option value="0" selected>INACTIVO</option>
-                    @endif
-                  </select>
-                  {!!$errors->first('condicion','<span class=error>:message</span>')!!}
+                  <fieldset >
+                    <label for="nivel">Nivel</label>
+                    <select name="id_nivel" class="form-control select2-single" id="nivel">
+                      @foreach($niveles as $nivel)
+                        <option value="{{ $nivel->id_nivel }}" {{ $curso->id_nivel == $nivel->id_nivel ? 'selected': null }}>{{ $nivel->nombre }}</option>
+                      @endforeach
+                    </select>
+                    {!!$errors->first('id_nivel','<span class=text-danger>:message</span>')!!}
+                  </fieldset>
                 </div>
-
               </div>
               <div class="card-footer">
                 <a href="{{ route('curso.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
@@ -62,6 +59,12 @@
           </div>
         </div>
       </div>
-
     </div>
+    @push ('scripts')
+      <script type="text/javascript">
+      $('#nivel').select2({
+        theme: "bootstrap"
+      });
+      </script>
+    @endpush
 @endsection

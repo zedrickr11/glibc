@@ -34,7 +34,9 @@ class JornadaController extends Controller
 
     public function store(JornadaFormRequest $request)
     {
-        Jornada::create($request->all());
+        $jornada = (new Jornada)->fill($request->all());
+        $jornada->condicion = 1;
+        $jornada->save();
         return redirect()->route('jornada.index');
     }
 

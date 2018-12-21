@@ -7,35 +7,24 @@
       <li class="breadcrumb-item"><a href="#">Jornada</a></li>
       <li class="breadcrumb-item active">Nueva</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-sm-12">
-
             <div class="card">
               <div class="card-header">
-                <strong>Jornada</strong>
+                <strong>Registrar Jornada</strong>
                 <small></small>
               </div>
               <form class="" action="{{ route('jornada.store') }}" method="post">
                 {!! csrf_field() !!}
-
               <div class="card-body">
                 <div class="form-group">
                   <label for="nombre">Nombre</label>
                   <input type="text" class="form-control" name="nombre" placeholder="Nombre...">
                   {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
-                </div>
-                <div class="form-group">
-                  <label for="condicion">Estado</label>
-                  <select class="form-control" name="condicion">
-                    <option value="1">ACTIVO</option>
-                    <option value="0">INACTIVO</option>
-                  </select>
-                  {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
                 </div>
               </div>
               <div class="card-footer">
@@ -45,10 +34,8 @@
               </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
 @endsection

@@ -35,8 +35,7 @@ class AlumnoFormRequest extends FormRequest
           'telefono' => 'nullable',
           'direccion' => 'nullable',
           'foto' => 'nullable|file',
-          'fe_edad' => 'nullable|file',
-          'condicion' => 'required|boolean'
+          'fe_edad' => 'nullable|file'
         ];
     }
 }

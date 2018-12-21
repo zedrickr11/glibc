@@ -17,7 +17,6 @@
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Curso
                 <a href="curso/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
-
               </div>
               <div class="card-body">
                 <table id="tabla-curso" class="display table table-responsive-sm table-striped">
@@ -26,6 +25,7 @@
                       <th>#</th>
                       <th>Curso</th>
                       <th>Descripción</th>
+                      <th>Nivel</th>
                       <th>Estado</th>
                       <th>Opciones</th>
                     </tr>
@@ -36,29 +36,21 @@
                       <td>{{ $cur->id_curso }}</td>
                       <td>{{ $cur->nombre }}</td>
                       <td>{{ $cur->descripcion }}</td>
+                      <td>{{ $cur->nivel->nombre }}</td>
                       <td>
                         @if ($cur->condicion==1)
                           <span class="badge badge-success">Activo</span>
                         @else
                           <span class="badge badge-danger">Inactivo</span>
                         @endif
-
                       </td>
-
                       <td>
-
                         <a href="{{route('curso.edit',$cur->id_curso )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$cur->id_curso}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
-                        <!-- <a href="{{route('curso.show',$cur->id_curso)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
-
-
-
                       </td>
                     </tr>
                     @include('curso.modal')

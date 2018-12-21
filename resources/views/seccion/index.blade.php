@@ -17,7 +17,6 @@
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Sección
                 <a href="seccion/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
-
               </div>
               <div class="card-body">
                 <table id="tabla-seccion" class="display table table-responsive-sm table-striped">
@@ -40,37 +39,25 @@
                         @else
                           <span class="badge badge-danger">Inactivo</span>
                         @endif
-
                       </td>
-
                       <td>
-
                         <a href="{{route('seccion.edit',$cur->id )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$cur->id}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
-                        <!-- <a href="{{route('seccion.show',$cur->id)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
-
-
-
                       </td>
                     </tr>
                     @include('seccion.modal')
                     @endforeach
                   </tbody>
                 </table>
-
               </div>
             </div>
           </div>
-
           </div>
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
     @push ('scripts')
@@ -103,6 +90,5 @@
         }
           });
       </script>
-
     @endpush
 @endsection

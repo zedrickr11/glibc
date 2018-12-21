@@ -12,10 +12,8 @@ class Plan extends Model
   public $timestamps=false;
 
   protected $fillable = [
-
       'nombre',
       'cantidad',
       'condicion'
-
   ];
 }

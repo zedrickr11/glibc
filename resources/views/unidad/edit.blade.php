@@ -7,18 +7,16 @@
       <li class="breadcrumb-item"><a href="#">Unidad</a></li>
       <li class="breadcrumb-item active">Editar</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-sm-12">
-
             <div class="card">
               <div class="card-header">
-                <strong>Unidad</strong>
-                <small>Form</small>
+                <strong>Editar Unidad</strong>
+                <small></small>
               </div>
               <form class="" action="{{ route('unidad.update',$unidad->id_unidad) }}" method="post">
                 {!!method_field('PUT')!!}
@@ -28,19 +26,6 @@
                       <label for="nombre">Nombre</label>
                       <input type="text" class="form-control" name="nombre" value="{{ $unidad->nombre }}">
                       {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
-                    </div>
-                    <div class="form-group">
-                      <label for="condicion">Estado</label>
-                      <select class="form-control" name="condicion">
-                        @if ($unidad->condicion==1)
-                          <option value="1" selected>ACTIVO</option>
-                          <option value="0" >INACTIVO</option>
-                        @else
-                          <option value="1" >ACTIVO</option>
-                          <option value="0" selected>INACTIVO</option>
-                        @endif
-                      </select>
-                      {!!$errors->first('condicion','<span class=error>:message</span>')!!}
                     </div>
                   </div>
               <div class="card-footer">
@@ -53,6 +38,5 @@
           </div>
         </div>
       </div>
-
     </div>
 @endsection
