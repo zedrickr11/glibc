@@ -23,7 +23,9 @@ class MensualidadController extends Controller
 
     public function store(MensualidadFormRequest $request)
     {
-        Mensualidad::create($request->all());
+        $mensualidad = (new Mensualidad)->fill($request->all());
+        $mensualidad->condicion = 1;
+        $mensualidad->save();
         return redirect()->route('mensualidad.index');
     }
 

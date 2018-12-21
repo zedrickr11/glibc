@@ -25,8 +25,7 @@ class NivelFormRequest extends FormRequest
     {
         return [
           'nombre' => 'required|string',
-          'descripcion' => 'nullable|string',
-          'condicion' => 'required|boolean'
+          'descripcion' => 'nullable|string'
         ];
     }
 }

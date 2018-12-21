@@ -8,7 +8,7 @@ class Grado extends Model
 {
     protected $table = 'grado';
     protected $primaryKey = 'id_grado';
-    protected $fillable = ['nombre', 'descripcion', 'seccion', 'condicion', 'id_persona', 'id_ciclo', 'id_seccion'];
+    protected $fillable = ['nombre', 'descripcion', 'seccion', 'condicion', 'id_persona', 'id_carrera', 'id_seccion'];
 
     public $timestamps=false;
 
@@ -27,9 +27,9 @@ class Grado extends Model
         return $this->belongsTo('App\Persona', 'id_persona');
     }
 
-    public function ciclo()
+    public function carrera()
     {
-        return $this->belongsTo('App\Ciclo', 'id_ciclo');
+        return $this->belongsTo('App\Carrera', 'id_carrera');
     }
 
     public function seccionAsignada()

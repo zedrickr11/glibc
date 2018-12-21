@@ -35,7 +35,9 @@ class RolController extends Controller
 
     public function store(RolFormRequest $request)
     {
-        Rol::create($request->all());
+        $rol = (new Rol)->fill($request->all());
+        $rol->condicion = 1;
+        $rol->save();
         return redirect()->route('rol.index');
     }
 

@@ -16,4 +16,14 @@ class Nivel extends Model
     {
         return $this->hasMany('App\Carrera', 'id_nivel');
     }
+
+    public function personas()
+    {
+        return $this->hasMany('App\Persona', 'id_nivel');
+    }
+
+    public function cursos()
+    {
+        return $this->hasMany('App\Curso', 'id_nivel');
+    }
 }

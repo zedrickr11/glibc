@@ -26,8 +26,8 @@
                       <th>#</th>
                       <th>Rol</th>
                       <th>Descripción</th>
-                      <th>Condicion</th>
                       <th>Nombre a mostrar</th>
+                      <th>Condicion</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -37,6 +37,7 @@
                       <td>{{ $rol->id_rol }}</td>
                       <td>{{ $rol->nombre }}</td>
                       <td>{{ $rol->descripcion }}</td>
+                      <td>{{ $rol->display_name }}</td>
                       <td>
                         @if ($rol->condicion==1)
                           <span class="badge badge-success">Activo</span>
@@ -44,7 +45,6 @@
                           <span class="badge badge-danger">Inactivo</span>
                         @endif
                       </td>
-                      <td>{{ $rol->display_name }}</td>
                       <td>
                         <a href="{{route('rol.edit',$rol->id_rol )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>

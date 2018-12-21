@@ -38,7 +38,9 @@ class SeccionController extends Controller
    */
   public function store(SeccionFormRequest $request)
   {
-    Seccion::create($request->all());
+    $seccion = (new Seccion)->fill($request->all());
+    $seccion->condicion = 1;
+    $seccion->save();
     return redirect()->route('seccion.index');
   }
 

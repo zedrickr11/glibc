@@ -25,8 +25,7 @@ class MensualidadFormRequest extends FormRequest
     {
         return [
           'nombre' => 'required|string',
-          'dia_limite' => 'required|integer',
-          'condicion' => 'required|boolean'
+          'dia_limite' => 'required|integer'
         ];
     }
 }

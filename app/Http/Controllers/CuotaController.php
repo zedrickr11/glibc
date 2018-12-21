@@ -34,7 +34,9 @@ class CuotaController extends Controller
 
     public function store(CuotaFormRequest $request)
     {
-        Cuota::create($request->all());
+        $cuota = (new Cuota)->fill($request->all());
+        $cuota->condicion = 1;
+        $cuota->save();
         return redirect()->route('cuota.index');
     }
 

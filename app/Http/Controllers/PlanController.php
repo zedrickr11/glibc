@@ -38,7 +38,9 @@ class PlanController extends Controller
    */
   public function store(PlanFormRequest $request)
   {
-    Plan::create($request->all());
+    $plan = (new Plan)->fill($request->all());
+    $plan->condicion = 1;
+    $plan->save();
     return redirect()->route('plan.index');
   }
 

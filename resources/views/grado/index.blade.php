@@ -6,7 +6,6 @@
       <li class="breadcrumb-item"><a href="#">Grados</a></li>
       <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
@@ -24,7 +23,6 @@
                     <tr>
                       <th>Nombre</th>
                       <th>Seccion</th>
-                      <th>Ciclo</th>
                       <th>Maestro Guia</th>
                       <th>Estado</th>
                       <th>Opciones</th>
@@ -35,7 +33,6 @@
                     <tr>
                       <td>{{ $grado->nombre }}</td>
                       <td>{{ $grado->seccionAsignada->nombre }}</td>
-                      <td>{{ $grado->ciclo->año }}</td>
                       <td>{{ $grado->persona->nombres }} {{ $grado->persona->apellidos }}</td>
                       <td>
                         @if ($grado->condicion==1)

@@ -26,7 +26,6 @@ class RolFormRequest extends FormRequest
         return [
           'nombre' => 'required|string',
           'descripcion' => 'nullable|string',
-          'condicion' => 'required|boolean',
           'display_name' => 'nullable|string'
         ];
     }

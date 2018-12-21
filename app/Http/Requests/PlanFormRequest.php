@@ -25,8 +25,7 @@ class PlanFormRequest extends FormRequest
     {
         return [
           'nombre' => 'required',
-          'cantidad' => 'required',
-          'condicion' => 'required',
+          'cantidad' => 'required'
         ];
     }
 }

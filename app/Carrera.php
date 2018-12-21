@@ -15,4 +15,9 @@ class Carrera extends Model
     {
         return $this->belongsTo('App\Jornada', 'id_jornada');
     }
+
+    public function grados()
+    {
+        return $this->hasMany('App\Grado', 'id_carrera');
+    }
 }

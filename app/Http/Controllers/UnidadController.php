@@ -37,7 +37,10 @@ class UnidadController extends Controller
    */
   public function store(UnidadFormRequest $request)
   {
-    Unidad::create($request->all());
+    $unidad = (new Unidad)->fill($request->all());
+    $unidad->condicion = 1;
+    $unidad->save();
+
     return redirect()->route('unidad.index');
   }
 
