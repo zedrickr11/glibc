@@ -26,24 +26,17 @@
                   <input type="text" class="form-control" name="nombre" placeholder="Nombre...">
                   {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                 </div>
-                <div class="form-group">
-                  <label for="condicion">Estado</label>
-                  <select class="form-control" name="condicion">
-                    <option value="1">ACTIVO</option>
-                    <option value="0">INACTIVO</option>
-                  </select>
-                  {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
-                </div>
-                <div class="form-group">
-                  <label for="nivel">Nivel</label>
-                  <select name="id_nivel" class="form-control">
-                    <option value="">Seleccione nivel: </option>
-                    @foreach($niveles as $nivel)
-                      <option value="{{ $nivel->id_nivel }}">{{ $nivel->nombre }}</option>
+
+                <fieldset class="form-group">
+                  <label for="nivel">Jornada</label>
+                  <select name="id_jornada" class="form-control select2-single" id="jornada">
+                    <option disabled selected>Seleccione una jornada </option>
+                    @foreach($jornada as $jor)
+                      <option value="{{ $jor->id_jornada }}">{{ $jor->nombre }}</option>
                     @endforeach
                   </select>
                   {!!$errors->first('id_nivel','<span class=text-danger>:message</span>')!!}
-                </div>
+                </fieldset>
               </div>
               <div class="card-footer">
                 <a href="{{ route('carrera.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
@@ -56,4 +49,12 @@
         </div>
       </div>
     </div>
+    @push ('scripts')
+      <script type="text/javascript">
+      $('#jornada').select2({
+        theme: "bootstrap"
+      });
+      </script>
+
+    @endpush
 @endsection

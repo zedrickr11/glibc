@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MoraTableSeeder::class);
         $this->call(PlanTableSeeder::class);
         $this->call(PersonaTableSeeder::class);
+        $this->call(JornadaTableSeeder::class);
 
     }
 }

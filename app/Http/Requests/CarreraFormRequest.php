@@ -25,8 +25,7 @@ class CarreraFormRequest extends FormRequest
     {
         return [
           'nombre' => 'required',
-          'condicion' => 'required',
-          'id_nivel' => 'required|integer'
+          'id_jornada' => 'required|integer'
         ];
     }
 }

@@ -8,11 +8,11 @@ class Carrera extends Model
 {
     protected $table = 'carrera';
 
-    protected $fillable = ['nombre', 'condicion', 'id_nivel'];
+    protected $fillable = ['nombre', 'condicion', 'id_jornada'];
     public $timestamps=false;
 
-    public function nivel()
+    public function jornada()
     {
-        return $this->belongsTo('App\Nivel', 'id_nivel');
+        return $this->belongsTo('App\Jornada', 'id_jornada');
     }
 }

@@ -27,24 +27,12 @@
                   <input type="text" class="form-control" name="nombre" value="{{ $carrera->nombre }}">
                   <span class="help-block">{{ $errors->first('nombre') }}</span>
                 </div>
+
                 <div class="form-group">
-                  <label for="condicion">Estado</label>
-                  <select class="form-control" name="condicion">
-                    @if ($carrera->condicion==1)
-                      <option value="1" selected>ACTIVO</option>
-                      <option value="0" >INACTIVO</option>
-                    @else
-                      <option value="1" >ACTIVO</option>
-                      <option value="0" selected>INACTIVO</option>
-                    @endif
-                  </select>
-                  {!!$errors->first('condicion','<span class=error>:message</span>')!!}
-                </div>
-                <div class="form-group">
-                  <label for="nivel">Nivel</label>
-                  <select name="id_nivel" class="form-control">
-                    @foreach($niveles as $nivel)
-                      <option value="{{ $nivel->id_nivel }}" {{ $carrera->id_nivel == $nivel->id_nivel ? 'selected': null }}> {{ $nivel->nombre }}</option>
+                  <label for="nivel">Jornada</label>
+                  <select name="id_jornada" class="form-control">
+                    @foreach($jornada as $nivel)
+                      <option value="{{ $nivel->id_jornada }}" {{ $carrera->id_jornada == $nivel->id_jornada ? 'selected': null }}> {{ $nivel->nombre }}</option>
                     @endforeach
                   </select>
                   {!!$errors->first('id_nivel','<span class=text-danger>:message</span>')!!}

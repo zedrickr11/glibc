@@ -25,7 +25,7 @@
                       <th>#</th>
                       <th>Nombre</th>
                       <th>Estado</th>
-                      <th>Nivel</th>
+                      <th>Jornada</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -41,7 +41,7 @@
                           <span class="badge badge-danger">Inactivo</span>
                         @endif
                       </td>
-                      <td>{{ $carrera->nivel->nombre }}</td>
+                      <td>{{ $carrera->jornada->nombre }}</td>
                       <td>
                         <a href="{{route('carrera.show',$carrera->id)}}">
                           <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>

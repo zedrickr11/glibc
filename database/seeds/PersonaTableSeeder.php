@@ -29,9 +29,10 @@ class PersonaTableSeeder extends Seeder
           'telefono_dos' => "77620769",
           'celular' => "41856652",
           'foto' => "persona.png",
-          'usuario',
-          'password',
-          'tipo_persona' => "maestro"
+          //'usuario',
+          //'password',
+          'tipo_persona' => "maestro",
+          'condicion' => "1"
         ]);
 
 
