@@ -35,9 +35,9 @@
                   </label>
                 </div>
                 <div class="form-group">
-                  <label for="nivel"><strong>Nivel</strong></label><br>
+                  <label for="nivel"><strong>Jornada</strong></label><br>
                   <label for="">
-                    {{ $carrera->nivel->nombre }}
+                    {{ $carrera->jornada->nombre }}
                   </label>
                 </div>
               </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\CarreraFormRequest;
 use App\Carrera;
-use App\Nivel;
+use App\Jornada;
 
 class CarreraController extends Controller
 {
@@ -18,13 +18,15 @@ class CarreraController extends Controller
 
     public function create()
     {
-        $niveles = Nivel::all();
-        return view('carrera.create', compact('niveles'));
+        $jornada = Jornada::all();
+        return view('carrera.create', compact('jornada'));
     }
 
     public function store(CarreraFormRequest $request)
     {
-        Carrera::create($request->all());
+        $carrera =  (new Carrera)->fill($request->all());
+        $carrera->condicion="1";
+        $carrera->save();
         return redirect()->route('carrera.index');
     }
 
@@ -36,14 +38,17 @@ class CarreraController extends Controller
 
     public function edit($id)
     {
-        $niveles = Nivel::all();
+        $jornada = Jornada::all();
         $carrera = Carrera::findOrFail($id);
-        return view('carrera.edit',compact('carrera', 'niveles'));
+        return view('carrera.edit',compact('carrera', 'jornada'));
     }
 
     public function update(CarreraFormRequest $request, $id)
     {
-        Carrera::findOrFail($id)->update($request->all());
+        $carr = Carrera::findOrFail($id);
+        $carrera = ($carr)->fill($request->all());
+        $carrera->condicion="1";
+        $carrera->update();
         return redirect()->route('carrera.index');
     }
 

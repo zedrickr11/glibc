@@ -12,8 +12,8 @@ class Jornada extends Model
 
     protected $fillable = ['nombre', 'condicion'];
 
-    public function detalles()
+    public function carreras()
     {
-        return $this->hasMany('App\Detalle', 'id_jornada');
+        return $this->hasMany('App\Carrera', 'id_jornada');
     }
 }
