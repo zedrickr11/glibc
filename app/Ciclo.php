@@ -12,11 +12,17 @@ class Ciclo extends Model
   public $timestamps=false;
 
   protected $fillable = [
-    
+
       'año',
       'fecha_inicio',
       'fecha_fin',
       'condicion',
       'nombre'
   ];
+
+  public function carreras()
+  {
+      return $this->belongsToMany('App\Carrera', 'detalle', 'id_ciclo', 'id_carrera');
+  }
+
 }

@@ -17,7 +17,12 @@ class Carrera extends Model
     }
 
     public function grados()
+     {
+         return $this->hasMany('App\Grado', 'id_carrera');
+     }
+    public function ciclos()
     {
-        return $this->hasMany('App\Grado', 'id_carrera');
+        return $this->belongsToMany('App\Ciclo', 'detalle', 'id_carrera', 'id_ciclo');
+
     }
 }
