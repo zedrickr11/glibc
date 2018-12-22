@@ -12,7 +12,7 @@ class Alumno extends Model
 
     protected $fillable = ['id_persona', 'primer_nombre', 'segundo_nombre', 'tercer_nombre', 
     'primer_apellido', 'segundo_apellido', 'fechanacimiento', 'genero', 'telefono', 'direccion', 'foto',
-    'fe_edad', 'condicion'];
+    'fe_edad', 'carnet', 'codigo_alumno', 'condicion'];
 
     public function notas()
     {

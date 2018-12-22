@@ -27,9 +27,8 @@ class GradoFormRequest extends FormRequest
           'nombre' => 'required|string',
           'descripcion' => 'nullable|string',
           'id_persona' => 'required|integer',
-          'id_ciclo' => 'required|integer',
-          'id_seccion' => 'required|integer',
-          'condicion' => 'required|boolean'
+          'id_carrera' => 'required|integer',
+          'id_seccion' => 'required|integer'
         ];
     }
 }

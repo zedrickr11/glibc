@@ -18,7 +18,7 @@ class AlumnoController extends Controller
 
     public function create()
     {
-        $personas = Persona::all();
+        $personas = Persona::where('tipo_persona', 'padre')->get();
         return view('alumno.create', compact('personas'));
     }
 
@@ -40,6 +40,7 @@ class AlumnoController extends Controller
             $file->move(public_path().'/fe_edad/', $nombre_fe_edad);
         }
 
+        $alumno->condicion = 1;
         $alumno->foto = $nombre_foto;
         $alumno->fe_edad = $nombre_fe_edad;
         $alumno->save();
@@ -61,7 +62,7 @@ class AlumnoController extends Controller
 
     public function edit($id)
     {
-        $personas = Persona::all();
+        $personas = Persona::where('tipo_persona', 'padre')->get();
         $alumno = Alumno::findOrFail($id);
         return view('alumno.edit',compact('alumno', 'personas'));
     }

@@ -37,7 +37,7 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_persona">Maestro encargado*</label>
+                    <label for="id_persona">Maestro guia*</label>
                     <select name="id_persona" class="form-control">
                       <option value="">Seleccione maestro: </option>
                       @foreach($personas as $persona)
@@ -49,14 +49,14 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_ciclo">Ciclo escolar*</label>
-                    <select name="id_ciclo" class="form-control">
-                      <option value="">Seleccione ciclo: </option>
-                      @foreach($ciclos as $ciclo)
-                        <option value="{{ $ciclo->id_ciclo }}">{{ $ciclo->año }} </option>
+                    <label for="id_carrera">Carrera*</label>
+                    <select name="id_carrera" class="form-control">
+                      <option value="">Seleccione carrera: </option>
+                      @foreach($carreras as $carrera)
+                        <option value="{{ $carrera->id }}">{{ $carrera->nombre }} </option>
                       @endforeach
                     </select>
-                    {!!$errors->first('id_ciclo','<span class=text-danger>:message</span>')!!}
+                    {!!$errors->first('id_carrera','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
@@ -69,16 +69,6 @@
                       @endforeach
                     </select>
                     {!!$errors->first('id_seccion','<span class=text-danger>:message</span>')!!}
-                  </div>
-                </div><br>
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="condicion">Estado*</label>
-                    <select class="form-control" name="condicion">
-                      <option value="1">ACTIVO</option>
-                      <option value="0">INACTIVO</option>
-                    </select>
-                    {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
               </div>

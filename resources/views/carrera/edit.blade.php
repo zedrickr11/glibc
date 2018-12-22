@@ -35,7 +35,7 @@
                       <option value="{{ $nivel->id_jornada }}" {{ $carrera->id_jornada == $nivel->id_jornada ? 'selected': null }}> {{ $nivel->nombre }}</option>
                     @endforeach
                   </select>
-                  {!!$errors->first('id_nivel','<span class=text-danger>:message</span>')!!}
+                  {!!$errors->first('id_jornada','<span class=text-danger>:message</span>')!!}
                 </div>
               </div>
               <div class="card-footer">

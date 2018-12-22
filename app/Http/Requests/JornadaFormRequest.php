@@ -24,8 +24,7 @@ class JornadaFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required|string',
-          'condicion' => 'required|boolean'
+          'nombre' => 'required|string'
         ];
     }
 }

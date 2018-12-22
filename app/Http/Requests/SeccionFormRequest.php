@@ -24,8 +24,7 @@ class SeccionFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required',
-            'condicion' => 'required',
+            'nombre' => 'required'
         ];
     }
 }

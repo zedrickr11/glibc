@@ -17,8 +17,8 @@
 
             <div class="card">
               <div class="card-header">
-                <strong>Curso</strong>
-                <small>Form</small>
+                <strong>Registrar Curso</strong>
+                <small></small>
               </div>
               <form class="" action="{{ route('curso.store') }}" method="post">
                 {!! csrf_field() !!}
@@ -34,15 +34,16 @@
                   <input type="text" class="form-control" name="descripcion" placeholder="Descripción...">
                   {!!$errors->first('descripcion','<span class=text-danger>:message</span>')!!}
                 </div>
-                <div class="form-group">
-                  <label for="condicion">Estado</label>
-                  <select class="form-control" name="condicion">
-                    <option value="1">ACTIVO</option>
-                    <option value="0">INACTIVO</option>
+                <fieldset class="form-group">
+                  <label for="nivel">Nivel</label>
+                  <select name="id_nivel" class="form-control select2-single" id="nivel">
+                    <option disabled selected>Seleccione nivel </option>
+                    @foreach($niveles as $nivel)
+                      <option value="{{ $nivel->id_nivel }}">{{ $nivel->nombre }}</option>
+                    @endforeach
                   </select>
-                  {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
-                </div>
-
+                  {!!$errors->first('id_nivel','<span class=text-danger>:message</span>')!!}
+                </fieldset>
               </div>
               <div class="card-footer">
                 <a href="{{ route('curso.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
@@ -57,4 +58,11 @@
       </div>
 
     </div>
+    @push ('scripts')
+      <script type="text/javascript">
+      $('#nivel').select2({
+        theme: "bootstrap"
+      });
+      </script>
+    @endpush
 @endsection

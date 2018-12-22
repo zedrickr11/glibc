@@ -24,8 +24,7 @@ class UnidadFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required',
-          'condicion' => 'required|boolean'
+          'nombre' => 'required'
         ];
     }
 }

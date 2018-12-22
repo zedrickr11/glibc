@@ -7,17 +7,15 @@
       <li class="breadcrumb-item"><a href="#">Jornada</a></li>
       <li class="breadcrumb-item active">Editar</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-sm-12">
-
             <div class="card">
               <div class="card-header">
-                <strong>Jornada</strong>
+                <strong>Editar Jornada</strong>
                 <small></small>
               </div>
               <form class="" action="{{ route('jornada.update',$jornada->id_jornada) }}" method="post">
@@ -29,19 +27,6 @@
                       <input type="text" class="form-control" name="nombre" value="{{ $jornada->nombre }}">
                       {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                     </div>
-                    <div class="form-group">
-                      <label for="condicion">Estado</label>
-                      <select class="form-control" name="condicion">
-                        @if ($jornada->condicion==1)
-                          <option value="1" selected>ACTIVO</option>
-                          <option value="0" >INACTIVO</option>
-                        @else
-                          <option value="1" >ACTIVO</option>
-                          <option value="0" selected>INACTIVO</option>
-                        @endif
-                      </select>
-                      {!!$errors->first('condicion','<span class=error>:message</span>')!!}
-                    </div>
                   </div>
               <div class="card-footer">
                 <a href="{{ route('jornada.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
@@ -50,10 +35,8 @@
               </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
 @endsection
