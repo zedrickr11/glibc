@@ -15,4 +15,9 @@ class Carrera extends Model
     {
         return $this->belongsTo('App\Jornada', 'id_jornada');
     }
+
+    public function ciclos()
+    {
+        return $this->belongsToMany('App\Ciclo', 'detalle', 'id_carrera', 'id_ciclo');
+    }
 }
