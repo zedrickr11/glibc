@@ -28,7 +28,6 @@ class CicloFormRequest extends FormRequest
           'año' => 'required|numeric',
           'fecha_inicio' => 'required|date',
           'fecha_fin' => 'required|date',
-          'condicion' => 'required',
           'nombre' => 'required',
         ];
     }
