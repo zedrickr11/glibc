@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\CicloFormRequest;
 use App\Ciclo;
+use App\Carrera;
 
 class CicloController extends Controller
 {
@@ -27,7 +28,8 @@ class CicloController extends Controller
      */
     public function create()
     {
-        return view('ciclo.create');
+        $carreras=Carrera::all()->where('condicion',1);
+        return view('ciclo.create',compact('carreras'));
     }
 
     /**
@@ -38,7 +40,13 @@ class CicloController extends Controller
      */
     public function store(CicloFormRequest $request)
     {
-      Ciclo::create($request->all());
+      $ciclo = (new Ciclo)->fill($request->all());
+      $ciclo->condicion = 1;
+      $ciclo->save();
+
+      $carrera = $request->id_carrera;
+      $ciclo->carreras()->attach($carrera);
+
       return redirect()->route('ciclo.index');
     }
 
@@ -63,7 +71,8 @@ class CicloController extends Controller
     public function edit($id)
     {
       $ciclo=Ciclo::findOrFail($id);
-      return view('ciclo.edit',compact('ciclo'));
+      $carreras=Carrera::pluck('nombre','id');
+      return view('ciclo.edit',compact('ciclo','carreras'));
     }
 
     /**
@@ -75,7 +84,11 @@ class CicloController extends Controller
      */
     public function update(CicloFormRequest $request, $id)
     {
-        Ciclo::findOrFail($id)->update($request->all());
+        $c = Ciclo::findOrFail($id);
+        $ciclo = ($c)->fill($request->all());
+        $ciclo->condicion=1;
+        $ciclo->update();
+        $ciclo->carreras()->sync($request->id_carrera);
         return redirect()->route('ciclo.index');
     }
 

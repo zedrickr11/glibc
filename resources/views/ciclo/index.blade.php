@@ -50,6 +50,9 @@
                       </td>
 
                       <td>
+                        <a href="{{route('ciclo.show',$cur->id_ciclo)}}">
+                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
+                        </a>
 
                         <a href="{{route('ciclo.edit',$cur->id_ciclo )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
@@ -57,9 +60,6 @@
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$cur->id_ciclo}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
-                        <!-- <a href="{{route('ciclo.show',$cur->id_ciclo)}}">
-                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
-                        </a>-->
 
 
 
