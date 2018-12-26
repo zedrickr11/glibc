@@ -15,11 +15,11 @@ class Curso extends Model
         'nombre',
         'descripcion',
         'condicion',
-        'id_nivel'
+        'id_carrera'
     ];
 
-    public function nivel()
+    public function carrera()
     {
-        return $this->belongsTo('App\Nivel', 'id_nivel');
+        return $this->belongsTo('App\Carrera', 'id_carrera');
     }
 }

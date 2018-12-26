@@ -7,14 +7,12 @@
       <li class="breadcrumb-item"><a href="#">Curso</a></li>
       <li class="breadcrumb-item active">Nuevo</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-sm-12">
-
             <div class="card">
               <div class="card-header">
                 <strong>Registrar Curso</strong>
@@ -22,27 +20,26 @@
               </div>
               <form class="" action="{{ route('curso.store') }}" method="post">
                 {!! csrf_field() !!}
-
               <div class="card-body">
                 <div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" name="nombre" placeholder="Nombre...">
+                  <label for="nombre">Nombre del curso</label>
+                  <input type="text" class="form-control" name="nombre" placeholder="Nombre del curso...">
                   {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                 </div>
                 <div class="form-group">
                   <label for="descripcion">Descripción</label>
-                  <input type="text" class="form-control" name="descripcion" placeholder="Descripción...">
+                  <input type="text" class="form-control" name="descripcion" placeholder="Descripción del curso...">
                   {!!$errors->first('descripcion','<span class=text-danger>:message</span>')!!}
                 </div>
                 <fieldset class="form-group">
-                  <label for="nivel">Nivel</label>
-                  <select name="id_nivel" class="form-control select2-single" id="nivel">
-                    <option disabled selected>Seleccione nivel </option>
-                    @foreach($niveles as $nivel)
-                      <option value="{{ $nivel->id_nivel }}">{{ $nivel->nombre }}</option>
+                  <label for="id_carrera">Carrera</label>
+                  <select name="id_carrera" class="form-control select2-single" id="id_carrera">
+                    <option disabled selected>Seleccione carrera</option>
+                    @foreach($carreras as $carrera)
+                      <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
                     @endforeach
                   </select>
-                  {!!$errors->first('id_nivel','<span class=text-danger>:message</span>')!!}
+                  {!!$errors->first('id_carrera','<span class=text-danger>:message</span>')!!}
                 </fieldset>
               </div>
               <div class="card-footer">
@@ -52,15 +49,13 @@
               </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
     @push ('scripts')
       <script type="text/javascript">
-      $('#nivel').select2({
+      $('#id_carrera').select2({
         theme: "bootstrap"
       });
       </script>

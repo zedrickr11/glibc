@@ -42,5 +42,6 @@ Route::post('grado/addasignacion', ['as' => 'grado.addasignacion', 'uses' => 'Gr
 Route::put('grado/{asignacion}/editasignacion', ['as' => 'grado.editasignacion', 'uses' => 'GradoController@editAsignacion']);
 Route::delete('grado/{asignacion}/deleteasignacion', ['as' => 'grado.deleteasignacion', 'uses' => 'GradoController@deleteAsignacion']);
 
+Route::resource('pagomensualidad','PagoMensualidadController');
 
 Route::resource('persona','PersonaController');

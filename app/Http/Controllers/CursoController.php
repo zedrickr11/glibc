@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\CursoFormRequest;
 use App\Curso;
-use App\Nivel;
+use App\Carrera;
 
 class CursoController extends Controller
 {
@@ -28,8 +28,8 @@ class CursoController extends Controller
      */
     public function create()
     {
-        $niveles = Nivel::all();
-        return view('curso.create', compact('niveles'));
+        $carreras = Carrera::all();
+        return view('curso.create', compact('carreras'));
     }
 
     /**
@@ -73,9 +73,9 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        $niveles = Nivel::all();
+        $carreras = Carrera::all();
         $curso=Curso::findOrFail($id);
-        return view('curso.edit',compact('curso', 'niveles'));
+        return view('curso.edit',compact('curso', 'carreras'));
     }
 
     /**

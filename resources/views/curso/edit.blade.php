@@ -7,14 +7,12 @@
       <li class="breadcrumb-item"><a href="#">Curso</a></li>
       <li class="breadcrumb-item active">Editar</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-sm-12">
-
             <div class="card">
               <div class="card-header">
                 <strong>Curso</strong>
@@ -22,9 +20,7 @@
               </div>
               <form class="" action="{{ route('curso.update',$curso->id_curso) }}" method="post">
                 {!!method_field('PUT')!!}
-                  {!!csrf_field()!!}
-
-
+                {!!csrf_field()!!}
               <div class="card-body">
                 <div class="form-group">
                   <label for="nombre">Nombre</label>
@@ -38,13 +34,13 @@
                 </div>
                 <div class="form-group">
                   <fieldset >
-                    <label for="nivel">Nivel</label>
-                    <select name="id_nivel" class="form-control select2-single" id="nivel">
-                      @foreach($niveles as $nivel)
-                        <option value="{{ $nivel->id_nivel }}" {{ $curso->id_nivel == $nivel->id_nivel ? 'selected': null }}>{{ $nivel->nombre }}</option>
+                    <label for="id_carrera">Carrera</label>
+                    <select name="id_carrera" class="form-control select2-single" id="id_carrera">
+                      @foreach($carreras as $carrera)
+                        <option value="{{ $carrera->id }}" {{ $curso->id_carrera == $carrera->id ? 'selected': null }}>{{ $carrera->nombre }}</option>
                       @endforeach
                     </select>
-                    {!!$errors->first('id_nivel','<span class=text-danger>:message</span>')!!}
+                    {!!$errors->first('id_carrera','<span class=text-danger>:message</span>')!!}
                   </fieldset>
                 </div>
               </div>
@@ -55,14 +51,13 @@
               </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
     </div>
     @push ('scripts')
       <script type="text/javascript">
-      $('#nivel').select2({
+      $('#id_carrera').select2({
         theme: "bootstrap"
       });
       </script>

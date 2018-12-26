@@ -15,7 +15,7 @@
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <strong>Grado</strong>
+                <strong>Editar Grado</strong>
                 <small></small>
               </div>
               <form class="" action="{{ route('grado.update',$grado->id_grado) }}" method="post">
@@ -38,8 +38,8 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_persona">Maestro encargado*</label>
-                    <select name="id_persona" class="form-control">
+                    <label for="id_persona">Maestro guia*</label>
+                    <select name="id_persona" class="form-control select2-single" id="id_persona">
                       <option value="">Seleccione maestro: </option>
                       @foreach($personas as $persona)
                         <option value="{{ $persona->id_persona }}" {{ $grado->id_persona == $persona->id_persona ? 'selected': null }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
@@ -51,7 +51,7 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="id_carrera">Carrera*</label>
-                    <select name="id_carrera" class="form-control">
+                    <select name="id_carrera" class="form-control select2-single" id="id_carrera">
                       <option value="">Seleccione carrera: </option>
                       @foreach($carreras as $carrera)
                         <option value="{{ $carrera->id }}" {{ $grado->id_carrera == $carrera->id ? 'selected': null }}>{{ $carrera->nombre }} </option>
@@ -63,7 +63,7 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="id_seccion">Seccion*</label>
-                    <select name="id_seccion" class="form-control">
+                    <select name="id_seccion" class="form-control select2-single" id="id_seccion">
                       <option value="">Seleccione seccion: </option>
                       @foreach($secciones as $seccion)
                         <option value="{{ $seccion->id }}" {{ $grado->id_seccion == $seccion->id ? 'selected': null }}>{{ $seccion->nombre }} </option>
@@ -84,4 +84,17 @@
         </div>
       </div>
     </div>
+    @push ('scripts')
+      <script type="text/javascript">
+      $('#id_persona').select2({
+        theme: "bootstrap"
+      });
+      $('#id_carrera').select2({
+        theme: "bootstrap"
+      });
+      $('#id_seccion').select2({
+        theme: "bootstrap"
+      });
+      </script>
+    @endpush
 @endsection

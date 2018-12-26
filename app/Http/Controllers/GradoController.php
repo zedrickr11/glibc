@@ -75,10 +75,11 @@ class GradoController extends Controller
      */
     public function asignacion($id)
     {
-        $cursos = Curso::all();
-        $personas = Persona::all();
         $grado = Grado::findOrFail($id);
-        return view('grado.asignacion',compact('grado', 'cursos', 'personas'));
+        $cursos = Curso::where('id_carrera', $grado->id_carrera)->get();
+        $personas = Persona::where('tipo_persona', 'maestro')->get();
+        $carreras = Carrera::all();
+        return view('grado.asignacion',compact('grado', 'cursos', 'personas', 'carreras'));
     }
 
     /**
