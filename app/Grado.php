@@ -12,14 +12,14 @@ class Grado extends Model
 
     public $timestamps=false;
 
-    public function detalles()
-    {
-        return $this->hasMany('App\Detalle', 'id_grado');
-    }
-
     public function cursos()
     {
         return $this->belongsToMany('App\Curso', 'asignacion_curso', 'id_grado', 'id_curso')->withPivot('id_asignacion_curso', 'id_persona');
+    }
+
+    public function inscripciones()
+    {
+        return $this->hasMany('App\Inscripcion', 'id_grado');
     }
 
     public function persona()

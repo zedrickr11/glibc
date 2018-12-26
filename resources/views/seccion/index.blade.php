@@ -22,7 +22,6 @@
                 <table id="tabla-seccion" class="display table table-responsive-sm table-striped">
                   <thead>
                     <tr>
-                      <th>#</th>
                       <th>Sección</th>
                       <th>Estado</th>
                       <th>Opciones</th>
@@ -31,7 +30,6 @@
                   <tbody>
                     @foreach ($seccion as $cur)
                     <tr>
-                      <td>{{ $cur->id }}</td>
                       <td>{{ $cur->nombre }}</td>
                       <td>
                         @if ($cur->condicion==1)

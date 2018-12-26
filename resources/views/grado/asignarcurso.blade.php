@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <label for="id_persona">Maestro</label>
-                        <select name="id_persona" class="form-control">
+                        <select style="width:100%;" name="id_persona" class="form-control select2-single" id="id_persona_asignar">
                             <option value="">Seleccione maestro: </option>
                             @foreach($personas as $persona)
                                 <option value="{{ $persona->id_persona }}">{{ $persona->nombres }} {{ $persona->apellidos }}</option>
@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <label for="id_curso">Curso</label>
-                        <select name="id_curso" class="form-control">
+                        <select style="width:100%;" name="id_curso" class="form-control select2-single" id="id_curso_asignar">
                             <option value="">Seleccione curso: </option>
                             @foreach($cursos as $curso)
                                 <option value="{{ $curso->id_curso }}">{{ $curso->nombre }}</option>

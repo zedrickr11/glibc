@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\InscripcionFormRequest;
 use App\Inscripcion;
 use App\Alumno;
-use App\Detalle;
+use App\Grado;
 use App\Plan;
 use App\Persona;
 use Carbon\Carbon;
@@ -23,9 +23,9 @@ class InscripcionController extends Controller
     {
         $alumnos = Alumno::all();
         $planes = Plan::all();
-        $detalles = Detalle::all();
-        $personas = Persona::all();
-        return view('inscripcion.create', compact('alumnos', 'planes', 'detalles', 'personas'));
+        $grados = Grado::all();
+        $personas = Persona::where('tipo_persona', 'padre')->get();
+        return view('inscripcion.create', compact('alumnos', 'planes', 'grados', 'personas'));
     }
 
     
@@ -39,10 +39,10 @@ class InscripcionController extends Controller
     {
         $alumnos = Alumno::all();
         $planes = Plan::all();
-        $detalles = Detalle::all();
+        $grados = Grado::all();
         $personas = Persona::all();
         $inscripcion = Inscripcion::findOrFail($id);
-        return view('inscripcion.edit',compact('inscripcion', 'alumnos', 'planes', 'detalles', 'personas'));
+        return view('inscripcion.edit',compact('inscripcion', 'alumnos', 'planes', 'grados', 'personas'));
     }
 
     public function store(InscripcionFormRequest $request)
@@ -51,6 +51,7 @@ class InscripcionController extends Controller
 
         $date = Carbon::now();
         $inscripcion->fecha = $date;
+        $inscripcion->condicion = 1;
         $inscripcion->save();
 
         return redirect()->route('inscripcion.index');

@@ -29,7 +29,7 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for=""><strong>Grado</strong></label><br>
-                    <label for="">{{ $inscripcion->detalle->grado->nombre }} {{ $inscripcion->detalle->jornada->nombre }} {{ $inscripcion->detalle->ciclo->año }}</label>
+                    <label for="">{{ $inscripcion->grado->nombre }} {{ $inscripcion->grado->seccionAsignada->nombre }} </label>
                   </div>
                 </div><br>
                 <div class="row">
@@ -41,7 +41,7 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for=""><strong>Persona encargada</strong></label><br>
-                    <label for="">{{ $inscripcion->persona->nombres }}</label>
+                    <label for="">{{ $inscripcion->persona->nombres }} {{ $inscripcion->persona->apellidos }}</label>
                   </div>
                 </div><br>
                 <div class="row">

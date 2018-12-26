@@ -46,7 +46,7 @@
                         @endforeach
                       </td>
                       <td>
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#warningModal-{{$curso->pivot->id_asignacion_curso}}">
+                        <button type="button" numero="{{ $curso->pivot->id_asignacion_curso }}" class="btn btn-warning btn-sm botonmodal" data-toggle="modal" data-target="#warningModal-{{$curso->pivot->id_asignacion_curso}}">
                           <span class="fa fa-pencil-square-o"></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$curso->pivot->id_asignacion_curso}}">
@@ -70,5 +70,32 @@
           </div>
         </div>
     </div>
+    @push ('scripts')
+      <script type="text/javascript">
+      $('.botonmodal').click(function () {
+        var StateName = $(this).attr("numero");
+        $('#id_persona_editar-' + StateName).select2({
+          theme: "bootstrap",
+          dropdownParent: $("#warningModal-" + StateName)
+        });
+        $('#id_curso_editar-' + StateName).select2({
+          theme: "bootstrap",
+          dropdownParent: $("#warningModal-" + StateName)
+        });
+      });
+      $('#id_persona_asignar').select2({
+        theme: "bootstrap",
+        dropdownParent: $("#primaryModal")
+      });
+      $('#id_curso_asignar').select2({
+        theme: "bootstrap",
+        dropdownParent: $("#primaryModal")
+      });
+      $('#id_carrera').select2({
+        theme: "bootstrap",
+        dropdownParent: $("#successModalCurso")
+      });
+      </script>
+    @endpush
     <!-- /.conainer-fluid -->
 @endsection

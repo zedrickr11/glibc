@@ -17,4 +17,9 @@ class Mora extends Model
       'cantidad'
 
   ];
+
+  public function pagosmensualidades()
+  {
+      return $this->hasMany('App\PagoMensualidad', 'id_mora');
+  }
 }

@@ -12,15 +12,17 @@ class SeccionTableSeeder extends Seeder
     public function run()
     {
       DB::table('seccion')->delete();
-      for ($i=1; $i<26 ; $i++) {
-
-        Seccion::create([
-          'nombre' => "Sección {$i}",
-          'condicion' => "1"
-
-        ]);
-
-
-      }
+      Seccion::create([
+        'nombre' => "A",
+        'condicion' => "1"
+      ]);
+      Seccion::create([
+        'nombre' => "B",
+        'condicion' => "1"
+      ]);
+      Seccion::create([
+        'nombre' => "C",
+        'condicion' => "1"
+      ]);
     }
 }

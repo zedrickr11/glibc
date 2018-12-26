@@ -24,7 +24,7 @@
                     <tr>
                       <th>Alumno</th>
                       <th>Grado</th>
-                      <th>Jornada</th>
+                      <th>Seccion</th>
                       <th>Cuota</th>
                       <th>Opciones</th>
                     </tr>
@@ -33,8 +33,8 @@
                     @foreach ($inscripciones as $inscripcion)
                     <tr>
                       <td>{{ $inscripcion->alumno->primer_nombre }} {{ $inscripcion->alumno->segundo_nombre }} {{ $inscripcion->alumno->primer_apellido }}  {{ $inscripcion->alumno->segundo_apellido }}</td>
-                      <td>{{ $inscripcion->detalle->grado->nombre }}</td>
-                      <td>{{ $inscripcion->detalle->jornada->nombre }}</td>
+                      <td>{{ $inscripcion->grado->nombre }}</td>
+                      <td>{{ $inscripcion->grado->seccionAsignada->nombre }}</td>
                       <td>{{ $inscripcion->cuota }}</td>
                       <td>
                         <a href="{{route('inscripcion.show',$inscripcion->id_inscripcion)}}">

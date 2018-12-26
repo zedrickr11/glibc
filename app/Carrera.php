@@ -25,4 +25,9 @@ class Carrera extends Model
         return $this->belongsToMany('App\Ciclo', 'detalle', 'id_carrera', 'id_ciclo');
 
     }
+
+    public function cursos()
+    {
+        return $this->hasMany('App\Curso', 'id_carrera');
+    }
 }

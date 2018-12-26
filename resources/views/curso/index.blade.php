@@ -4,9 +4,8 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item">GlibColegio</li>
       <li class="breadcrumb-item"><a href="#">Curso</a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
@@ -15,7 +14,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <i class="fa fa-align-justify"></i> Curso
+                <i class="fa fa-align-justify"></i> Listado de Curso
                 <a href="curso/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
               </div>
               <div class="card-body">
@@ -25,7 +24,7 @@
                       <th>#</th>
                       <th>Curso</th>
                       <th>Descripción</th>
-                      <th>Nivel</th>
+                      <th>Carrera</th>
                       <th>Estado</th>
                       <th>Opciones</th>
                     </tr>
@@ -36,7 +35,7 @@
                       <td>{{ $cur->id_curso }}</td>
                       <td>{{ $cur->nombre }}</td>
                       <td>{{ $cur->descripcion }}</td>
-                      <td>{{ $cur->nivel->nombre }}</td>
+                      <td>{{ $cur->carrera->nombre }}</td>
                       <td>
                         @if ($cur->condicion==1)
                           <span class="badge badge-success">Activo</span>
@@ -57,14 +56,11 @@
                     @endforeach
                   </tbody>
                 </table>
-
               </div>
             </div>
           </div>
-
           </div>
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
     @push ('scripts')

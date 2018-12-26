@@ -21,7 +21,6 @@
                 <table id="tabla-plan" class="table table-responsive-sm table-striped">
                   <thead>
                     <tr>
-                      <th>#</th>
                       <th>Plan</th>
                       <th>Cantidad de pagos</th>
                       <th>Estado</th>
@@ -31,7 +30,6 @@
                   <tbody>
                     @foreach ($plan as $cur)
                     <tr>
-                      <td>{{ $cur->id }}</td>
                       <td>{{ $cur->nombre }}</td>
                       <td>{{ $cur->cantidad }}</td>
                       <td>

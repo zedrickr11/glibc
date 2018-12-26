@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="id_persona">Maestro</label>
-                    <select name="id_persona" class="form-control">
+                    <select style="width:100%;" name="id_persona" class="form-control select2-single" id="id_persona_editar-{{$curso->pivot->id_asignacion_curso}}">
                         @foreach($personas as $persona)
                             <option value="{{ $persona->id_persona }}" {{ $curso->pivot->id_persona == $persona->id_persona ? 'selected': null }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
                         @endforeach
@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="id_curso">Curso</label>
-                    <select name="id_curso" class="form-control">
+                    <select style="width:100%;" name="id_curso" class="form-control select2-single" id="id_curso_editar-{{$curso->pivot->id_asignacion_curso}}">
                         @foreach($cursos as $cu)
                             <option value="{{ $cu->id_curso }}" {{ $curso->pivot->id_curso == $cu->id_curso ? 'selected': null }}>{{ $cu->nombre }}</option>
                         @endforeach

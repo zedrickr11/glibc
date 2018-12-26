@@ -26,12 +26,14 @@
                 </div><br>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="condicion">Estado</label>
-                        <select class="form-control" name="condicion">
-                            <option value="1">ACTIVO</option>
-                            <option value="0">INACTIVO</option>
+                        <label for="id_carrera">Carrera</label>
+                        <select style="width:100%;" name="id_carrera" class="form-control select2-single" id="id_carrera">
+                            <option disabled selected>Seleccione carrera</option>
+                            @foreach($carreras as $carrera)
+                            <option value="{{ $carrera->id }}">{{ $carrera->nombre }}</option>
+                            @endforeach
                         </select>
-                        {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
+                        {!!$errors->first('id_carrera','<span class=text-danger>:message</span>')!!}
                     </div>
                 </div><br>
                 <input type="hidden" name="opcion" value="modal">
