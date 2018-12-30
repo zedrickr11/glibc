@@ -23,7 +23,6 @@ Route::resource('tipo-actividad', 'TipoActividadController');
 Route::resource('mora','MoraController');
 
 Route::resource('rol','RolController');
-Route::resource('nivel','NivelController');
 Route::resource('jornada','JornadaController');
 Route::resource('unidad','UnidadController');
 Route::resource('cuota','CuotaController');
@@ -43,5 +42,7 @@ Route::put('grado/{asignacion}/editasignacion', ['as' => 'grado.editasignacion',
 Route::delete('grado/{asignacion}/deleteasignacion', ['as' => 'grado.deleteasignacion', 'uses' => 'GradoController@deleteAsignacion']);
 
 Route::resource('pagomensualidad','PagoMensualidadController');
+Route::get('pagomensualidad/{id}/pagos', ['as' => 'pagomensualidad.pagos', 'uses' => 'PagoMensualidadController@pagos']);
+Route::get('pagomensualidad/{id}/create', ['as' => 'pagomensualidad.create', 'uses' => 'PagoMensualidadController@create']);
 
 Route::resource('persona','PersonaController');
