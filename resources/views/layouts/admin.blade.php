@@ -90,6 +90,9 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
+                <a class="nav-link" href="{{ url('pagomensualidad') }}"><i class="icon-puzzle"></i> Pagos Mensualidades</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{ url('mensualidad') }}"><i class="icon-puzzle"></i> Mensualidades</a>
               </li>
               <li class="nav-item">
@@ -110,6 +113,9 @@
             <ul class="nav-dropdown-items">
               <li>
                 <a class="nav-link" href="{{ url('inscripcion') }}"><i class="icon-speedometer"></i> Inscripciones </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('grado') }}"><i class="icon-notebook"></i> Grados </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('curso') }}"><i class="icon-notebook"></i> Curso </a>

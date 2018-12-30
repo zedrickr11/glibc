@@ -9,6 +9,8 @@ use App\Alumno;
 use App\Grado;
 use App\Plan;
 use App\Persona;
+use App\PagoMensualidad;
+
 use Carbon\Carbon;
 
 class InscripcionController extends Controller
@@ -53,6 +55,15 @@ class InscripcionController extends Controller
         $inscripcion->fecha = $date;
         $inscripcion->condicion = 1;
         $inscripcion->save();
+
+        for($i = 1; $i <= $inscripcion->plan->cantidad; $i++)
+        {
+            $pago = new PagoMensualidad();
+            $pago->id_inscripcion = $inscripcion->id_inscripcion;
+            $pago->id_mensualidad = $i;
+            $pago->id_mora = 1;
+            $pago->save();
+        }
 
         return redirect()->route('inscripcion.index');
     }
