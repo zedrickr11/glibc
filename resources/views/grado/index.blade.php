@@ -23,6 +23,7 @@
                     <tr>
                       <th>Nombre</th>
                       <th>Seccion</th>
+                      <th>Jornada</th>
                       <th>Maestro Guia</th>
                       <th>Estado</th>
                       <th>Opciones</th>
@@ -31,9 +32,10 @@
                   <tbody>
                     @foreach ($grados as $grado)
                     <tr>
-                      <td>{{ $grado->nombre }}</td>
-                      <td>{{ $grado->seccionAsignada->nombre }}</td>
-                      <td>{{ $grado->persona->nombres }} {{ $grado->persona->apellidos }}</td>
+                      <td>{{ $grado->grado_nombre }}</td>
+                      <td>{{ $grado->seccion_nombre }}</td>
+                      <td>{{ $grado->nombre_jornada }}</td>
+                      <td>{{ $grado->persona_nombres }} {{ $grado->persona_apellidos }}</td>
                       <td>
                         @if ($grado->condicion==1)
                           <span class="badge badge-success">Activo</span>

@@ -35,24 +35,24 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_grado">Grado</label>
-                    <select name="id_grado" class="form-control select2-single" id="id_grado" >
-                      @foreach($grados as $grado)
-                        <option value="{{ $grado->id_grado }}" {{ $inscripcion->id_grado == $grado->id_grado ? 'selected': null }}>{{$grado->nombre}} {{$grado->seccionAsignada->nombre}}</option>
+                    <label for="id_ciclo">Ciclo escolar</label>
+                    <select name="id_ciclo" class="form-control select2-single" id="id_ciclo">
+                      @foreach($ciclos as $ciclo)
+                        <option value="{{ $ciclo->id_ciclo }}" {{ $inscripcion->id_ciclo == $ciclo->id_ciclo ? 'selected': null }}>{{$ciclo->anio}}</option>
                       @endforeach
                     </select>
-                    {!!$errors->first('id_grado','<span class=text-danger>:message</span>')!!}
+                    {!!$errors->first('id_ciclo','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_plan">Plan</label>
-                    <select name="id_plan" class="form-control select2-single" id="id_plan" >
-                      @foreach($planes as $plan)
-                        <option value="{{ $plan->id }}" {{ $inscripcion->id_plan == $plan->id ? 'selected': null }}>{{ $plan->nombre }}</option>
+                    <label for="id_grado">Grado</label>
+                    <select name="id_grado" class="form-control select2-single" id="id_grado" >
+                      @foreach($grados as $grado)
+                        <option value="{{ $grado->id_grado }}" {{ $inscripcion->id_grado == $grado->id_grado ? 'selected': null }}>{{$grado->grado_nombre}} {{$grado->seccion_nombre}} {{ $grado->jornada_nombre }}</option>
                       @endforeach
                     </select>
-                    {!!$errors->first('id_plan','<span class=text-danger>:message</span>')!!}
+                    {!!$errors->first('id_grado','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
@@ -68,7 +68,14 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="cuota">Cuota</label>
+                    <label for="pago_inscripcion">Pago de inscripción</label>
+                    <input type="number" class="form-control" name="pago_inscripcion" value="{{ $inscripcion->pago_inscripcion }}">
+                    {!!$errors->first('pago_inscripcion','<span class=text-danger>:message</span>')!!}
+                  </div>
+                </div><br>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for="cuota">Cuota Mensual</label>
                     <input type="number" class="form-control" name="cuota" value="{{ $inscripcion->cuota }}">
                     {!!$errors->first('cuota','<span class=text-danger>:message</span>')!!}
                   </div>
@@ -90,6 +97,9 @@
       $('#id_alumno').select2({
         theme: "bootstrap"
       });
+      $('#id_ciclo').select2({
+        theme: "bootstrap"
+      });
       $('#id_grado').select2({
         theme: "bootstrap"
       });
@@ -98,6 +108,16 @@
       });
       $('#id_persona').select2({
         theme: "bootstrap"
+      });
+
+      $("#id_ciclo").change(event => {
+        $.get(`/grados/${event.target.value}`, function(response, state){
+          //console.log(response);
+          $("#id_grado").empty();
+          response.forEach(element => {
+            $("#id_grado").append(`<option value=${element.id_grado}> ${element.grado_nombre} ${element.seccion_nombre} ${element.jornada_nombre} </option>`);
+          });
+        });
       });
       </script>
     @endpush

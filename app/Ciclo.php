@@ -13,7 +13,7 @@ class Ciclo extends Model
 
   protected $fillable = [
 
-      'año',
+      'anio',
       'fecha_inicio',
       'fecha_fin',
       'condicion',
@@ -23,6 +23,11 @@ class Ciclo extends Model
   public function carreras()
   {
       return $this->belongsToMany('App\Carrera', 'detalle', 'id_ciclo', 'id_carrera');
+  }
+    
+  public function inscripciones()
+  {
+    return $this->hasMany('App\Inscripcion', 'id_ciclo');
   }
 
 }

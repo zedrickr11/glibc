@@ -21,43 +21,45 @@
               <form class="">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="col-xs-10 col-sm-8 col-md-8 col-lg-8">
                     <label for=""><strong>Alumno</strong></label><br>
                     <label for="">{{ $inscripcion->alumno->primer_nombre }} {{ $inscripcion->alumno->segundo_nombre }} {{ $inscripcion->alumno->primer_apellido }} {{ $inscripcion->alumno->segundo_apellido }}</label>
                   </div>
-                </div><br>
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for=""><strong>Grado</strong></label><br>
-                    <label for="">{{ $inscripcion->grado->nombre }} {{ $inscripcion->grado->seccionAsignada->nombre }} </label>
+                  <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4">
+                    <label for="condicion"><strong>Estado</strong></label><br>
+                    <label for=""> 
+                        @if ($inscripcion->condicion==1)
+                            <span class="badge badge-success">ACTIVO</span>
+                        @else
+                            <span class="badge badge-danger">INACTIVO</span>
+                        @endif
+                    </label>
                   </div>
                 </div><br>
                 <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="col-xs-10 col-sm-8 col-md-8 col-lg-8">
+                    <label for=""><strong>Grado</strong></label><br>
+                    <label for="">{{ $inscripcion->grado->nombre }} Seccion {{ $inscripcion->grado->seccionAsignada->nombre }} Jornada {{ $inscripcion->grado->carrera->jornada->nombre }} Ciclo Escolar {{ $inscripcion->ciclo->anio }} </label>
+                  </div>
+                  <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4">
                     <label for=""><strong>Plan</strong></label><br>
                     <label for="">{{ $inscripcion->plan->nombre }}</label>
                   </div>
                 </div><br>
                 <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <div class="col-xs-10 col-sm-8 col-md-8 col-lg-8">
                     <label for=""><strong>Persona encargada</strong></label><br>
                     <label for="">{{ $inscripcion->persona->nombres }} {{ $inscripcion->persona->apellidos }}</label>
                   </div>
+                  <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4">
+                    <label for="condicion"><strong>Pago de inscripcion</strong></label><br>
+                    <label for="">Q. {{ $inscripcion->pago_inscripcion }}</label>
+                  </div>
                 </div><br>
                 <div class="row">
-                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4 offset-md-8">
                     <label for=""><strong>Cuota</strong></label><br>
                     <label for="">Q. {{ $inscripcion->cuota }}</label>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <label for="condicion"><strong>Estado</strong></label><br>
-                    <label for=""> 
-                        @if ($inscripcion->condicion==1)
-                            ACTIVO
-                        @else
-                            INACTIVO
-                        @endif
-                    </label>
                   </div>
                 </div><br>
               </div>

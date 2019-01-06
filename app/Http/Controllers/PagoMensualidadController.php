@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PagoMensualidad;
 use App\Inscripcion;
+use App\Mora;
 use DB;
 use Carbon\Carbon;
 
@@ -22,8 +23,8 @@ class PagoMensualidadController extends Controller
                         ->join('detalle', 'carrera.id', '=', 'detalle.id_carrera')
                         ->join('ciclo', 'detalle.id_ciclo', '=', 'ciclo.id_ciclo')
                         ->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.primer_apellido', 'alumno.segundo_apellido',
-                                'grado.nombre as grado_nombre', 'ciclo.año as ciclo_ano', 'plan.nombre as plan_nombre' ,'inscripcion.cuota')
-                        ->where('ciclo.año', $ano)
+                                'grado.nombre as grado_nombre', 'ciclo.anio as ciclo_ano', 'plan.nombre as plan_nombre' ,'inscripcion.cuota')
+                        ->where('ciclo.anio', $ano)
                         ->get();
 
       return view ('pagomensualidad.index',compact('inscripciones'));
@@ -33,12 +34,13 @@ class PagoMensualidadController extends Controller
     {
       $inscripcion = Inscripcion::findOrFail($id);
       $pagos = PagoMensualidad::where('id_inscripcion', $id)->get();
+      $mora = Mora::first();
       $date = Carbon::now()->format('d-m-Y');
-      //$date = '7-4-2018';
+      //$date = '7-2-2019';
       $mes = Carbon::now()->format('m');
       $ano = Carbon::now()->format('Y');
 
-      return view ('pagomensualidad.pagos',compact('inscripcion', 'pagos', 'date', 'mes', 'ano'));
+      return view ('pagomensualidad.pagos',compact('inscripcion', 'pagos', 'mora', 'date', 'mes', 'ano'));
     }
 
     public function create($id)
@@ -69,20 +71,23 @@ class PagoMensualidadController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-          'monto' => 'required|numeric',
-          'mora' => 'nullable|numeric'
+          'mora' => 'required|numeric'
         ]);
-
+        
+        $mora = Mora::first();
         $pago = PagoMensualidad::findOrFail($id);
-
         $date = Carbon::now();
-        $pago->monto = $request->monto;
+        $pago->monto = $pago->inscripcion->cuota;
         $pago->fecha = $date;
-        $pago->mora = $request->mora;
+        if($request->mora == 1){
+          $pago->mora = $mora->cantidad;
+          $pago->id_mora = $mora->id;
+        } elseif($request->mora == 0){
+          $pago->mora = 0;
+        }
         $pago->save();
 
         return redirect()->back();
-        //return redirect()->route('pagomensualidad.index');
     }
 
     public function destroy(Request $request, $id)

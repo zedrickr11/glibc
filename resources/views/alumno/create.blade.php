@@ -51,6 +51,18 @@
                   </div>
                 </div><br>
                 <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="carnet">No. Carnet</label>
+                    <input type="text" class="form-control" name="carnet" placeholder="Ingrese numero de carné...">
+                    {!!$errors->first('carnet','<span class=text-danger>:message</span>')!!}
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="codigo_alumno">Codigo de alumno</label>
+                    <input type="text" class="form-control" name="codigo_alumno" placeholder="Ingrese el codigo del alumno...">
+                    {!!$errors->first('codigo_alumno','<span class=text-danger>:message</span>')!!}
+                  </div>
+                </div><br>
+                <div class="row">
                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <label for="telefono">Telefono</label>
                     <input type="number" class="form-control" name="telefono">

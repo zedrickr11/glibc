@@ -14,19 +14,19 @@ class JornadaTableSeeder extends Seeder
     {
         DB::table('jornada')->delete();
         Jornada::create([
+          'id_jornada' => "1",
           'nombre' => "Matutina",
           'condicion' => "1"
-
         ]);
         Jornada::create([
+          'id_jornada' => "2",
           'nombre' => "Vespertina",
           'condicion' => "1"
-
         ]);
         Jornada::create([
+          'id_jornada' => "3",
           'nombre' => "Fin de semana",
           'condicion' => "1"
-
         ]);
     }
 }
