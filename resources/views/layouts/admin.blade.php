@@ -86,72 +86,74 @@
           <li class="nav-title">
             Colegio
           </li>
+          <li class="nav-item">
+
+              <a class="nav-link" href="{{ url('ciclo') }}"><i class="icon-puzzle"></i> Ciclo Escolar </a>
+
+
+          </li>
+          <li class="nav-item">
+
+              <a class="nav-link" href="{{ url('inscripcion') }}"><i class="icon-puzzle"></i> Inscripciones </a>
+
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('alumno') }}"><i class="icon-puzzle"></i> Alumnos </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('persona') }}"><i class="icon-puzzle"></i> Profesores </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('padre') }}"><i class="icon-puzzle"></i> Padres o Encargados </a>
+          </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('pagomensualidad') }}"><i class="icon-puzzle"></i> Pagos Mensualidades</a>
+                <a class="nav-link" href="{{ url('pagomensualidad') }}"><i class="icon-puzzle"></i> Mensualidades</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('mensualidad') }}"><i class="icon-puzzle"></i> Mensualidades</a>
-              </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('cuota') }}"><i class="icon-puzzle"></i> Cuotas</a>
               </li>
             </ul>
           </li>
+
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Usuarios</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Configuración</a>
             <ul class="nav-dropdown-items">
+
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('rol') }}"><i class="icon-puzzle"></i> Roles</a>
+                <a class="nav-link" href="{{ url('grado') }}"><i class="fa fa-caret-right"></i> Grados </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('curso') }}"><i class="fa fa-caret-right"></i> Curso </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('seccion') }}"><i class="fa fa-caret-right"></i> Sección </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('plan') }}"><i class="fa fa-caret-right"></i> Plan </a>
+              </li>
+
+              <li>
+                <a class="nav-link" href="{{ url('jornada') }}"><i class="fa fa-caret-right"></i> Jornada </a>
+              </li>
+              <li>
+                <a class="nav-link" href="{{ url('unidad') }}"><i class="fa fa-caret-right"></i> Unidad </a>
+              </li>
+              <li>
+                <a class="nav-link" href="{{ url('carrera') }}"><i class="fa fa-caret-right"></i> Carreras </a>
+              </li>
+              <li>
+
               </li>
             </ul>
           </li>
-          <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Configuracion</a>
-            <ul class="nav-dropdown-items">
-              <li>
-                <a class="nav-link" href="{{ url('inscripcion') }}"><i class="icon-speedometer"></i> Inscripciones </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('grado') }}"><i class="icon-notebook"></i> Grados </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('curso') }}"><i class="icon-notebook"></i> Curso </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('ciclo') }}"><i class="icon-notebook"></i> Ciclo Escolar </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('seccion') }}"><i class="icon-notebook"></i> Sección </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url('plan') }}"><i class="icon-notebook"></i> Plan </a>
-              </li>
-              <li>
-                <a class="nav-link" href="{{ url('nivel') }}"><i class="icon-speedometer"></i> Niveles </a>
-              </li>
-              <li>
-                <a class="nav-link" href="{{ url('jornada') }}"><i class="icon-speedometer"></i> Jornada </a>
-              </li>
-              <li>
-                <a class="nav-link" href="{{ url('unidad') }}"><i class="icon-speedometer"></i> Unidad </a>
-              </li>
-              <li>
-                <a class="nav-link" href="{{ url('carrera') }}"><i class="icon-speedometer"></i> Carreras </a>
-              </li>
-              <li>
-                <a class="nav-link" href="{{ url('alumno') }}"><i class="icon-speedometer"></i> Alumnos </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('tipo-actividad') }}"><i class="icon-notebook"></i> Tipo actividad </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('mora') }}"><i class="icon-notebook"></i> Mora </a>
-          </li>
+
+
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
