@@ -54,7 +54,7 @@ class PersonaController extends Controller
         $persona->telefono=$request->get('telefono');
         $persona->telefono_dos=$request->get('telefono_dos');
         $persona->celular=$request->get('celular');
-
+        $persona->condicion=1;
         if (Input::hasFile('foto')){
           $file=Input::file('foto');
           $file->move(public_path().'/personas/fotos/',$file->getClientOriginalName());
