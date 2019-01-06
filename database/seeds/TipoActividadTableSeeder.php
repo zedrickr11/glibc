@@ -12,12 +12,20 @@ class TipoActividadTableSeeder extends Seeder
     public function run()
     {
       DB::table('tipo_actividad')->delete();
-      for ($i=1; $i<26 ; $i++) {
+
 
         TipoActividad::create([
-          'nombre' => "Actividad {$i}",
+          'nombre' => "Procedimentales",
           'condicion' => "1"
         ]);
-      }
+        TipoActividad::create([
+          'nombre' => "Actitudinales",
+          'condicion' => "1"
+        ]);
+        TipoActividad::create([
+          'nombre' => "Declarativos",
+          'condicion' => "1"
+        ]);
+
     }
 }

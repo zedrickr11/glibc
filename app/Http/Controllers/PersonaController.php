@@ -19,7 +19,7 @@ class PersonaController extends Controller
        */
       public function index()
       {
-        $persona=Persona::all();
+        $persona=Persona::all()->where('tipo_persona','maestro');
         return view ('persona.index',compact('persona'));
       }
 

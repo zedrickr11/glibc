@@ -102,10 +102,10 @@
             <a class="nav-link" href="{{ url('alumno') }}"><i class="icon-puzzle"></i> Alumnos </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('alumno') }}"><i class="icon-puzzle"></i> Profesores </a>
+            <a class="nav-link" href="{{ url('persona') }}"><i class="icon-puzzle"></i> Profesores </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('alumno') }}"><i class="icon-puzzle"></i> Padres o Encargados </a>
+            <a class="nav-link" href="{{ url('padre') }}"><i class="icon-puzzle"></i> Padres o Encargados </a>
           </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
@@ -121,31 +121,31 @@
           </li>
 
           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Configuracion</a>
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Configuración</a>
             <ul class="nav-dropdown-items">
-              
+
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('grado') }}"><i class="icon-puzzle"></i> Grados </a>
+                <a class="nav-link" href="{{ url('grado') }}"><i class="fa fa-caret-right"></i> Grados </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('curso') }}"><i class="icon-puzzle"></i> Curso </a>
+                <a class="nav-link" href="{{ url('curso') }}"><i class="fa fa-caret-right"></i> Curso </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('seccion') }}"><i class="icon-puzzle"></i> Sección </a>
+                <a class="nav-link" href="{{ url('seccion') }}"><i class="fa fa-caret-right"></i> Sección </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('plan') }}"><i class="icon-puzzle"></i> Plan </a>
+                <a class="nav-link" href="{{ url('plan') }}"><i class="fa fa-caret-right"></i> Plan </a>
               </li>
 
               <li>
-                <a class="nav-link" href="{{ url('jornada') }}"><i class="icon-puzzle"></i> Jornada </a>
+                <a class="nav-link" href="{{ url('jornada') }}"><i class="fa fa-caret-right"></i> Jornada </a>
               </li>
               <li>
-                <a class="nav-link" href="{{ url('unidad') }}"><i class="icon-puzzle"></i> Unidad </a>
+                <a class="nav-link" href="{{ url('unidad') }}"><i class="fa fa-caret-right"></i> Unidad </a>
               </li>
               <li>
-                <a class="nav-link" href="{{ url('carrera') }}"><i class="icon-puzzle"></i> Carreras </a>
+                <a class="nav-link" href="{{ url('carrera') }}"><i class="fa fa-caret-right"></i> Carreras </a>
               </li>
               <li>
 

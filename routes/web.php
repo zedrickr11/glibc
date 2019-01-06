@@ -47,3 +47,4 @@ Route::get('pagomensualidad/{id}/pagos', ['as' => 'pagomensualidad.pagos', 'uses
 Route::get('pagomensualidad/{id}/create', ['as' => 'pagomensualidad.create', 'uses' => 'PagoMensualidadController@create']);
 
 Route::resource('persona','PersonaController');
+Route::resource('padre','PadreController');

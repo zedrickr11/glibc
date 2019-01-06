@@ -20,7 +20,7 @@
                 <strong>Persona</strong>
                 <small>Form</small>
               </div>
-              <form class="" action="{{ route('persona.store') }}" method="post" enctype="multipart/form-data">
+              <form class="" action="{{ route('padre.store') }}" method="post" enctype="multipart/form-data">
                 {!! csrf_field() !!}
 
               <div class="card-body">
