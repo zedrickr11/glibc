@@ -12,17 +12,16 @@ class PlanTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('plan')->delete();
-      for ($i=1; $i<26 ; $i++) {
-
+        DB::table('plan')->delete();
         Plan::create([
-          'nombre' => "Plan {$i}",
-          'cantidad' => "{$i}",
+          'nombre' => "Plan 10",
+          'cantidad' => "10",
           'condicion' => "1"
-
         ]);
-
-
-      }
+        Plan::create([
+          'nombre' => "Plan 12",
+          'cantidad' => "12",
+          'condicion' => "1"
+        ]);
     }
 }

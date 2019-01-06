@@ -35,7 +35,6 @@ class PersonaTableSeeder extends Seeder
           'condicion' => "1"
         ]);
 
-
       }
     }
 }

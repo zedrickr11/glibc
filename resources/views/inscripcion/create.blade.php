@@ -41,12 +41,21 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_grado">Grado</label>
-                    <select name="id_grado" class="form-control select2-single" id="id_grado">
-                      <option value="">Seleccione grado: </option>
-                      @foreach($grados as $grado)
-                        <option value="{{ $grado->id_grado }}">{{$grado->nombre}} {{$grado->seccionAsignada->nombre}}</option>
+                    <label for="id_ciclo">Ciclo escolar</label>
+                    <select name="id_ciclo" class="form-control select2-single" id="id_ciclo">
+                      <option value="">Seleccione Ciclo: </option>
+                      @foreach($ciclos as $ciclo)
+                        <option value="{{ $ciclo->id_ciclo }}">{{$ciclo->anio}}</option>
                       @endforeach
+                    </select>
+                    {!!$errors->first('id_ciclo','<span class=text-danger>:message</span>')!!}
+                  </div>
+                </div><br>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for="id_grado">Grado</label>
+                    <select name="id_grado" placeholder="Seleccione grado" class="form-control select2-single" id="id_grado">
+                      <option value="0">Seleccione grado:</option>
                     </select>
                     {!!$errors->first('id_grado','<span class=text-danger>:message</span>')!!}
                   </div>
@@ -77,7 +86,14 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="cuota">Cuota</label>
+                    <label for="pago_inscripcion">Pago inscripcion</label>
+                    <input type="number" class="form-control" name="pago_inscripcion">
+                    {!!$errors->first('pago_inscripcion','<span class=text-danger>:message</span>')!!}
+                  </div>
+                </div><br>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for="cuota">Cuota Mensual</label>
                     <input type="number" class="form-control" name="cuota">
                     {!!$errors->first('cuota','<span class=text-danger>:message</span>')!!}
                   </div>
@@ -108,6 +124,19 @@
       });
       $('#id_persona').select2({
         theme: "bootstrap"
+      });
+      $('#id_ciclo').select2({
+        theme: "bootstrap"
+      });
+
+      $("#id_ciclo").change(event => {
+        $.get(`/grados/${event.target.value}`, function(response, state){
+          //console.log(response);
+          $("#id_grado").empty();
+          response.forEach(element => {
+            $("#id_grado").append(`<option value=${element.id_grado}> ${element.grado_nombre} ${element.seccion_nombre} ${element.jornada_nombre} </option>`);
+          });
+        });
       });
       </script>
     @endpush

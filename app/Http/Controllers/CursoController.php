@@ -28,7 +28,7 @@ class CursoController extends Controller
      */
     public function create()
     {
-        $carreras = Carrera::all();
+        $carreras = Carrera::where('condicion',1)->get();
         return view('curso.create', compact('carreras'));
     }
 
@@ -73,7 +73,7 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
-        $carreras = Carrera::all();
+        $carreras = Carrera::where('condicion',1)->get();
         $curso=Curso::findOrFail($id);
         return view('curso.edit',compact('curso', 'carreras'));
     }

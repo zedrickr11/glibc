@@ -11,17 +11,10 @@ class MoraTableSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('mora')->delete();
-      for ($i=1; $i<26 ; $i++) {
-
+        DB::table('mora')->delete();
         Mora::create([
-          'cantidad' => "10{$i}",
+          'cantidad' => "25",
           'condicion' => "1"
-
-
         ]);
-
-
-      }
     }
 }

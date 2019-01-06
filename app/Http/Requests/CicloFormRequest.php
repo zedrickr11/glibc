@@ -25,7 +25,7 @@ class CicloFormRequest extends FormRequest
     {
         return [
 
-          'año' => 'required|numeric',
+          'anio' => 'required|numeric',
           'fecha_inicio' => 'required|date',
           'fecha_fin' => 'required|date',
           'nombre' => 'required',

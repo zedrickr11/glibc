@@ -35,7 +35,7 @@
                       <td>{{ $cur->id_curso }}</td>
                       <td>{{ $cur->nombre }}</td>
                       <td>{{ $cur->descripcion }}</td>
-                      <td>{{ $cur->carrera->nombre }}</td>
+                      <td>{{ $cur->carrera->nombre }} {{ $cur->carrera->jornada->nombre }}</td>
                       <td>
                         @if ($cur->condicion==1)
                           <span class="badge badge-success">Activo</span>

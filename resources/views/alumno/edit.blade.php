@@ -52,6 +52,18 @@
                   </div>
                 </div><br>
                 <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="carnet">No. Carné</label>
+                    <input type="text" class="form-control" name="carnet" value="{{ $alumno->carnet }}">
+                    {!!$errors->first('carnet','<span class=text-danger>:message</span>')!!}
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="codigo_alumno">Codigo de Alumno</label>
+                    <input type="text" class="form-control" name="codigo_alumno" value="{{ $alumno->codigo_alumno }}">
+                    {!!$errors->first('codigo_alumno','<span class=text-danger>:message</span>')!!}
+                  </div>
+                </div><br>
+                <div class="row">
                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <label for="telefono">Telefono</label>
                     <input type="number" class="form-control" name="telefono" value="{{ $alumno->telefono }}">

@@ -45,6 +45,16 @@
                   </div>
                 </div><br>
                 <div class="row">
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for=""><strong>Carné:</strong></label><br>
+                    <label for="">{{ $alumno->carnet }}</label>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for=""><strong>Codigo de alumno:</strong></label><br>
+                    <label for="">{{ $alumno->codigo_alumno }}</label>
+                  </div>
+                </div><br>
+                <div class="row">
                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                     <label for=""><strong>Telefono:</strong></label><br>
                     <label for="">{{ $alumno->telefono }}</label>

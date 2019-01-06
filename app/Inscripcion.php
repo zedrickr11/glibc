@@ -10,7 +10,7 @@ class Inscripcion extends Model
     protected $primaryKey = 'id_inscripcion';
     public $timestamps = false;
 
-    protected $fillable = ['id_alumno', 'fecha', 'condicion', 'id_plan', 'id_persona', 'cuota', 'id_grado'];
+    protected $fillable = ['id_alumno', 'fecha', 'condicion', 'id_plan', 'id_persona', 'cuota', 'id_grado', 'id_ciclo', 'pago_inscripcion'];
 
     public function alumno()
     {
@@ -30,6 +30,11 @@ class Inscripcion extends Model
     public function persona()
     {
         return $this->belongsTo('App\Persona', 'id_persona');
+    }
+
+    public function ciclo()
+    {
+        return $this->belongsTo('App\Ciclo', 'id_ciclo');
     }
 
     public function pagoscuotas()

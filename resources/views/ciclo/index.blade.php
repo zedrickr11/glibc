@@ -37,7 +37,7 @@
                     <tr>
                       <td>{{ $cur->id_ciclo }}</td>
                       <td>{{ $cur->nombre }}</td>
-                      <td>{{ $cur->año }}</td>
+                      <td>{{ $cur->anio }}</td>
                       <td>{{ $cur->fecha_inicio }}</td>
                       <td>{{ $cur->fecha_fin }}</td>
                       <td>
