@@ -71,9 +71,22 @@
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <ul class="nav navbar-nav d-md-down-none mr-auto">
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <img src="img/avatars/6.jpg" class="img-avatar" alt="{{ auth()->user()->name }}">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-header text-center">
+            <strong>Cuenta</strong>
+          </div>
+      <div class="divider"></div>
 
+          <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Cerrar Sesión</a>
+        </div>
+      </li>
     </ul>
+
   </header>
   <div class="app-body">
     <div class="sidebar">
@@ -86,12 +99,14 @@
           <li class="nav-title">
             Colegio
           </li>
+          @if (auth()->user()->hasRole(['admin']))
           <li class="nav-item">
 
               <a class="nav-link" href="{{ url('ciclo') }}"><i class="icon-puzzle"></i> Ciclo Escolar </a>
 
 
           </li>
+        @endif
           <li class="nav-item">
 
               <a class="nav-link" href="{{ url('inscripcion') }}"><i class="icon-puzzle"></i> Inscripciones </a>
@@ -111,11 +126,11 @@
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
             <ul class="nav-dropdown-items">
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('pagomensualidad') }}"><i class="icon-puzzle"></i> Mensualidades</a>
+                <a class="nav-link" href="{{ url('pagomensualidad') }}"><i class="fa fa-caret-right"></i> Mensualidades</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('cuota') }}"><i class="icon-puzzle"></i> Cuotas</a>
+                <a class="nav-link" href="{{ url('cuota') }}"><i class="fa fa-caret-right"></i> Cuotas Especiales</a>
               </li>
             </ul>
           </li>
@@ -167,7 +182,7 @@
 
   </div>
   <footer class="app-footer">
-    <span><a href="#">GlibColegio</a> © 2018 GlibSoftware.</span>
+    <span><a href="#">GlibColegio</a> © {{ date('Y') }} GlibSoftware.</span>
     <span class="ml-auto">Creado por <a href="#">GlibSoftware</a></span>
   </footer>
 
