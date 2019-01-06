@@ -10,7 +10,7 @@ class CuotaController extends Controller
 {
     public function index()
     {
-        $cuotas = Cuota::all();
+        $cuotas = Cuota::where('condicion', '1')->get();
         return view ('cuota.index',compact('cuotas'));
     }
 

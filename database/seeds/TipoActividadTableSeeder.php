@@ -17,11 +17,7 @@ class TipoActividadTableSeeder extends Seeder
         TipoActividad::create([
           'nombre' => "Actividad {$i}",
           'condicion' => "1"
-
-
         ]);
-
-
       }
     }
 }

@@ -53,7 +53,7 @@
                     <select name="id_carrera" class="form-control select2-single" id="id_carrera">
                       <option value="">Seleccione carrera: </option>
                       @foreach($carreras as $carrera)
-                        <option value="{{ $carrera->id }}">{{ $carrera->nombre }} </option>
+                        <option value="{{ $carrera->id }}">{{ $carrera->nombre }} {{$carrera->jornada->nombre}}</option>
                       @endforeach
                     </select>
                     {!!$errors->first('id_carrera','<span class=text-danger>:message</span>')!!}

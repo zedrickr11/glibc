@@ -14,7 +14,7 @@ class Grado extends Model
 
     public function cursos()
     {
-        return $this->belongsToMany('App\Curso', 'asignacion_curso', 'id_grado', 'id_curso')->withPivot('id_asignacion_curso', 'id_persona');
+        return $this->belongsToMany('App\Curso', 'asignacion_curso', 'id_grado', 'id_curso')->withPivot('id_asignacion_curso', 'id_persona', 'anio');
     }
 
     public function inscripciones()

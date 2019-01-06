@@ -31,7 +31,7 @@
                   </div>
                   <div class="form-group col-lg-6">
                     <label for="año">Año</label><br>
-                    <label for=""> <strong>{{ $ciclo->año }}</strong> </label>
+                    <label for=""> <strong>{{ $ciclo->anio }}</strong> </label>
 
                   </div>
                   <div class="form-group col-lg-6">

@@ -18,7 +18,7 @@
             <div class="card">
               <div class="card-header">
                 <strong>Ciclo</strong>
-                <small>Form</small>
+                <small></small>
               </div>
               <form class="" action="{{ route('ciclo.update',$ciclo->id_ciclo) }}" method="post">
                 {!!method_field('PUT')!!}
@@ -31,9 +31,9 @@
                         {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                       </div>
                       <div class="form-group col-lg-6">
-                        <label for="año">Año</label>
-                        <input type="number" class="form-control" name="año" value="{{ $ciclo->año }}">
-                        {!!$errors->first('año','<span class=text-danger>:message</span>')!!}
+                        <label for="anio">Año</label>
+                        <input type="number" class="form-control" name="anio" value="{{ $ciclo->anio }}">
+                        {!!$errors->first('anio','<span class=text-danger>:message</span>')!!}
                       </div>
                       <div class="form-group col-lg-6">
                         <label for="fecha_inicio">Fecha de inicio</label>

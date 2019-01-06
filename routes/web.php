@@ -36,6 +36,7 @@ Route::resource('inscripcion','InscripcionController');
 
 Route::resource('grado','GradoController');
 
+Route::get('grados/{idCiclo}', 'InscripcionController@grados');
 Route::get('grado/{grado}/asignacion', ['as' => 'grado.asignacion', 'uses' => 'GradoController@asignacion']);
 Route::post('grado/addasignacion', ['as' => 'grado.addasignacion', 'uses' => 'GradoController@addAsignacion']);
 Route::put('grado/{asignacion}/editasignacion', ['as' => 'grado.editasignacion', 'uses' => 'GradoController@editAsignacion']);

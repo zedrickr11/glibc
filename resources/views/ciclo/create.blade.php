@@ -18,7 +18,7 @@
             <div class="card">
               <div class="card-header">
                 <strong>Ciclo Escolar</strong>
-                <small>Form</small>
+                <small></small>
               </div>
               <form class="" action="{{ route('ciclo.store') }}" method="post">
                 {!! csrf_field() !!}
@@ -31,9 +31,9 @@
                     {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                   </div>
                   <div class="form-group col-lg-6">
-                    <label for="año">Año</label>
-                    <input type="number" class="form-control" name="año" placeholder="Año escolar...">
-                    {!!$errors->first('año','<span class=text-danger>:message</span>')!!}
+                    <label for="anio">Año</label>
+                    <input type="number" class="form-control" name="anio" placeholder="Año escolar...">
+                    {!!$errors->first('anio','<span class=text-danger>:message</span>')!!}
                   </div>
                   <div class="form-group col-lg-6">
                     <label for="fecha_inicio">Fecha de inicio</label>
@@ -58,7 +58,7 @@
 
                         @foreach ($carreras as $carrera)
                           <div class="col-lg-6">
-                              <label for=""> {{ $carrera->nombre }} </label>
+                              <label for=""> {{ $carrera->nombre }} {{ $carrera->jornada->nombre }} </label>
                           </div>
                           <div class="col-lg-6">
                             <label class="switch switch-icon switch-pill switch-primary">

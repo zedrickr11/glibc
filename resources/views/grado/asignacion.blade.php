@@ -14,7 +14,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <i class="fa fa-align-justify"></i> Asignacion de cursos - <strong>{{$grado->nombre}}</strong>
+                <i class="fa fa-align-justify"></i> Asignacion de cursos - <strong>{{$grado->nombre}} {{ $grado->seccionAsignada->nombre }} {{ $grado->carrera->jornada->nombre }}</strong>
                 <div class="d-flex justify-content-end">
                   <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="#primaryModal">
                     <i class="icon-check"></i>&nbsp;Asignar Curso
@@ -34,7 +34,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($grado->cursos as $curso)
+                    @foreach ($cursos_asignados as $curso)
                     <tr>
                       <td>{{ $curso->nombre }}</td>
                       <td>{{ $curso->descripcion }}</td>

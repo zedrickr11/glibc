@@ -12,17 +12,15 @@ class CicloTableSeeder extends Seeder
     public function run()
     {
       DB::table('ciclo')->delete();
-      for ($i=2000; $i<2026 ; $i++) {
+      for ($i=2018; $i<2020 ; $i++) {
 
         Ciclo::create([
           'nombre' => "Ciclo Escolar {$i}",
           'año' => "{$i}",
-          'fecha_inicio' => "{$i}-01-01",
-          'fecha_fin' => "{$i}-10-31",
+          'fecha_inicio' => "07-01-{$i}",
+          'fecha_fin' => "30-10-{$i}",
           'condicion' => '1'
         ]);
-
-
       }
     }
 }

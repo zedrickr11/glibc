@@ -37,7 +37,7 @@
                     <label for="id_carrera">Carrera</label>
                     <select name="id_carrera" class="form-control select2-single" id="id_carrera">
                       @foreach($carreras as $carrera)
-                        <option value="{{ $carrera->id }}" {{ $curso->id_carrera == $carrera->id ? 'selected': null }}>{{ $carrera->nombre }}</option>
+                        <option value="{{ $carrera->id }}" {{ $curso->id_carrera == $carrera->id ? 'selected': null }}>{{ $carrera->nombre }} {{ $carrera->jornada->nombre }}</option>
                       @endforeach
                     </select>
                     {!!$errors->first('id_carrera','<span class=text-danger>:message</span>')!!}

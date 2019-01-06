@@ -10,7 +10,7 @@ class PagoMensualidad extends Model
     protected $primaryKey = 'id_pagomensualidad';
     public $timestamps=false;
 
-    protected $fillable = ['monto', 'fecha', 'mora', 'id_inscripcion', 'id_mensualidad', 'id_mora'];
+    protected $fillable = ['monto', 'fecha', 'mora', 'id_inscripcion', 'id_mensualidad', 'id_mora', 'anio'];
 
     public function inscripcion()
     {
@@ -22,7 +22,7 @@ class PagoMensualidad extends Model
         return $this->belongsTo('App\Mensualidad', 'id_mensualidad');
     }
 
-    public function mora()
+    public function moraAsignada()
     {
         return $this->belongsTo('App\Mora', 'id_mora');
     }

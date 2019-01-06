@@ -9,21 +9,37 @@ use App\Persona;
 use App\Carrera;
 use App\Seccion;
 use App\Curso;
+use App\Ciclo;
 use App\AsignacionCurso;
+use DB;
+use Carbon\Carbon;
 
 class GradoController extends Controller
 {
     public function index()
     {
-        $grados = Grado::all();
+        $ano = Carbon::now()->format('Y');
+        $grados = DB::table('grado')
+                ->join('seccion', 'grado.id_seccion', '=', 'seccion.id')
+                ->join('persona', 'grado.id_persona', '=', 'persona.id_persona')
+                ->join('carrera', 'grado.id_carrera', '=', 'carrera.id')
+                ->join('jornada', 'carrera.id_jornada', '=', 'jornada.id_jornada')
+                ->join('detalle', 'carrera.id', '=', 'detalle.id_carrera')
+                ->join('ciclo', 'detalle.id_ciclo', '=', 'ciclo.id_ciclo')
+                ->select('grado.id_grado', 'grado.condicion', 'grado.nombre as grado_nombre', 'seccion.nombre as seccion_nombre', 'jornada.nombre as nombre_jornada',
+                        'ciclo.anio as ciclo_ano', 'persona.nombres as persona_nombres', 'persona.apellidos as persona_apellidos')
+                ->where('grado.condicion',1)
+                ->where('ciclo.anio', $ano)
+                ->get();
         return view ('grado.index',compact('grados'));
+        //return response()->json($grados);
     }
 
     public function create()
     {
-        $personas = Persona::where('tipo_persona', 'maestro')->get();
-        $carreras = Carrera::where('condicion', '1')->get();
+        $personas = Persona::where('tipo_persona', 'maestro')->where('condicion', 1)->get();
         $secciones = Seccion::where('condicion', '1')->get();
+        $carreras = Carrera::where('condicion', 1)->get();
         return view('grado.create', compact('personas', 'carreras', 'secciones'));
     }
 
@@ -36,9 +52,9 @@ class GradoController extends Controller
 
     public function edit($id)
     {
-        $personas = Persona::where('tipo_persona', 'maestro')->get();
-        $carreras = Carrera::all();
+        $personas = Persona::where('tipo_persona', 'maestro')->where('condicion', 1)->get();
         $secciones = Seccion::where('condicion', '1')->get();
+        $carreras = Carrera::where('condicion', 1)->get();
         $grado = Grado::findOrFail($id);
         return view('grado.edit',compact('grado', 'personas', 'carreras', 'secciones'));
     }
@@ -75,11 +91,13 @@ class GradoController extends Controller
      */
     public function asignacion($id)
     {
+        $ano = Carbon::now()->format('Y');
         $grado = Grado::findOrFail($id);
-        $cursos = Curso::where('id_carrera', $grado->id_carrera)->get();
-        $personas = Persona::where('tipo_persona', 'maestro')->get();
+        $cursos_asignados = $grado->cursos->where('pivot.anio', $ano);
+        $cursos = Curso::where('id_carrera', $grado->id_carrera)->where('condicion',1)->get();
+        $personas = Persona::where('tipo_persona', 'maestro')->where('condicion',1)->get();
         $carreras = Carrera::all();
-        return view('grado.asignacion',compact('grado', 'cursos', 'personas', 'carreras'));
+        return view('grado.asignacion',compact('grado', 'cursos', 'personas', 'carreras', 'cursos_asignados'));
     }
 
     /**
@@ -95,11 +113,13 @@ class GradoController extends Controller
 
         //$grado = Grado::findOrFail($request->id_grado);
         //$grado->cursos()->attach([ 1 => ['id_grado' => $request->id_grado], 2 =>  ['id_curso' => $request->id_curso], 3 => ['id_persona' => $request->id_persona]]);
-        
+        $ano = Carbon::now()->format('Y');
+
         $asignacion_curso = new AsignacionCurso();
         $asignacion_curso->id_grado = $request->id_grado;
         $asignacion_curso->id_curso = $request->id_curso;
         $asignacion_curso->id_persona = $request->id_persona;
+        $asignacion_curso->anio = $ano;
         $asignacion_curso->save();
 
         return Redirect::back();

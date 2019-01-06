@@ -15,7 +15,6 @@
             <div class="card">
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Pagos Registrados
-                <a href="{{route('pagomensualidad.create', $inscripcion->id_inscripcion)}}"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus">&nbsp; Registrar pago</button></a>
               </div>
               <div class="card-body">
               <div class="row">
@@ -29,11 +28,15 @@
                 </div>
                 <div class="col-md-10">
                   <label for=""><h5><strong>Grado: </strong></h5></label>
-                  <label for=""><h5>&nbsp; {{$inscripcion->grado->nombre}} seccion {{$inscripcion->grado->seccionAsignada->nombre}} ciclo @foreach($inscripcion->grado->carrera->ciclos as $ciclo) {{$ciclo->año}} @endforeach </h5></label>
+                  <label for=""><h5>&nbsp; {{$inscripcion->grado->nombre}} seccion {{$inscripcion->grado->seccionAsignada->nombre}}  </h5></label>
                 </div>
                 <div class="col-md-2">
                   <label for=""><h5><strong>Cuota: </strong></h5></label>
                   <label for=""><h5>&nbsp;Q. <span id="cuota">{{ $inscripcion->cuota }}</span></h5></label>
+                </div>
+                <div class="col-md-2 offset-md-10">
+                  <label for=""><h5><strong>Mora: </strong></h5></label>
+                  <label for=""><h5>&nbsp;Q. <span id="moracantidad">{{ $mora->cantidad }}</span></h5></label>
                 </div>
               </div><br>
               <div class="row">
@@ -41,11 +44,12 @@
                 <table class="table table-responsive-sm table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 25%">Mensualidad</th>
-                      <th style="width: 15%">Fecha</th>
-                      <th style="width: 15%">Mora</th>
+                      <th style="width: 15%">Mensualidad</th>
+                      <th style="width: 15%">Fecha de pago</th>
+                      <th style="width: 10%">Mora</th>
                       <th style="width: 15%">Monto</th>
                       <th style="width: 15%">Estado</th>
+                      <th style="width: 15%">Total a pagar</th>
                       <th style="width: 15%">Opciones</th>
                     </tr>
                   </thead>
@@ -58,15 +62,26 @@
                       <td class="mora">{{ $pago->mora }}</td>
                       <td class="monto">{{ $pago->monto }}</td>
                       <td>
-                      @if ($pago->monto == null)
-                        @if(\Carbon\Carbon::parse($pago->mensualidad->dia_limite . '-' . $pago->mensualidad->id_mensualidad . '-' . $ano) <  \Carbon\Carbon::parse($date))
-                          <span class="badge badge-danger estado">Atrasado</span>
-                        @else
-                          <span class="badge badge-secondary estado">Pendiente</span>
+                        @if ($pago->monto == null)
+                          @if(\Carbon\Carbon::parse($pago->mensualidad->dia_limite . '-' . $pago->mensualidad->id_mensualidad . '-' . $ano) <  \Carbon\Carbon::parse($date))
+                            <span class="badge badge-danger estado">Atrasado</span>
+                          @else
+                            <span class="badge badge-secondary estado">Pendiente</span>
+                          @endif
+                        @elseif($pago->monto && $pago->fecha)
+                          <span class="badge badge-success estado">Pagado</span>
                         @endif
-                      @elseif($pago->monto && $pago->fecha)
-                        <span class="badge badge-success estado">Pagado</span>
-                      @endif
+                      </td>
+                      <td>
+                        @if ($pago->monto == null)
+                          @if(\Carbon\Carbon::parse($pago->mensualidad->dia_limite . '-' . $pago->mensualidad->id_mensualidad . '-' . $ano) <  \Carbon\Carbon::parse($date))
+                            Q. {{number_format($inscripcion->cuota + $mora->cantidad, 2, '.', ',')}}
+                          @else
+                            Q. {{ $inscripcion->cuota }}
+                          @endif
+                        @elseif($pago->monto && $pago->fecha)
+                          Q. {{ ($inscripcion->cuota + $pago->mora) - ($pago->monto + $pago->mora) }}
+                        @endif
                       </td>
                       <td>
                         @if($pago->monto == null && $pago->fecha == null && $pago->mora == null)
@@ -80,19 +95,19 @@
                     @endforeach
                     @else
                     <tr>
-                      <td colspan="6" align="center"><strong>No se han registrado pagos: </strong></td>
+                      <td colspan="7" align="center"><strong>No se han registrado pagos: </strong></td>
                     </tr>
                     @endif
                     <tr style="background-color: #CEECF5;">
-                      <td colspan="5" align="right" style="color:red;"><strong> Saldo: </strong></td>
+                      <td colspan="6" align="right" style="color:red;"><strong> Saldo: </strong></td>
                       <td id="saldo" style="color:red;"></td>
                     </tr>
                     <tr style="background-color: #CEECF5;">
-                      <td colspan="5" align="right"><strong> Cantidad pagada: </strong></td>
+                      <td colspan="6" align="right"><strong> Cantidad pagada: </strong></td>
                       <td id="pagado"></td>
                     </tr>
                     <tr style="background-color: #CEECF5;">
-                      <td colspan="5" align="right"><strong> Total a pagar: </strong></td>
+                      <td colspan="6" align="right"><strong> Total a pagar: </strong></td>
                       <td id="total"></td>
                     </tr>
                   </tbody>
@@ -143,10 +158,14 @@
       var totalMora = 0;
       var totalPagado = 0;
 
+      var moracantidad = 0;
+
       var morapendiente = 0;
       var total = 0;
       var saldo = 0;
       
+      moracantidad = $("#moracantidad").html()
+
       $(".monto").each(function(){
         totalMensualidad+=parseInt($(this).html()) || 0;
       });
@@ -155,7 +174,7 @@
       });
       $(".estado").each(function(){
         if($(this).html() == "Atrasado"){
-          morapendiente = morapendiente + 25;
+          morapendiente = morapendiente + parseFloat(moracantidad);
         }
       });
       
