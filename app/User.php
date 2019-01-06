@@ -28,7 +28,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
+    public function persona()
+    {
+      return $this->belongsTo('App\Persona','id_persona');
+    }
     public function roles()
     {
       return $this->belongsToMany(Role::class);

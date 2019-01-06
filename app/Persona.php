@@ -28,9 +28,6 @@ class Persona extends Model
         'password',
         'tipo_persona'
     ];
-    
-    public function nivel()
-    {
-        return $this->belongsTo('App\Nivel', 'id_nivel');
-    }
+
+  
 }
