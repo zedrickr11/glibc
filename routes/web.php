@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.admin');
+    return view('home.inicio');
 })->middleware('auth');
 
 Route::resource('curso','CursoController');
@@ -54,6 +54,7 @@ Route::post('login','Auth\LoginController@login');
 Route::get('logout','Auth\LoginController@logout');
 
 Route::post('saveUserMaestro','PersonaController@saveUserMaestro')->name('loginMaestro');
+Route::post('saveUserPadre','PadreController@saveUserPadre')->name('loginPadre');
 
 Route::get('test', function(){
   $user = new App\User;
