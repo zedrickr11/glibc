@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('layouts.admin');
-});
+})->middleware('auth');
 
 Route::resource('curso','CursoController');
 Route::resource('ciclo','CicloController');
@@ -49,7 +49,7 @@ Route::get('pagomensualidad/{id}/create', ['as' => 'pagomensualidad.create', 'us
 Route::resource('persona','PersonaController');
 Route::resource('padre','PadreController');
 
-Route::get('login','Auth\LoginController@showLoginForm');
+Route::get('login','Auth\LoginController@showLoginForm')->name('login');
 Route::post('login','Auth\LoginController@login');
 Route::get('logout','Auth\LoginController@logout');
 

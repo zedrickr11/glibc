@@ -8,6 +8,10 @@ use App\Cuota;
 
 class CuotaController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+   }
     public function index()
     {
         $cuotas = Cuota::where('condicion', '1')->get();
@@ -19,7 +23,7 @@ class CuotaController extends Controller
         return view('cuota.create');
     }
 
-    
+
     public function show($id)
     {
         $cuota = Cuota::findOrFail($id);

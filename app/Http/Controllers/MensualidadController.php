@@ -8,6 +8,10 @@ use App\Mensualidad;
 
 class MensualidadController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+   }
 
     public function index()
     {
@@ -15,7 +19,7 @@ class MensualidadController extends Controller
       return view ('mensualidad.index',compact('mensualidades'));
     }
 
-   
+
     public function create()
     {
         return view('mensualidad.create');

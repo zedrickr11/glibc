@@ -12,6 +12,10 @@ use Carbon\Carbon;
 
 class PagoMensualidadController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+   }
     public function index()
     {
       $ano = Carbon::now()->format('Y');
@@ -73,7 +77,7 @@ class PagoMensualidadController extends Controller
         $request->validate([
           'mora' => 'required|numeric'
         ]);
-        
+
         $mora = Mora::first();
         $pago = PagoMensualidad::findOrFail($id);
         $date = Carbon::now();

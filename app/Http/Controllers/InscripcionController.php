@@ -16,6 +16,10 @@ use Carbon\Carbon;
 
 class InscripcionController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+   }
     public function index()
     {
         $anio = Carbon::now()->format('Y');
@@ -57,7 +61,7 @@ class InscripcionController extends Controller
                 ->get();
         return response()->json($grados);
     }
-    
+
     public function show($id)
     {
         $inscripcion = Inscripcion::findOrFail($id);
@@ -80,7 +84,7 @@ class InscripcionController extends Controller
                 ->where('grado.condicion',1)
                 ->where('detalle.id_ciclo', $inscripcion->ciclo->id_ciclo)
                 ->get();
-        
+
         $ciclos = Ciclo::where('condicion',1)->get();
         $personas = Persona::where('tipo_persona', 'padre')->where('condicion',1)->get();
         return view('inscripcion.edit',compact('inscripcion', 'alumnos', 'planes', 'grados', 'ciclos', 'personas'));
@@ -116,7 +120,7 @@ class InscripcionController extends Controller
             'pago_inscripcion' => 'nullable|numeric',
             'cuota' => 'required|numeric'
           ]);
-        
+
         Inscripcion::findOrFail($id)->update($request->all());
         return redirect()->route('inscripcion.index');
     }
