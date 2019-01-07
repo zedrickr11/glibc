@@ -24,7 +24,7 @@ class CursoFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required',
+          'nombre' => 'required|max:200',
           'decripcion' => 'max:300',
           'id_carrera' => 'required|integer'
         ];

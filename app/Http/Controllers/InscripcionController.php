@@ -44,7 +44,7 @@ class InscripcionController extends Controller
         $planes = Plan::where('condicion',1)->get();
         $grados = Grado::where('condicion',1)->get();
         $ciclos = Ciclo::where('condicion',1)->get();
-        $personas = Persona::where('tipo_persona', 'padre')->where('condicion',1)->get();
+        $personas = Persona::where('tipo_persona', 'padre')->get();
         return view('inscripcion.create', compact('alumnos', 'planes', 'ciclos', 'grados', 'personas'));
     }
 
@@ -104,6 +104,7 @@ class InscripcionController extends Controller
             $pago = new PagoMensualidad();
             $pago->id_inscripcion = $inscripcion->id_inscripcion;
             $pago->id_mensualidad = $i;
+            $pago->anio = $inscripcion->ciclo->anio;
             $pago->save();
         }
 

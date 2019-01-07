@@ -24,7 +24,7 @@ class UnidadFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required'
+          'nombre' => 'required|string|max:150'
         ];
     }
 }

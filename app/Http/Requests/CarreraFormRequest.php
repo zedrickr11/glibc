@@ -24,7 +24,7 @@ class CarreraFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required',
+          'nombre' => 'required|max:255',
           'id_jornada' => 'required|integer'
         ];
     }

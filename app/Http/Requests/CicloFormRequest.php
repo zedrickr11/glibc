@@ -28,7 +28,7 @@ class CicloFormRequest extends FormRequest
           'anio' => 'required|numeric',
           'fecha_inicio' => 'required|date',
           'fecha_fin' => 'required|date',
-          'nombre' => 'required',
+          'nombre' => 'required|max:255',
         ];
     }
 }

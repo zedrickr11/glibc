@@ -24,8 +24,8 @@ class GradoFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required|string',
-          'descripcion' => 'nullable|string',
+          'nombre' => 'required|string|max:200',
+          'descripcion' => 'nullable|string|max:300',
           'id_persona' => 'required|integer',
           'id_carrera' => 'required|integer',
           'id_seccion' => 'required|integer'

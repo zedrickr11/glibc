@@ -24,7 +24,7 @@ class PlanFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required',
+          'nombre' => 'required|max:150',
           'cantidad' => 'required'
         ];
     }

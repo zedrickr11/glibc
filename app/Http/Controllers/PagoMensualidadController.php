@@ -20,14 +20,17 @@ class PagoMensualidadController extends Controller
     {
       $ano = Carbon::now()->format('Y');
       $inscripciones = DB::table('inscripcion')
+                        ->join('ciclo', 'inscripcion.id_ciclo', '=', 'ciclo.id_ciclo')
                         ->join('alumno', 'inscripcion.id_alumno', '=', 'alumno.id')
                         ->join('plan', 'inscripcion.id_plan', '=', 'plan.id')
                         ->join('grado', 'inscripcion.id_grado', '=', 'grado.id_grado')
+                        ->join('seccion', 'grado.id_seccion', '=', 'seccion.id')
                         ->join('carrera', 'grado.id_carrera', '=', 'carrera.id')
-                        ->join('detalle', 'carrera.id', '=', 'detalle.id_carrera')
-                        ->join('ciclo', 'detalle.id_ciclo', '=', 'ciclo.id_ciclo')
-                        ->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.primer_apellido', 'alumno.segundo_apellido',
-                                'grado.nombre as grado_nombre', 'ciclo.anio as ciclo_ano', 'plan.nombre as plan_nombre' ,'inscripcion.cuota')
+                        ->join('jornada', 'carrera.id_jornada', '=', 'jornada.id_jornada')
+                        ->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre', 
+                              'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre', 
+                              'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano', 
+                              'plan.nombre as plan_nombre' ,'inscripcion.cuota')
                         ->where('ciclo.anio', $ano)
                         ->get();
 
@@ -75,20 +78,26 @@ class PagoMensualidadController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-          'mora' => 'required|numeric'
+          'mora' => 'required|integer'
         ]);
 
         $mora = Mora::first();
+        
         $pago = PagoMensualidad::findOrFail($id);
+        $mora = Mora::first();
         $date = Carbon::now();
+        $ano = Carbon::now()->format('Y');
+
         $pago->monto = $pago->inscripcion->cuota;
         $pago->fecha = $date;
+
         if($request->mora == 1){
           $pago->mora = $mora->cantidad;
           $pago->id_mora = $mora->id;
         } elseif($request->mora == 0){
           $pago->mora = 0;
         }
+        
         $pago->save();
 
         return redirect()->back();

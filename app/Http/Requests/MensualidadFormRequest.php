@@ -24,8 +24,8 @@ class MensualidadFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required|string',
-          'dia_limite' => 'required|integer'
+          'nombre' => 'required|string|max:150',
+          'dia_limite' => 'required|integer|min:1|max:31'
         ];
     }
 }
