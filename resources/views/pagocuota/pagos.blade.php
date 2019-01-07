@@ -32,10 +32,10 @@
                 <table class="table table-responsive-sm table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 15%">Cuota</th>
+                      <th style="width: 25%">Cuota</th>
                       <th style="width: 15%">Cantidad a pagar</th>
-                      <th style="width: 10%">Fecha de pago</th>
-                      <th style="width: 15%">Monto</th>
+                      <th style="width: 15%">Fecha de pago</th>
+                      <th style="width: 15%">Monto Pagado</th>
                       <th style="width: 15%">Estado</th>
                       <th style="width: 15%">Opciones</th>
                     </tr>
@@ -45,35 +45,58 @@
                     <tr>
                       <td>{{ $cuota->nombre }}</td>
                       <td>{{ $cuota->cantidad }}</td>
-                      <td></td>
-                      <td></td>
                       <td>
                         @foreach($pagos as $pago)
                           @if ($pago->id_cuota == $cuota->id_cuota)
-                            @if($pago->monto == $cuota->cantidad)
-                              <span class="badge badge-danger">Pagado</span>
-                            @elseif($pago->monto < $cuota->cantidad)
-                              <span class="badge badge-danger">Faltante</span>
-                            @endif
-                          @else
-                            <span class="badge badge-secondary">Pendiente</span>
+                            {{$pago->fecha}}
                           @endif
                         @endforeach
                       </td>
                       <td>
                         @foreach($pagos as $pago)
                           @if ($pago->id_cuota == $cuota->id_cuota)
-                            @if($pago->monto == $cuota->cantidad)
-                              <span class="badge badge-danger">Pagado</span>
-                            @elseif($pago->monto < $cuota->cantidad)
-                              <span class="badge badge-danger">Faltante</span>
+                            {{$pago->monto}}
+                          @endif
+                        @endforeach
+                      </td>
+                      <td>
+                        @if(count($pagos) > 0)
+                          @php($a = 0)
+                          @foreach($pagos as $pago)
+                            @if ($pago->id_cuota == $cuota->id_cuota)
+                              @php ($a++)
+                              @if($pago->monto == $cuota->cantidad)
+                                <span class="badge badge-success">Pagado</span>
+                              @elseif($pago->monto < $cuota->cantidad)
+                                <span class="badge badge-danger">Faltante</span>
+                              @endif
                             @endif
-                          @else
+                          @endforeach
+                          @if($a == 0)
+                            <span class="badge badge-secondary">Pendiente</span>
+                          @endif
+                        @else
+                          <span class="badge badge-secondary">Pendiente</span>
+                        @endif
+                      </td>
+                      <td>
+                        @if(count($pagos) > 0)
+                          @php($b = 0)
+                          @foreach($pagos as $pago)
+                            @if ($pago->id_cuota == $cuota->id_cuota)
+                              @php ($b++)
+                            @endif
+                          @endforeach
+                          @if($b == 0)
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#primaryModal-{{$cuota->id_cuota}}">
+                              <i class="icon-check"></i>&nbsp;Registrar pago
+                            </button>
+                          @endif
+                        @else
                           <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#primaryModal-{{$cuota->id_cuota}}">
                             <i class="icon-check"></i>&nbsp;Registrar pago
                           </button>
-                          @endif
-                        @endforeach
+                        @endif
                       </td>
                     </tr>
                     @include('pagocuota.registrarpago')

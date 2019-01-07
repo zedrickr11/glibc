@@ -128,7 +128,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('pagomensualidad') }}"><i class="fa fa-caret-right"></i> Mensualidades</a>
               </li>
-
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('pagocuota') }}"><i class="fa fa-caret-right"></i> Pago de Cuotas</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('cuota') }}"><i class="fa fa-caret-right"></i> Cuotas Especiales</a>
               </li>

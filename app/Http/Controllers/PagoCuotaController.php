@@ -29,7 +29,7 @@ class PagoCuotaController extends Controller
             ->where('ciclo.anio', $ano)
             ->get();
 
-      return view ('pagomensualidad.index',compact('inscripciones'));
+      return view ('pagocuota.index',compact('inscripciones'));
     }
 
     public function pagos(Request $request, $id)
@@ -38,6 +38,31 @@ class PagoCuotaController extends Controller
       $pagos = PagoCuota::where('id_inscripcion', $id)->get();
       $cuotas = Cuota::where('condicion', 1)->get();
 
-      return view ('pagomensualidad.pagos',compact('inscripcion', 'pagos', 'cuotas'));
+      return view ('pagocuota.pagos',compact('inscripcion', 'pagos', 'cuotas'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+          'id_inscripcion' => 'required|integer',
+          'id_cuota' => 'required|integer'
+        ]);
+        
+        $inscripcion = Inscripcion::findOrFail($request->id_inscripcion);
+        $cuota = Cuota::findOrFail($request->id_cuota);
+        
+        $date = Carbon::now();
+
+        $pago = new PagoCuota();
+
+        $pago->id_inscripcion = $request->id_inscripcion;
+        $pago->id_cuota = $request->id_cuota;
+        $pago->monto = $cuota->cantidad;
+        $pago->fecha = $date;
+        $pago->anio = $inscripcion->ciclo->anio;
+        
+        $pago->save();
+
+        return redirect()->back();
     }
 }
