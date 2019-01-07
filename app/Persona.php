@@ -29,5 +29,9 @@ class Persona extends Model
         'tipo_persona'
     ];
 
-  
+    public function usuarios()
+    {
+        return $this->hasMany('App\User', 'id_persona');
+    }
+
 }

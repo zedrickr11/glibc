@@ -53,11 +53,14 @@ Route::get('login','Auth\LoginController@showLoginForm');
 Route::post('login','Auth\LoginController@login');
 Route::get('logout','Auth\LoginController@logout');
 
+Route::post('saveUserMaestro','PersonaController@saveUserMaestro')->name('loginMaestro');
+
 Route::get('test', function(){
   $user = new App\User;
   $user->name='Zedrick Rodríguez';
   $user->email='zedrickr@gmail.com';
   $user->password=bcrypt('secret');
+  $user->id_persona=1;
   $user->save();
   return $user;
 });

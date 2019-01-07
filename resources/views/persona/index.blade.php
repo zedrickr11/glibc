@@ -27,6 +27,7 @@
                       <th>Nombre</th>
                       <th>Apellido</th>
                       <th>DPI</th>
+
                       <th>Teléfono</th>
                       <th>Opciones</th>
                     </tr>
@@ -41,7 +42,13 @@
                       <td>{{ $cur->telefono }}</td>
 
                       <td>
-
+                        @if(count($cur->usuarios))
+                          
+                        @else
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#userModal-{{$cur->id_persona}}">
+                          <span class="fa fa-user-o"></span>
+                        </button>
+                        @endif
                         <a href="{{route('persona.edit',$cur->id_persona )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
@@ -55,9 +62,11 @@
 
 
 
+
                       </td>
                     </tr>
                     @include('persona.modal')
+                    @include('persona.user')
                     @endforeach
                   </tbody>
                 </table>
