@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Redirect;
 use App\Http\Requests\PersonaFormRequest;
 use App\Persona;
+use App\User;
+use App\Role;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Input;
 
 class PadreController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+   }
 
 
         /**
@@ -64,6 +71,21 @@ class PadreController extends Controller
 
           $persona->save();
           return redirect()->route('padre.index');
+        }
+        public function saveUserPadre(Request $request)
+        {
+          $usuario=new User;
+          $usuario->name=$request->get('name');
+          $usuario->email=$request->get('email');
+          $usuario->password=bcrypt($request->get('password'));
+          $usuario->id_persona=$request->get('id_persona');
+          $usuario->save();
+
+          $role = 3;
+          $usuario->roles()->attach($role);
+
+          return Redirect::back();
+
         }
 
         /**

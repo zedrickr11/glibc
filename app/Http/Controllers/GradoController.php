@@ -16,6 +16,10 @@ use Carbon\Carbon;
 
 class GradoController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+   }
     public function index()
     {
         $ano = Carbon::now()->format('Y');
@@ -43,7 +47,7 @@ class GradoController extends Controller
         return view('grado.create', compact('personas', 'carreras', 'secciones'));
     }
 
-    
+
     public function show($id)
     {
         $grado = Grado::findOrFail($id);
@@ -64,7 +68,7 @@ class GradoController extends Controller
         $grado = (new Grado)->fill($request->all());
         $grado->condicion = 1;
         $grado->save();
-        
+
         return redirect()->route('grado.index');
     }
 
@@ -136,7 +140,7 @@ class GradoController extends Controller
         ]);
 
         $asignacion = AsignacionCurso::findOrFail($id);
-        
+
         $asignacion->id_curso = $request->has('id_curso') ? $request->id_curso : $asignacion->id_curso;
         $asignacion->id_persona = $request->has('id_persona') ? $request->id_persona : $asignacion->id_persona;
         $asignacion->save();

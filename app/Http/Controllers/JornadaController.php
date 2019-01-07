@@ -8,6 +8,10 @@ use App\Jornada;
 
 class JornadaController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+   }
     public function index()
     {
         $jornadas = Jornada::all();
@@ -19,7 +23,7 @@ class JornadaController extends Controller
         return view('jornada.create');
     }
 
-    
+
     public function show($id)
     {
         $jornada = Jornada::findOrFail($id);

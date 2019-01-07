@@ -9,6 +9,10 @@ use App\Rol;
 
 class RolController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+   }
     public function index()
     {
         $roles = Rol::all();
@@ -20,7 +24,7 @@ class RolController extends Controller
         return view('rol.create');
     }
 
-    
+
     public function show($id)
     {
         $rol = Rol::findOrFail($id);
