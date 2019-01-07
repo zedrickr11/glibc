@@ -3,7 +3,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">GlibColegio</li>
-      <li class="breadcrumb-item"><a href="#">Pagos de Mensualidad</a></li>
+      <li class="breadcrumb-item"><a href="#">Pagos de Cuotas</a></li>
       <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
     </ol>
@@ -22,8 +22,6 @@
                     <tr>
                       <th>Alumno</th>
                       <th>Grado</th>
-                      <th>Plan</th>
-                      <th>Cuota</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -32,10 +30,8 @@
                     <tr>
                       <td>{{ $inscripcion->primer_nombre }} {{ $inscripcion->segundo_nombre }} {{ $inscripcion->tercer_nombre }} {{ $inscripcion->primer_apellido }} {{ $inscripcion->segundo_apellido }}</td>
                       <td>{{ $inscripcion->grado_nombre }} Seccion {{ $inscripcion->seccion_nombre }} {{ $inscripcion->jornada_nombre }} {{ $inscripcion->ciclo_ano }}</td>
-                      <td>{{ $inscripcion->plan_nombre }}</td>
-                      <td>{{ $inscripcion->cuota }}</td>
                       <td>
-                        <a href="{{route('pagomensualidad.pagos', $inscripcion->id_inscripcion)}}">
+                        <a href="{{route('pagocuota.pagos', $inscripcion->id_inscripcion)}}">
                           <button type="button" class="btn btn-primary btn-sm" name="button"><span class="icon-wallet"></span>&nbsp; Pagos</button>
                         </a>
                       </td>

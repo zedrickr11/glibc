@@ -104,6 +104,7 @@ class InscripcionController extends Controller
             $pago = new PagoMensualidad();
             $pago->id_inscripcion = $inscripcion->id_inscripcion;
             $pago->id_mensualidad = $i;
+            $pago->anio = $inscripcion->ciclo->anio;
             $pago->save();
         }
 

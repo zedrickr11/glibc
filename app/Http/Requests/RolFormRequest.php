@@ -24,9 +24,9 @@ class RolFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required|string',
-          'descripcion' => 'nullable|string',
-          'display_name' => 'nullable|string'
+          'nombre' => 'required|string|max:150',
+          'descripcion' => 'nullable|string|max:300',
+          'display_name' => 'nullable|string|max:255'
         ];
     }
 }

@@ -24,7 +24,7 @@ class CuotaFormRequest extends FormRequest
     public function rules()
     {
         return [
-          'nombre' => 'required',
+          'nombre' => 'required|string|max:250',
           'cantidad' => 'required|numeric'
         ];
     }
