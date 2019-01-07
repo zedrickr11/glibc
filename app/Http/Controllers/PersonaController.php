@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Redirect;
 use App\Http\Requests\PersonaFormRequest;
 use App\Persona;
+use App\User;
+use App\Role;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Input;
 
@@ -19,8 +21,9 @@ class PersonaController extends Controller
        */
       public function index()
       {
+        $roles=Role::all();
         $persona=Persona::all()->where('tipo_persona','maestro');
-        return view ('persona.index',compact('persona'));
+        return view ('persona.index',compact('persona','roles'));
       }
 
       /**
@@ -30,6 +33,7 @@ class PersonaController extends Controller
        */
       public function create()
       {
+
           return view('persona.create');
       }
 
@@ -64,6 +68,22 @@ class PersonaController extends Controller
 
         $persona->save();
         return redirect()->route('persona.index');
+      }
+
+      public function saveUserMaestro(Request $request)
+      {
+        $usuario=new User;
+        $usuario->name=$request->get('name');
+        $usuario->email=$request->get('email');
+        $usuario->password=bcrypt($request->get('password'));
+        $usuario->id_persona=$request->get('id_persona');
+        $usuario->save();
+
+        $role = 2;
+        $usuario->roles()->attach($role);
+
+        return Redirect::back();
+
       }
 
       /**

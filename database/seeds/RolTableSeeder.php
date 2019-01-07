@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Rol;
+use App\Role;
 
 class RolTableSeeder extends Seeder
 {
@@ -12,9 +12,28 @@ class RolTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('rol')->delete();
-        Rol::create(['nombre' => "Administrador", 'descripcion' => "Rol usuarios administradores" ,'condicion' => "1"]);
-        Rol::create(['nombre' => "Maestro", 'descripcion' => "Rol usuarios maestros" ,'condicion' => "1"]);
-        Rol::create(['nombre' => "Padre", 'descripcion' => "Rol usuarios padres de familia" ,'condicion' => "1"]);
+        DB::table('roles')->delete();
+        Role::create([
+
+            'name' => "admin",
+            'display_name' => "Administrador",
+            'description' => "Rol usuarios administradores"
+
+          ]);
+          Role::create([
+
+              'name' => "prof",
+              'display_name' => "Maestro",
+              'description' => "Rol usuarios maestros"
+
+            ]);
+            Role::create([
+
+                'name' => "padre",
+                'display_name' => "Padre de familia o Encargado",
+                'description' => "Rol usuarios padres de familia o encargado"
+
+              ]);
+        
     }
 }

@@ -28,9 +28,10 @@ class Persona extends Model
         'password',
         'tipo_persona'
     ];
-    
-    public function nivel()
+
+    public function usuarios()
     {
-        return $this->belongsTo('App\Nivel', 'id_nivel');
+        return $this->hasMany('App\User', 'id_persona');
     }
+
 }
