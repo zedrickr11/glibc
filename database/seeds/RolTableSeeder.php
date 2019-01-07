@@ -13,8 +13,27 @@ class RolTableSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->delete();
-        Rol::create(['nombre' => "Administrador", 'descripcion' => "Rol usuarios administradores" ,'display_name' => "admin"]);
-        Rol::create(['nombre' => "Maestro", 'descripcion' => "Rol usuarios maestros" ,'display_name' => "prof"]);
-        Rol::create(['nombre' => "Padre", 'descripcion' => "Rol usuarios padres de familia" ,'display_name' => "padre"]);
+        Role::create([
+
+            'name' => "admin",
+            'display_name' => "Administrador",
+            'description' => "Rol usuarios administradores"
+
+          ]);
+          Role::create([
+
+              'name' => "prof",
+              'display_name' => "Maestro",
+              'description' => "Rol usuarios maestros"
+
+            ]);
+            Role::create([
+
+                'name' => "padre",
+                'display_name' => "Padre de familia o Encargado",
+                'description' => "Rol usuarios padres de familia o encargado"
+
+              ]);
+        
     }
 }
