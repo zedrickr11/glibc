@@ -122,6 +122,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('padre') }}"><i class="icon-puzzle"></i> Padres o Encargados </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('notas') }}"><i class="icon-puzzle"></i> Notas </a>
+          </li>
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
             <ul class="nav-dropdown-items">
