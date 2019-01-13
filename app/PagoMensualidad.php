@@ -10,7 +10,7 @@ class PagoMensualidad extends Model
     protected $primaryKey = 'id_pagomensualidad';
     public $timestamps=false;
 
-    protected $fillable = ['monto', 'fecha', 'mora', 'id_inscripcion', 'id_mensualidad', 'id_mora', 'anio'];
+    protected $fillable = ['monto', 'fecha', 'mora', 'id_inscripcion', 'id_mensualidad', 'id_mora', 'anio', 'num_boleta'];
 
     public function inscripcion()
     {

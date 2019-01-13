@@ -3,10 +3,10 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Colegio</li>
-      <li class="breadcrumb-item"><a href="#">Rol</a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item"><a href="#">Cuotas</a></li>
+      <li class="breadcrumb-item"><a href="#">Grados</a></li>
+      <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
-
     </ol>
 
     <div class="container-fluid">
@@ -15,69 +15,56 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <i class="fa fa-align-justify"></i> Rol
-                <a href="rol/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
-
+                <i class="fa fa-align-justify"></i> Grados - <strong> Cuota {{ $cuota->nombre }}</strong>
               </div>
               <div class="card-body">
-                <table id="tabla-plan" class="table table-responsive-sm table-striped">
+                <table id="tabla-grado" class="display table table-responsive-sm table-striped">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Rol</th>
-                      <th>Descripción</th>
-                      <th>Nombre a mostrar</th>
-                      <th>Condicion</th>
+                      <th>Nombre</th>
+                      <th>Seccion</th>
+                      <th>Jornada</th>
+                      <th>Maestro Guia</th>
+                      <th>Estado</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($roles as $rol)
+                    @foreach ($grados as $grado)
                     <tr>
-                      <td>{{ $rol->id_rol }}</td>
-                      <td>{{ $rol->nombre }}</td>
-                      <td>{{ $rol->descripcion }}</td>
-                      <td>{{ $rol->display_name }}</td>
+                      <td>{{ $grado->grado_nombre }}</td>
+                      <td>{{ $grado->seccion_nombre }}</td>
+                      <td>{{ $grado->nombre_jornada }}</td>
+                      <td>{{ $grado->persona_nombres }} {{ $grado->persona_apellidos }}</td>
                       <td>
-                        @if ($rol->condicion==1)
+                        @if ($grado->condicion==1)
                           <span class="badge badge-success">Activo</span>
                         @else
                           <span class="badge badge-danger">Inactivo</span>
                         @endif
                       </td>
                       <td>
-                        <a href="{{route('rol.edit',$rol->id_rol )}}">
-                          <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
+                        <a href="{{route('pagocuota.alumnos', ['idCuota' => $cuota->id_cuota, 'idGrado' => $grado->id_grado])}}">
+                          <button type="button" class="btn btn-primary btn-sm" name="button"><span class="icon-wallet"></span>&nbsp; Pagos</button>
                         </a>
-                        @if($rol->condicion)
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$rol->id_rol}}">
-                          <span class="fa fa-trash-o"></span>
-                        </button>
-                        @else
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$rol->id_rol}}">
-                          <span class="icon-check"></span>
-                        </button>
-                        @endif
                       </td>
                     </tr>
-                    @include('rol.deshabilitar')
-                    @include('rol.habilitar')
                     @endforeach
                   </tbody>
                 </table>
-
+              </div>
+              <div class="card-footer">
+                <a href="{{ route('cuota.index') }}"> <button type="button" class="btn btn-sm btn-success"><i class="fa fa-toggle-left"></i> Atrás</button></a>
               </div>
             </div>
           </div>
-
           </div>
         </div>
-
     </div>
     <!-- /.conainer-fluid -->
     @push ('scripts')
       <script type="text/javascript">
-        $('#tabla-plan').DataTable({
+        $('#tabla-grado').DataTable({
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",

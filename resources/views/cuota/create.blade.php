@@ -3,7 +3,7 @@
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Cuota</a></li>
       <li class="breadcrumb-item active">Nuevo</li>
       <!-- Breadcrumb Menu-->

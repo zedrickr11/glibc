@@ -2,7 +2,7 @@
 @section ('contenido')
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Cuota</a></li>
       <li class="breadcrumb-item active">Index</li>
       <!-- Breadcrumb Menu-->
@@ -55,6 +55,9 @@
                           <span class="icon-check"></span>
                         </button>
                         @endif
+                        <a href="{{route('pagocuota.grados', $cuota->id_cuota )}}">
+                          <button type="button" class="btn btn-primary btn-sm" name="button"><span class="icon-wallet"></span>&nbsp;Pagos</button>
+                        </a>
                       </td>
                     </tr>
                     @include('cuota.deshabilitar')

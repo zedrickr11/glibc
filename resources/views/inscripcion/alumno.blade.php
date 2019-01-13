@@ -72,24 +72,16 @@
                 </div>
             </div><br>
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="direccion">Direccion</label>
                     <input type="text" class="form-control" name="direccion">
                     {!!$errors->first('direccion','<span class=text-danger>:message</span>')!!}
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <label for="condicion">Estado</label>
-                    <select class="form-control" name="condicion">
-                        <option value="1">ACTIVO</option>
-                        <option value="0">INACTIVO</option>
-                    </select>
-                    {!!$errors->first('condicion','<span class=text-danger>:message</span>')!!}
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="id_persona">Persona encargada</label>
-                    <select name="id_persona" class="form-control">
+                    <select name="id_persona" style="width:100%;" class="form-control select2-single" id="id_persona_modal">
                         <option value="">Seleccione encargado: </option>
                         @foreach($personas as $persona)
                         <option value="{{ $persona->id_persona }}">{{ $persona->nombres }} {{ $persona->apellidos }}</option>

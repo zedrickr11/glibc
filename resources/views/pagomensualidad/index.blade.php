@@ -2,7 +2,7 @@
 @section ('contenido')
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Pagos de Mensualidad</a></li>
       <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
@@ -38,6 +38,9 @@
                         <a href="{{route('pagomensualidad.pagos', $inscripcion->id_inscripcion)}}">
                           <button type="button" class="btn btn-primary btn-sm" name="button"><span class="icon-wallet"></span>&nbsp; Pagos</button>
                         </a>
+                        <!--<a href="{{route('pagomensualidad.reporte', $inscripcion->id_inscripcion)}}" target="_blank">
+                          <button type="button" class="btn btn-success btn-sm" name="button"><span class=""></span>&nbsp; Reporte</button>
+                        </a>-->
                       </td>
                     </tr>
                     @endforeach

@@ -45,8 +45,12 @@ class MensualidadController extends Controller
       return view('mensualidad.edit',compact('mensualidad'));
     }
 
-    public function update(MensualidadFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
+      $request->validate([
+        'dia_limite' => 'required|integer|min:1|max:31'
+      ]);
+
         Mensualidad::findOrFail($id)->update($request->all());
         return redirect()->route('mensualidad.index');
     }

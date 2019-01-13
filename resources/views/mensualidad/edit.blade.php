@@ -3,7 +3,7 @@
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Mensualidad</a></li>
       <li class="breadcrumb-item active">Editar</li>
       <!-- Breadcrumb Menu-->
@@ -23,9 +23,8 @@
                   {!!csrf_field()!!}
               <div class="card-body">
                 <div class="form-group">
-                  <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control" name="nombre" value="{{ $mensualidad->nombre }}">
-                  {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
+                  <label for="nombre">Nombre de la cuota: </label><br>
+                  <label for=""><strong>{{ $mensualidad->nombre }}</strong></label>
                 </div>
                 <div class="form-group">
                   <label for="dia_limite">Dia limite de pago</label>

@@ -26,7 +26,7 @@ class PersonaController extends Controller
       public function index()
       {
         $roles=Role::all();
-        $persona=Persona::all()->where('tipo_persona','maestro');
+        $persona=Persona::all()->where('tipo_persona','maestro')->where('condicion', 1);
         return view ('persona.index',compact('persona','roles'));
       }
 
