@@ -68,3 +68,16 @@ Route::get('test', function(){
   $user->save();
   return $user;
 });
+
+//notas
+Route::get('notas','ActividadController@grados')->name('notas.grados');
+Route::get('notas/cursos/{id}','ActividadController@cursos')->name('notas.cursos');
+Route::get('notas/actividades/{grado}/{curso}','ActividadController@actividades')->name('notas.actividades');
+Route::get('notas/alumnos/{grado}/{actividad}','ActividadController@alumnos')->name('notas.alumnos');
+Route::get('actividad/create/{grado}/{curso}/{id}','ActividadController@create')->name('actividad.create');
+Route::post('actividad/store/{grado}/{curso}','ActividadController@store')->name('actividad.store');
+Route::get('actividad/edit/{grado}/{curso}/{asignacion}/{id}','ActividadController@edit')->name('actividad.edit');
+Route::put('actividad/update/{grado}/{curso}/{id}','ActividadController@update')->name('actividad.update');
+Route::delete('actividad/delete/{id}', 'ActividadController@destroy')->name('actividad.destroy');
+
+Route::resource('calificar','NotaController');
