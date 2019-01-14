@@ -19,8 +19,8 @@ class PlanTableSeeder extends Seeder
           'condicion' => "1"
         ]);
         Plan::create([
-          'nombre' => "Plan 12",
-          'cantidad' => "12",
+          'nombre' => "Plan 11",
+          'cantidad' => "11",
           'condicion' => "1"
         ]);
     }

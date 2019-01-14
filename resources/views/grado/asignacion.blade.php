@@ -2,7 +2,7 @@
 @section ('contenido')
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Grado</a></li>
       <li class="breadcrumb-item active">Cursos</li>
       <!-- Breadcrumb Menu-->

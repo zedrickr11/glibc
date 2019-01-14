@@ -24,6 +24,6 @@ class MensualidadTableSeeder extends Seeder
         Mensualidad::create(['id_mensualidad' => "9", 'nombre' => "Septiembre", 'dia_limite' => "5" ,'condicion' => "1"]);
         Mensualidad::create(['id_mensualidad' => "10", 'nombre' => "Octubre", 'dia_limite' => "5" ,'condicion' => "1"]);
         Mensualidad::create(['id_mensualidad' => "11", 'nombre' => "Noviembre", 'dia_limite' => "5" ,'condicion' => "1"]);
-        Mensualidad::create(['id_mensualidad' => "12", 'nombre' => "Diciembre", 'dia_limite' => "5" ,'condicion' => "1"]);
+        //Mensualidad::create(['id_mensualidad' => "12", 'nombre' => "Diciembre", 'dia_limite' => "5" ,'condicion' => "1"]);
     }
 }

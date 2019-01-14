@@ -1,21 +1,15 @@
-<!--
- * GenesisUI - Bootstrap 4 Admin Template
- * @version v1.8.12
- * @link https://genesisui.com
- * Copyright (c) 2017 creativeLabs Łukasz Holeczek
- * @license https://genesisui.com/license.html
- -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Prime - Bootstrap 4 Admin Template">
-  <meta name="author" content="Łukasz Holeczek">
-  <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,AngularJS,Angular,Angular2,jQuery,CSS,HTML,RWD,Dashboard,Vue,Vue.js,React,React.js">
+  <meta name="description" content="Colegio Hispanoamericano Salcaja">
+  <meta name="author" content="Glib Software">
+  <meta name="keyword" content="">
   <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
-  <title>GlibColegio</title>
+  <title>Colegio Hispanoamericano</title>
 
   <!-- Icons -->
   <link href="{{asset('vendors/css/font-awesome.min.css')}}" rel="stylesheet">
@@ -132,9 +126,6 @@
                 <a class="nav-link" href="{{ url('pagomensualidad') }}"><i class="fa fa-caret-right"></i> Mensualidades</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('pagocuota') }}"><i class="fa fa-caret-right"></i> Pago de Cuotas</a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="{{ url('cuota') }}"><i class="fa fa-caret-right"></i> Cuotas Especiales</a>
               </li>
             </ul>
@@ -150,7 +141,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('curso') }}"><i class="fa fa-caret-right"></i> Curso </a>
               </li>
-
+              <li>
+                <a class="nav-link" href="{{ url('carrera') }}"><i class="fa fa-caret-right"></i> Carreras </a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('seccion') }}"><i class="fa fa-caret-right"></i> Sección </a>
               </li>
@@ -164,11 +157,12 @@
               <li>
                 <a class="nav-link" href="{{ url('unidad') }}"><i class="fa fa-caret-right"></i> Unidad </a>
               </li>
+              
               <li>
-                <a class="nav-link" href="{{ url('carrera') }}"><i class="fa fa-caret-right"></i> Carreras </a>
+                <a class="nav-link" href="{{ url('mora') }}"><i class="fa fa-caret-right"></i> Mora </a>
               </li>
               <li>
-
+                <a class="nav-link" href="{{ url('mensualidad') }}"><i class="fa fa-caret-right"></i> Mensualidad </a>
               </li>
             </ul>
           </li>
@@ -187,8 +181,8 @@
 
   </div>
   <footer class="app-footer">
-    <span><a href="#">GlibColegio</a> © {{ date('Y') }} GlibSoftware.</span>
-    <span class="ml-auto">Creado por <a href="#">GlibSoftware</a></span>
+    <span><a href="#">Hispanoamericano</a> © {{ date('Y') }} GlibSoftware.</span>
+    <!--<span class="ml-auto">Creado por <a href="#">GlibSoftware</a></span>-->
   </footer>
 
   <!-- Bootstrap and necessary plugins -->

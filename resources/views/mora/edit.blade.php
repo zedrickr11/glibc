@@ -3,7 +3,7 @@
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Mora</a></li>
       <li class="breadcrumb-item active">Editar</li>
       <!-- Breadcrumb Menu-->
@@ -17,8 +17,8 @@
 
             <div class="card">
               <div class="card-header">
-                <strong>Ciclo</strong>
-                <small>Form</small>
+                <strong>Mora</strong>
+                <small></small>
               </div>
               <form class="" action="{{ route('mora.update',$mora->id) }}" method="post">
                 {!!method_field('PUT')!!}
@@ -26,7 +26,7 @@
 
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="cantidad">Nombre</label>
+                      <label for="cantidad">Cantidad</label>
                       <input type="number" class="form-control" name="cantidad" value="{{ $mora->cantidad }}">
                       {!!$errors->first('cantidad','<span class=text-danger>:message</span>')!!}
                     </div>

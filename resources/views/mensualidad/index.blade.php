@@ -2,7 +2,7 @@
 @section ('contenido')
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Mensualidad</a></li>
       <li class="breadcrumb-item active">Index</li>
       <!-- Breadcrumb Menu-->
@@ -15,7 +15,6 @@
             <div class="card">
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Mensualidad
-                <a href="mensualidad/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
               </div>
               <div class="card-body">
                 <table id="tabla-ciclo" class="display table table-responsive-sm table-striped">
@@ -46,13 +45,13 @@
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
                         @if($mensualidad->condicion)
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$mensualidad->id_mensualidad}}">
+                        <!--<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$mensualidad->id_mensualidad}}">
                           <span class="fa fa-trash-o"></span>
-                        </button>
+                        </button>-->
                         @else
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$mensualidad->id_mensualidad}}">
+                        <!--<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#successModal-{{$mensualidad->id_mensualidad}}">
                           <span class="icon-check"></span>
-                        </button>
+                        </button>-->
                         @endif
                       </td>
                     </tr>

@@ -29,9 +29,19 @@ class CarreraTableSeeder extends Seeder
           'id_jornada' => "1"
         ]);
         Carrera::create([
+          'nombre' => "Básico",
+          'condicion' => "1",
+          'id_jornada' => "3"
+        ]);
+        Carrera::create([
           'nombre' => "Bachillerato en Medicina",
           'condicion' => "1",
           'id_jornada' => "1"
+        ]);
+        Carrera::create([
+          'nombre' => "Bachillerato en Medicina",
+          'condicion' => "1",
+          'id_jornada' => "3"
         ]);
         Carrera::create([
           'nombre' => "Bachillerato en Enfermería",
@@ -39,9 +49,19 @@ class CarreraTableSeeder extends Seeder
           'id_jornada' => "1"
         ]);
         Carrera::create([
+          'nombre' => "Bachillerato en Enfermería",
+          'condicion' => "1",
+          'id_jornada' => "3"
+        ]);
+        Carrera::create([
           'nombre' => "Bachillerato en Ciencias Jurídicas",
           'condicion' => "1",
           'id_jornada' => "1"
+        ]);
+        Carrera::create([
+          'nombre' => "Bachillerato en Ciencias Jurídicas",
+          'condicion' => "1",
+          'id_jornada' => "3"
         ]);
         Carrera::create([
           'nombre' => "Bachillerato en Computación",
@@ -49,9 +69,19 @@ class CarreraTableSeeder extends Seeder
           'id_jornada' => "1"
         ]);
         Carrera::create([
+          'nombre' => "Bachillerato en Computación",
+          'condicion' => "1",
+          'id_jornada' => "3"
+        ]);
+        Carrera::create([
           'nombre' => "Perito Contador",
           'condicion' => "1",
           'id_jornada' => "1"
+        ]);
+        Carrera::create([
+          'nombre' => "Perito Contador",
+          'condicion' => "1",
+          'id_jornada' => "3"
         ]);
     }
 }

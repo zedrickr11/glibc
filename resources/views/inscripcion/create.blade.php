@@ -3,7 +3,7 @@
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Inscripción</a></li>
       <li class="breadcrumb-item active">Nueva</li>
       <!-- Breadcrumb Menu-->
@@ -124,6 +124,10 @@
       });
       $('#id_persona').select2({
         theme: "bootstrap"
+      });
+      $('#id_persona_modal').select2({
+        theme: "bootstrap",
+        dropdownParent: $("#largeModal")
       });
       $('#id_ciclo').select2({
         theme: "bootstrap"

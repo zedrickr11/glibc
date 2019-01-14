@@ -26,7 +26,7 @@ class PadreController extends Controller
          */
         public function index()
         {
-          $persona=Persona::all()->where('tipo_persona','padre');
+          $persona=Persona::all()->where('tipo_persona','padre')->where('condicion', 1);
           return view ('padre.index',compact('persona'));
         }
 

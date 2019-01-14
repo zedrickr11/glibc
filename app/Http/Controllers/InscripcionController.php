@@ -33,6 +33,7 @@ class InscripcionController extends Controller
                         ->join('jornada', 'carrera.id_jornada', '=', 'jornada.id_jornada')
                         ->select('inscripcion.id_inscripcion', 'inscripcion.condicion as condicion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre', 'alumno.primer_apellido', 'alumno.segundo_apellido',
                                 'grado.nombre as grado_nombre', 'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano', 'plan.nombre as plan_nombre' ,'inscripcion.cuota as cuota')
+                        ->where('inscripcion.condicion', 1)
                         ->where('ciclo.anio', $anio)
                         ->get();
         return view ('inscripcion.index',compact('inscripciones'));

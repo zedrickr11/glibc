@@ -29,5 +29,9 @@ class UnidadTableSeeder extends Seeder
           'nombre' => "Cuarta Unidad",
           'condicion' => "1"
         ]);
+        Unidad::create([
+          'nombre' => "Quinta Unidad",
+          'condicion' => "1"
+        ]);
     }
 }

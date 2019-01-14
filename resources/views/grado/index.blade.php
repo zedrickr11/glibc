@@ -2,7 +2,7 @@
 @section ('contenido')
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Grados</a></li>
       <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
@@ -50,6 +50,16 @@
                         <a href="{{route('grado.edit', $grado->id_grado)}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reportes
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{route('pagomensualidad.pdf', $grado->id_grado)}}">Mensualidades</a>
+                            <!--<a class="dropdown-item" href="#">Cuotas</a>
+                            <a class="dropdown-item" href="#">Alumnos</a>-->
+                          </div>
+                        </div>
                         @if($grado->condicion)
                         <!--<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$grado->id_grado}}">
                           <span class="fa fa-trash-o"></span>

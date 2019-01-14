@@ -44,10 +44,15 @@ Route::delete('grado/{asignacion}/deleteasignacion', ['as' => 'grado.deleteasign
 
 Route::resource('pagomensualidad','PagoMensualidadController');
 Route::get('pagomensualidad/{id}/pagos', ['as' => 'pagomensualidad.pagos', 'uses' => 'PagoMensualidadController@pagos']);
-Route::get('pagomensualidad/{id}/create', ['as' => 'pagomensualidad.create', 'uses' => 'PagoMensualidadController@create']);
+Route::put('pagomensualidad/{id}/editar', ['as' => 'pagomensualidad.editar', 'uses' => 'PagoMensualidadController@editar']);
+Route::get('pagomensualidad/{id}/reporte', ['as' => 'pagomensualidad.reporte', 'uses' => 'PagoMensualidadController@reporte']);
+Route::get('pagomensualidad/{idGrado}/pdf', ['as' => 'pagomensualidad.pdf', 'uses' => 'PagoMensualidadController@pdf']);
 
 Route::resource('pagocuota','PagoCuotaController');
 Route::get('pagocuota/{id}/pagos', ['as' => 'pagocuota.pagos', 'uses' => 'PagoCuotaController@pagos']);
+Route::get('pagocuota/{idCuota}/grados', ['as' => 'pagocuota.grados', 'uses' => 'PagoCuotaController@grados']);
+Route::get('pagocuota/{idCuota}/{idGrado}', ['as' => 'pagocuota.alumnos', 'uses' => 'PagoCuotaController@alumnos']);
+Route::put('pagocuota/{idCuota}/{idInscripcion}', ['as' => 'pagocuota.editar', 'uses' => 'PagoCuotaController@editar']);
 
 Route::resource('persona','PersonaController');
 Route::resource('padre','PadreController');

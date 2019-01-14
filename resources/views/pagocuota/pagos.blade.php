@@ -2,7 +2,7 @@
 @section ('contenido')
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">GlibColegio</li>
+      <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Pagos de Cuotas</a></li>
       <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
@@ -145,37 +145,6 @@
         }
       });
 
-      var totalMensualidad = 0;
-      var totalMora = 0;
-      var totalPagado = 0;
-
-      var moracantidad = 0;
-
-      var morapendiente = 0;
-      var total = 0;
-      var saldo = 0;
-      
-      moracantidad = $("#moracantidad").html()
-
-      $(".monto").each(function(){
-        totalMensualidad+=parseFloat($(this).html()) || 0;
-      });
-      $(".mora").each(function(){
-        totalMora+=parseFloat($(this).html()) || 0;
-      });
-      $(".estado").each(function(){
-        if($(this).html() == "Atrasado"){
-          morapendiente = morapendiente + parseFloat(moracantidad);
-        }
-      });
-      
-      total = (parseFloat($("#plan").html()) * parseFloat($("#cuota").html())) + totalMora + morapendiente;
-      totalPagado = totalMensualidad + totalMora;
-      saldo = total - totalPagado;
-
-      $("#pagado").text("Q. " + totalPagado);
-      $("#saldo").text("Q. " + saldo);
-      $("#total").text("Q. " + total);
       </script>
     @endpush
 @endsection
