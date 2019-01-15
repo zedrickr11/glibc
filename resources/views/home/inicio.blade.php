@@ -10,7 +10,7 @@
     </ol>
     <div class="container-fluid">
       <div class="animated fadeIn">
-        <div class="row">
+      <!--  <div class="row">
           <div class="col-sm-6 col-lg-3">
             <div class="social-box primary">
               <i class="fa fa-user-o"></i>
@@ -25,7 +25,7 @@
 
               </ul>
             </div>
-            <!--/.social-box-->
+
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="social-box facebook">
@@ -44,7 +44,7 @@
                 </li>
               </ul>
             </div>
-            <!--/.social-box-->
+
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="social-box facebook">
@@ -63,7 +63,7 @@
                 </li>
               </ul>
             </div>
-            <!--/.social-box-->
+
           </div>
           <div class="col-sm-6 col-lg-3">
             <div class="social-box facebook">
@@ -82,9 +82,9 @@
                 </li>
               </ul>
             </div>
-            <!--/.social-box-->
+
           </div>
-        </div>
+        </div>-->
         <div class="row">
           <div class="col-md-12">
             <div class="card">
