@@ -16,7 +16,7 @@
             <div class="card">
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Persona
-                <a href="persona/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
+                <a href="padre/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
 
               </div>
               <div class="card-body">
