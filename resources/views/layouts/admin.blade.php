@@ -68,7 +68,7 @@
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <img src="{{asset('personas/fotos/'. auth()->user()->persona->foto) }}" class="img-avatar" alt="{{ auth()->user()->persona->foto }}">
+          <img src="/personas/fotos/{{ auth()->user()->persona->foto }}" class="img-avatar" alt="{{ auth()->user()->persona->foto }}">
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
