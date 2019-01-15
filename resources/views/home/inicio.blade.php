@@ -98,7 +98,7 @@
                 </div>
                 <hr class="mb-4">
                 <div class="chart-wrapper" >
-                  <img src="{{asset('vendors/img/logo.jpg')}}" alt=""  width="1000px" height="1000px">
+                  <img src="{{asset('vendors/img/logo.JPG')}}" alt=""  width="1000px" height="1000px">
                 </div>
               </div>
             </div>
