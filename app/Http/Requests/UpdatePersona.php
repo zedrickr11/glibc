@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PersonaFormRequest extends FormRequest
+class UpdatePersona extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class PersonaFormRequest extends FormRequest
         return [
           'nombres' => 'required|max:255',
           'apellidos' => 'required|max:255',
-          'email' => 'required|unique:persona,email',
+          'email' => 'required|unique:persona,email,'.$this->route('persona'),
           'fechanacimiento' => 'required|max:255',
           'estado_civil' => 'max:255',
           'nacionalidad' => 'required|max:255',
@@ -37,9 +37,6 @@ class PersonaFormRequest extends FormRequest
           'telefono_dos' => 'max:255',
           'celular' => 'max:255',
           'foto' => 'mimes:jpeg,bmp,png',
-          //'usuario',
-          //'password',
-          'tipo_persona' => 'max:255',
         ];
     }
 }
