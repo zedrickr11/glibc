@@ -26,10 +26,10 @@ class PersonaFormRequest extends FormRequest
         return [
           'nombres' => 'required|max:255',
           'apellidos' => 'required|max:255',
-          'email' => 'max:255',
+          'email' => 'required|max:255',
           'fechanacimiento' => 'required|max:255',
           'estado_civil' => 'max:255',
-          'nacionalidad' => 'max:255',
+          'nacionalidad' => 'required|max:255',
           'profesion' => 'max:255',
           'dpi' => 'max:255',
           'direccion' => 'max:255',
