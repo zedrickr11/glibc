@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Redirect;
 use App\Http\Requests\PersonaFormRequest;
+use App\Http\Requests\UpdatePersona;
 use App\Persona;
 use App\User;
 use App\Role;
@@ -121,7 +122,7 @@ class PersonaController extends Controller
        * @param  int  $id
        * @return \Illuminate\Http\Response
        */
-      public function update(PersonaFormRequest $request, $id)
+      public function update(UpdatePersona $request, $id)
       {
           $persona=Persona::findOrFail($id);
           $persona->nombres=$request->get('nombres');

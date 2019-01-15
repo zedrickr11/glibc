@@ -1,5 +1,5 @@
-<div class="modal fade" id="dangerModal-{{$cur->id_persona}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form method="POST" action="{{route('padre.destroy', $cur->id_persona )}}">
+<div class="modal fade" id="dangerModal-{{$cur->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <form method="POST" action="{{route('padre.destroy', $cur->id )}}">
   {!!method_field('DELETE')!!}
   {!!csrf_field()!!}
 

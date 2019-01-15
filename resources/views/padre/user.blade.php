@@ -1,4 +1,4 @@
-<div class="modal fade" id="userModal-{{$cur->id_persona}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="userModal-{{$cur->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <form method="POST" action="{{route('loginPadre')}}">
   {!!csrf_field()!!}
 
@@ -21,7 +21,7 @@
                 </div><br>
               <input type="hidden" name="name" value="{{$cur->nombres}}{{ " " }}{{ $cur->apellidos }}">
               <input type="hidden" name="email" value="{{$cur->email}}">
-              <input type="hidden" name="id_persona" value="{{$cur->id_persona}}">
+              <input type="hidden" name="id_persona" value="{{$cur->id}}">
 
               </div>
               <div class="modal-footer">

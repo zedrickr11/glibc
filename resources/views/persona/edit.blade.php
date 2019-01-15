@@ -20,7 +20,7 @@
                 <strong>Ciclo</strong>
                 <small>Form</small>
               </div>
-              <form class="" action="{{ route('persona.update',$persona->id_persona) }}" method="post" enctype="multipart/form-data">
+              <form class="" action="{{ route('persona.update',$persona->id) }}" method="post" enctype="multipart/form-data">
                 {!!method_field('PUT')!!}
                   {!!csrf_field()!!}
 

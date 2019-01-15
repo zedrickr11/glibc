@@ -93,14 +93,14 @@
           <li class="nav-title">
             Colegio
           </li>
-          @if (auth()->user()->hasRole(['admin']))
+        
           <li class="nav-item">
 
               <a class="nav-link" href="{{ url('ciclo') }}"><i class="icon-puzzle"></i> Ciclo Escolar </a>
 
 
           </li>
-        @endif
+
           <li class="nav-item">
 
               <a class="nav-link" href="{{ url('inscripcion') }}"><i class="icon-puzzle"></i> Inscripciones </a>
