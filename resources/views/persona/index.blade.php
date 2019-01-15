@@ -35,7 +35,7 @@
                   <tbody>
                     @foreach ($persona as $cur)
                     <tr>
-                      <td>{{ $cur->id }}</td>
+                      <td>{{ $cur->id_persona }}</td>
                       <td>{{ $cur->nombres }}</td>
                       <td>{{ $cur->apellidos }}</td>
                       <td>{{ $cur->dpi }}</td>
@@ -45,17 +45,17 @@
                         @if(count($cur->usuarios))
 
                         @else
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#userModal-{{$cur->id}}">
+                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#userModal-{{$cur->id_persona}}">
                           <span class="fa fa-user-o"></span>
                         </button>
                         @endif
-                        <a href="{{route('persona.edit',$cur->id )}}">
+                        <a href="{{route('persona.edit',$cur->id_persona )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
-                        <a href="{{route('persona.show',$cur->id)}}">
+                        <a href="{{route('persona.show',$cur->id_persona)}}">
                           <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
                         </a>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$cur->id}}">
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$cur->id_persona}}">
                           <span class="fa fa-trash-o"></span>
                         </button>
 

@@ -26,7 +26,7 @@ class UpdatePersona extends FormRequest
         return [
           'nombres' => 'required|max:255',
           'apellidos' => 'required|max:255',
-          'email' => 'required|unique:persona,email,'.$this->route('persona'),
+          'email' => 'required|unique:persona,email,'.$this->route('persona').',id_persona',
           'fechanacimiento' => 'required|max:255',
           'estado_civil' => 'max:255',
           'nacionalidad' => 'required|max:255',
