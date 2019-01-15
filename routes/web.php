@@ -86,3 +86,9 @@ Route::put('actividad/update/{grado}/{curso}/{id}','ActividadController@update')
 Route::delete('actividad/delete/{id}', 'ActividadController@destroy')->name('actividad.destroy');
 
 Route::resource('calificar','NotaController');
+
+Route::resource('asistencia','AsistenciaController');
+Route::get('asistencia/cursos/{idGrado}','AsistenciaController@cursos')->name('asistencia.cursos');
+Route::get('asistencia/{idCurso}/{idGrado}','AsistenciaController@asistencias')->name('asistencia.asistencias');
+Route::get('asistencia/alumnos/{idCurso}/{idGrado}','AsistenciaController@alumnos')->name('asistencia.alumnos');
+Route::get('asistencia/ver/{idCurso}/{idGrado}/{fecha}','AsistenciaController@ver')->name('asistencia.ver');
