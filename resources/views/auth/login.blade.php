@@ -56,7 +56,7 @@
             <div class="card-body text-center">
               <div>
 
-                <img src="{{asset('vendors/img/sprite-skin-modern.png')}}" alt=""  width="300px" height="300px">
+                <img src="{{asset('vendors/img/logo.JPG')}}" alt=""  width="300px" height="300px">
 
               </div>
             </div>
