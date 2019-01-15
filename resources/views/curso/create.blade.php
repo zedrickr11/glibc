@@ -23,12 +23,12 @@
               <div class="card-body">
                 <div class="form-group">
                   <label for="nombre">Nombre del curso</label>
-                  <input type="text" class="form-control" name="nombre" placeholder="Nombre del curso...">
+                  <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" placeholder="Nombre del curso...">
                   {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                 </div>
                 <div class="form-group">
                   <label for="descripcion">Descripción</label>
-                  <input type="text" class="form-control" name="descripcion" placeholder="Descripción del curso...">
+                  <input type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" placeholder="Descripción del curso...">
                   {!!$errors->first('descripcion','<span class=text-danger>:message</span>')!!}
                 </div>
                 <fieldset class="form-group">
@@ -36,7 +36,7 @@
                   <select name="id_carrera" class="form-control select2-single" id="id_carrera">
                     <option disabled selected>Seleccione carrera</option>
                     @foreach($carreras as $carrera)
-                      <option value="{{ $carrera->id }}">{{ $carrera->nombre }} {{ $carrera->jornada->nombre }}</option>
+                      <option value="{{ $carrera->id }}" {{ old('id_carrera') == $carrera->id ? 'selected': '' }} >{{ $carrera->nombre }} {{ $carrera->jornada->nombre }}</option>
                     @endforeach
                   </select>
                   {!!$errors->first('id_carrera','<span class=text-danger>:message</span>')!!}

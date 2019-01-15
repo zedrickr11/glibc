@@ -24,14 +24,14 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="nombre">Nombre*</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre del grado...">
+                    <input type="text" class="form-control" name="nombre" value="{{ old('nombre') }}" placeholder="Nombre del grado...">
                     {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="descripcion">Descripción</label>
-                    <input type="text" class="form-control" name="descripcion" placeholder="Ingrese una descripción...">
+                    <input type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}" placeholder="Ingrese una descripción...">
                     {!!$errors->first('descripcion','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
@@ -41,7 +41,7 @@
                     <select name="id_persona" class="form-control select2-single" id="id_persona">
                       <option value="">Seleccione maestro: </option>
                       @foreach($personas as $persona)
-                        <option value="{{ $persona->id_persona }}">{{ $persona->nombres }} {{ $persona->apellidos }}</option>
+                        <option value="{{ $persona->id_persona }}" {{ old('id_persona') == $persona->id_persona ? 'selected': '' }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
                       @endforeach
                     </select>
                     {!!$errors->first('id_persona','<span class=text-danger>:message</span>')!!}
@@ -53,7 +53,7 @@
                     <select name="id_carrera" class="form-control select2-single" id="id_carrera">
                       <option value="">Seleccione carrera: </option>
                       @foreach($carreras as $carrera)
-                        <option value="{{ $carrera->id }}">{{ $carrera->nombre }} {{$carrera->jornada->nombre}}</option>
+                        <option value="{{ $carrera->id }}" {{ old('id_carrera') == $carrera->id ? 'selected': '' }}>{{ $carrera->nombre }} {{$carrera->jornada->nombre}}</option>
                       @endforeach
                     </select>
                     {!!$errors->first('id_carrera','<span class=text-danger>:message</span>')!!}
@@ -65,7 +65,7 @@
                     <select name="id_seccion" class="form-control select2-single" id="id_seccion">
                       <option value="">Seleccione seccion: </option>
                       @foreach($secciones as $seccion)
-                        <option value="{{ $seccion->id }}">{{ $seccion->nombre }} </option>
+                        <option value="{{ $seccion->id }}" {{ old('id_seccion') == $seccion->id ? 'selected': '' }}>{{ $seccion->nombre }} </option>
                       @endforeach
                     </select>
                     {!!$errors->first('id_seccion','<span class=text-danger>:message</span>')!!}
