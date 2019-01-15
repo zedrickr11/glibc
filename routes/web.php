@@ -69,7 +69,7 @@ Route::get('test', function(){
   $user->name='Zedrick Rodríguez';
   $user->email='zedrickr@gmail.com';
   $user->password=bcrypt('secret');
-  $user->id_persona=1;
+  $user->id_persona=3;
   $user->save();
   return $user;
 });
