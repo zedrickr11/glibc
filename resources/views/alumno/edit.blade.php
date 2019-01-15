@@ -52,6 +52,17 @@
                   </div>
                 </div><br>
                 <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for="id_persona">Persona encargada</label>
+                    <select name="id_persona" class="form-control select2-single" id="select-busqueda">
+                      @foreach($personas as $persona)
+                        <option value="{{ $persona->id_persona }}" {{ $alumno->id_persona == $persona->id_persona ? 'selected': null }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
+                      @endforeach
+                    </select>
+                    {!!$errors->first('id_persona','<span class=text-danger>:message</span>')!!}
+                  </div>
+                </div><br>
+                <div class="row">
                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for="carnet">No. Carné</label>
                     <input type="text" class="form-control" name="carnet" value="{{ $alumno->carnet }}">
@@ -96,14 +107,37 @@
                   </div>
                 </div><br>
                 <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_persona">Persona encargada</label>
-                    <select name="id_persona" class="form-control select2-single" id="select-busqueda">
-                      @foreach($personas as $persona)
-                        <option value="{{ $persona->id_persona }}" {{ $alumno->id_persona == $persona->id_persona ? 'selected': null }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
-                      @endforeach
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="papeleria">Papelería</label>
+                    <select class="form-control" name="papeleria">
+                      @if($alumno->papeleria == 1)
+                        <option value="">Seleccione opcion: </option>
+                        <option value="1" selected>Completa</option>
+                        <option value="2">Incompleta</option>
+                        <option value="3">Entregada</option>
+                      @elseif($alumno->papeleria == 2)
+                        <option value="">Seleccione opcion: </option>
+                        <option value="1">Completa</option>
+                        <option value="2" selected>Incompleta</option>
+                        <option value="3">Entregada</option>
+                      @elseif($alumno->papeleria == 3)
+                        <option value="">Seleccione opcion: </option>
+                        <option value="1">Completa</option>
+                        <option value="2">Incompleta</option>
+                        <option value="3" selected>Entregada</option>
+                      @else
+                        <option value="">Seleccione opcion: </option>
+                        <option value="1">Completa</option>
+                        <option value="2">Incompleta</option>
+                        <option value="3">Entregada</option>
+                      @endif
                     </select>
-                    {!!$errors->first('id_persona','<span class=text-danger>:message</span>')!!}
+                    {!!$errors->first('papeleria','<span class=text-danger>:message</span>')!!}
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for="observacion">Descripción de la papelería:</label>
+                    <textarea name="observacion" id="" class="form-control" rows="6" placeholder="Descripción de la papelería del alumno...">{{ $alumno->observacion }}</textarea>
+                    {!!$errors->first('observacion','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">

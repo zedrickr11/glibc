@@ -37,7 +37,9 @@ class AlumnoFormRequest extends FormRequest
           'foto' => 'nullable|file',
           'fe_edad' => 'nullable|file',
           'carnet' => 'nullable|integer',
-          'codigo_alumno' => 'nullable|max:15'
+          'codigo_alumno' => 'nullable|max:15',
+          'papeleria' => 'nullable|integer',
+          'observacion' => 'nullable|string|max:255'
         ];
     }
 }

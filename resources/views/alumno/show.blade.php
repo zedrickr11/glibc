@@ -45,6 +45,12 @@
                   </div>
                 </div><br>
                 <div class="row">
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for=""><strong>Persona encargada:</strong></label><br>
+                    <label for="">{{ $alumno->persona->nombres }}</label>
+                  </div>
+                </div><br>
+                <div class="row">
                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                     <label for=""><strong>Carné:</strong></label><br>
                     <label for="">{{ $alumno->carnet }}</label>
@@ -91,9 +97,21 @@
                   </div>
                 </div><br>
                 <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for=""><strong>Persona encargada:</strong></label><br>
-                    <label for="">{{ $alumno->persona->nombres }}</label>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for=""><strong>Estado de Papelería:</strong></label><br>
+                    <label for="">
+                        @if ($alumno->papeleria == 1)
+                            COMPLETA
+                        @elseif($alumno->papeleria == 2)
+                            INCOMPLETA
+                        @elseif($alumno->papeleria == 3)
+                            ENTREGADA
+                        @endif
+                    </label>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <label for=""><strong>Descripción de la papelería:</strong></label><br>
+                    <label for="">{{ $alumno->observacion }}</label>
                   </div>
                 </div><br>
                 <div class="row">
