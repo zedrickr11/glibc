@@ -31,7 +31,7 @@ class PersonaTableSeeder extends Seeder
           'foto' => "persona.png",
           //'usuario',
           //'password',
-          'tipo_persona' => "admin",
+          'tipo_persona' => "maestro",
           'condicion' => "1"
         ]);
         Persona::create([
