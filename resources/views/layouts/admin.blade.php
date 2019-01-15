@@ -9,7 +9,7 @@
   <meta name="author" content="Glib Software">
   <meta name="keyword" content="">
   <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
-  <title>Colegio Hispanoamericano</title>
+  <title>Colegio Hispanoamericano Salcajá</title>
 
   <!-- Icons -->
   <link href="{{asset('vendors/css/font-awesome.min.css')}}" rel="stylesheet">
