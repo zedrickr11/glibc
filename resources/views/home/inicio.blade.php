@@ -98,7 +98,12 @@
                 </div>
                 <hr class="mb-4">
                 <div class="chart-wrapper" >
-                  <img src="{{asset('vendors/img/logo.JPG')}}" alt=""  width="1000px" height="1000px">
+                <div class="row">
+                    <div class="col">
+                        <img class="img-fluid" src="{{asset('vendors/img/logo.JPG')}}" />
+                    </div>
+                </div>
+                  
                 </div>
               </div>
             </div>

@@ -19,7 +19,7 @@
                 <a href="alumno/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
               </div>
               <div class="card-body">
-                <table id="tabla-alumno" class="display table table-responsive-sm table-striped">
+                <table id="tabla-alumno" class="display table table-responsive-sm table-striped dt-responsive dt-bootstrap4">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -72,6 +72,7 @@
     <!-- /.conainer-fluid -->
     @push ('scripts')
       <script type="text/javascript">
+      //$('#tabla-alumno').DataTable();
         $('#tabla-alumno').DataTable({
         "pagingType": "full_numbers",
         "language": {
