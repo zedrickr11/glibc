@@ -30,7 +30,7 @@ Route::resource('mensualidad','MensualidadController');
 Route::resource('carrera','CarreraController');
 
 Route::resource('alumno','AlumnoController');
-Route::get('alumno/downloadFeEdad/{file}', 'AlumnoController@downloadFeEdad');
+Route::get('alumno/downloadFeEdad/{id}', 'AlumnoController@downloadFeEdad')->name('alumno.downloadFeEdad');
 
 Route::resource('inscripcion','InscripcionController');
 
@@ -92,3 +92,6 @@ Route::get('asistencia/cursos/{idGrado}','AsistenciaController@cursos')->name('a
 Route::get('asistencia/{idCurso}/{idGrado}','AsistenciaController@asistencias')->name('asistencia.asistencias');
 Route::get('asistencia/alumnos/{idCurso}/{idGrado}','AsistenciaController@alumnos')->name('asistencia.alumnos');
 Route::get('asistencia/ver/{idCurso}/{idGrado}/{fecha}','AsistenciaController@ver')->name('asistencia.ver');
+
+Route::resource('archivo','ArchivoController');
+Route::get('archivo/downloadArchivo/{id}', 'ArchivoController@downloadArchivo')->name('archivo.downloadArchivo');

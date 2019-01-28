@@ -130,7 +130,7 @@
                   @endif
                   @if($alumno->fe_edad)
                   <div class="col-6">
-                    <a target="_blank" class="btn btn-sm btn-primary" href="/alumno/downloadFeEdad/{{$alumno->fe_edad}}"><i class="icon-doc"></i>&nbsp; Descargar Fe Edad</a>
+                    <a target="_blank" class="btn btn-sm btn-primary" href="{{route('alumno.downloadFeEdad',$alumno->id )}}"><i class="icon-doc"></i>&nbsp; Descargar Fe Edad</a>
                   </div>
                   @endif
                 </div>

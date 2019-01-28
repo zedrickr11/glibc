@@ -15,3 +15,5 @@ yarn-error.log
 .phpunit.result.cache
 /public/fotos
 /public/fe_edad
+/public/archivos
+/public/personas

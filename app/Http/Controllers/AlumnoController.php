@@ -114,8 +114,10 @@ class AlumnoController extends Controller
       return redirect()->route('alumno.index');
     }
 
-    public function downloadFeEdad($file){
-        $pathtoFile = public_path().'/fe_edad/'.$file;
+    public function downloadFeEdad($id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        $pathtoFile = public_path().'/fe_edad/'.$alumno->fe_edad;
         return response()->file($pathtoFile);
     }
 }

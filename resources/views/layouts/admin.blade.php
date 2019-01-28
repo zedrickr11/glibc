@@ -170,6 +170,9 @@
             </ul>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('archivo') }}"><i class="icon-puzzle"></i> Archivos </a>
+          </li>
 
         </ul>
       </nav>
