@@ -38,4 +38,9 @@ class Alumno extends Model
     {
         return $this->belongsTo('App\Persona', 'id_persona');
     }
+
+    public function records()
+    {
+        return $this->hasMany('App\Record', 'id_alumno');
+    }
 }

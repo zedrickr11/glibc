@@ -47,6 +47,7 @@ Route::get('pagomensualidad/{id}/pagos', ['as' => 'pagomensualidad.pagos', 'uses
 Route::put('pagomensualidad/{id}/editar', ['as' => 'pagomensualidad.editar', 'uses' => 'PagoMensualidadController@editar']);
 Route::get('pagomensualidad/{id}/reporte', ['as' => 'pagomensualidad.reporte', 'uses' => 'PagoMensualidadController@reporte']);
 Route::get('pagomensualidad/{idGrado}/pdf', ['as' => 'pagomensualidad.pdf', 'uses' => 'PagoMensualidadController@pdf']);
+Route::get('pagomensualidad/{idGrado}/cuotapdf', ['as' => 'pagomensualidad.cuotapdf', 'uses' => 'PagoMensualidadController@cuotapdf']);
 
 Route::resource('pagocuota','PagoCuotaController');
 Route::get('pagocuota/{id}/pagos', ['as' => 'pagocuota.pagos', 'uses' => 'PagoCuotaController@pagos']);
@@ -95,3 +96,10 @@ Route::get('asistencia/ver/{idCurso}/{idGrado}/{fecha}','AsistenciaController@ve
 
 Route::resource('archivo','ArchivoController');
 Route::get('archivo/downloadArchivo/{id}', 'ArchivoController@downloadArchivo')->name('archivo.downloadArchivo');
+
+Route::resource('record','RecordController');
+Route::get('record/cursos/{idGrado}','RecordController@cursos')->name('record.cursos');
+Route::get('record/alumnos/{idCurso}/{idGrado}','RecordController@alumnos')->name('record.alumnos');
+Route::get('record/{idInscripcion}/alumno','RecordController@alumno')->name('record.alumno');
+Route::get('record/{idInscripcion}/reportespdf','RecordController@reportespdf')->name('record.reportespdf');
+Route::get('record/{idInscripcion}/inasistenciaspdf','RecordController@inasistenciaspdf')->name('record.inasistenciaspdf');

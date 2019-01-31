@@ -22,6 +22,7 @@
                 <table id="tabla-inscripcion" class="display table table-responsive-sm table-striped">
                   <thead>
                     <tr>
+                      <th>#</th>
                       <th>Alumno</th>
                       <th>Grado</th>
                       <th>Seccion</th>
@@ -34,6 +35,7 @@
                   <tbody>
                     @foreach ($inscripciones as $inscripcion)
                     <tr>
+                      <td>{{ $inscripcion->id_inscripcion }}</td>
                       <td>{{ $inscripcion->primer_nombre }} {{ $inscripcion->segundo_nombre }} {{ $inscripcion->primer_apellido }}  {{ $inscripcion->segundo_apellido }}</td>
                       <td>{{ $inscripcion->grado_nombre }}</td>
                       <td>{{ $inscripcion->seccion_nombre }}</td>
@@ -56,6 +58,14 @@
                           <span class="icon-check"></span>
                         </button>
                         @endif
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reportes
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{route('record.alumno', $inscripcion->id_inscripcion)}}">Record del alumno</a>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                     @include('inscripcion.deshabilitar')
@@ -73,6 +83,7 @@
     @push ('scripts')
       <script type="text/javascript">
         $('#tabla-inscripcion').DataTable({
+        "order": [[0, "desc"]],
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",

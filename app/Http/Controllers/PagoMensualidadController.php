@@ -10,6 +10,8 @@ use App\Inscripcion;
 use App\Mora;
 use App\Grado;
 use App\Ciclo;
+use App\Cuota;
+use App\PagoCuota;
 
 use DB;
 use Carbon\Carbon;
@@ -163,6 +165,7 @@ class PagoMensualidadController extends Controller
                                 'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano', 
                                 'plan.nombre as plan_nombre', 'plan.cantidad as plan_cantidad' ,'inscripcion.cuota', 'inscripcion.pago_inscripcion')
                                 ->orderBy('alumno.primer_apellido', 'asc')
+                                ->orderBy('alumno.segundo_apellido', 'asc')
                                 ->get();
         
       $pagos = PagoMensualidad::whereIn('id_inscripcion', $inscripcion_pago)->get();
@@ -174,7 +177,45 @@ class PagoMensualidadController extends Controller
       $data = ['inscripcion_info' => $inscripcion_info, 'pagos' => $pagos, 'mensualidades' => $mensualidades, 'grado' => $grado];
       $pdf = PDF::loadView('pagomensualidad.pdf', $data);
       $pdf->setPaper('A4', 'landscape');
-      return $pdf->stream('reporte_pagos.pdf');
+      return $pdf->stream('Reporte Pagos ' . $grado->nombre . ' Seccion ' . $grado->seccionAsignada->nombre . ' ' . $grado->carrera->jornada->nombre . '.pdf');
+      
+    }
+
+    public function cuotapdf(Request $request, $id)
+    {
+      $grado = Grado::findOrFail($id);
+      $ano = Carbon::now()->format('Y');
+
+      $cuotas = Cuota::where('condicion', 1)->get();
+
+      $inscripciones = DB::table('inscripcion')
+                        ->join('ciclo', 'inscripcion.id_ciclo', '=', 'ciclo.id_ciclo')
+                        ->join('alumno', 'inscripcion.id_alumno', '=', 'alumno.id')
+                        ->join('plan', 'inscripcion.id_plan', '=', 'plan.id')
+                        ->join('grado', 'inscripcion.id_grado', '=', 'grado.id_grado')
+                        ->join('seccion', 'grado.id_seccion', '=', 'seccion.id')
+                        ->join('carrera', 'grado.id_carrera', '=', 'carrera.id')
+                        ->join('jornada', 'carrera.id_jornada', '=', 'jornada.id_jornada')
+                        ->where('inscripcion.id_grado', $id)
+                        ->where('inscripcion.condicion', 1)
+                        ->where('ciclo.anio', $ano);
+
+      $inscripcion_pago = $inscripciones->pluck('inscripcion.id_inscripcion');
+        
+      $inscripcion_info = $inscripciones->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre', 
+                                'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre', 
+                                'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano', 
+                                'plan.nombre as plan_nombre', 'plan.cantidad as plan_cantidad' ,'inscripcion.cuota', 'inscripcion.pago_inscripcion')
+                                ->orderBy('alumno.primer_apellido', 'asc')
+                                ->orderBy('alumno.segundo_apellido', 'asc')
+                                ->get();
+        
+      $pagos = PagoCuota::whereIn('id_inscripcion', $inscripcion_pago)->get();
+
+      $data = ['inscripcion_info' => $inscripcion_info, 'pagos' => $pagos, 'cuotas' => $cuotas, 'grado' => $grado];
+      $pdf = PDF::loadView('pagocuota.reporteporgrado', $data);
+      $pdf->setPaper('A4', 'landscape');
+      return $pdf->stream('Reporte Cuotas ' . $grado->nombre . ' Seccion ' . $grado->seccionAsignada->nombre . ' ' . $grado->carrera->jornada->nombre . '.pdf');
       
     }
     

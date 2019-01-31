@@ -48,7 +48,7 @@
                       <tbody>
                       @foreach ($alumnos as $alumno)
                         <tr>
-                          <td>{{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }} {{ $alumno->tercer_nombre }} {{ $alumno->primer_apellido }} {{ $alumno->segundo_apellido }}</td>
+                          <td>{{ $alumno->primer_apellido }} {{ $alumno->segundo_apellido }} {{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }} {{ $alumno->tercer_nombre }}</td>
                           <td>
                             @foreach ($pagos as $pago)
                               @if($pago->id_inscripcion == $alumno->id_inscripcion)
@@ -113,6 +113,7 @@
     @push ('scripts')
       <script type="text/javascript">
         $('#tabla-grado').DataTable({
+        "order": [[1, "asc"]],
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",
