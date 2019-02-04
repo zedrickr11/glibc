@@ -5,11 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Colegio Hispanoamericano Salcaja">
+  <meta name="description" content="Colegio Hispanoamericano Salcajá">
   <meta name="author" content="Glib Software">
-  <meta name="keyword" content="">
+  <meta name="keyword" content="Sistema Colegio Hispanoamericano Salcajá">
   <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
-  <title>Colegio Hispanoamericano</title>
+  <title>Colegio Hispanoamericano Salcajá</title>
 
   <!-- Icons -->
   <link href="{{asset('vendors/css/font-awesome.min.css')}}" rel="stylesheet">

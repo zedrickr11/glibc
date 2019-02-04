@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Prime Bootstrap 4 Admin Template">
-  <meta name="author" content="Lukasz Holeczek">
-  <meta name="keyword" content="Prime Bootstrap 4 Admin Template">
+  <meta name="description" content="Colegio Hispanoamericano Salcajá">
+  <meta name="author" content="Glib Software">
+  <meta name="keyword" content="Sistema Colegio Hispanoamericano Salcajá">
+  
   <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
   <title>CHS - LOGIN</title>
