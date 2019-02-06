@@ -9,6 +9,7 @@ use App\Inscripcion;
 use App\Grado;
 use DB;
 use Carbon\Carbon;
+use PDF;
 
 class PagoCuotaController extends Controller
 {
@@ -78,6 +79,8 @@ class PagoCuotaController extends Controller
                     'alumno.primer_apellido', 'alumno.segundo_apellido', 'ciclo.anio as ciclo_ano')
             ->where('inscripcion.id_grado', $idGrado)
             ->where('ciclo.anio', $ano)
+            ->orderBy('alumno.primer_apellido', 'asc')
+            ->orderBy('alumno.segundo_apellido', 'asc')
             ->get();
 
         return view ('pagocuota.alumnos',compact('alumnos', 'pagos', 'cuota', 'grado'));
