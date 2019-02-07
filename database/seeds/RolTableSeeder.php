@@ -34,6 +34,20 @@ class RolTableSeeder extends Seeder
                 'description' => "Rol usuarios padres de familia o encargado"
 
               ]);
-        
+              Role::create([
+
+                  'name' => "director",
+                  'display_name' => "Director del colegio",
+                  'description' => "Director del colegio"
+
+                ]);
+                Role::create([
+
+                    'name' => "secre",
+                    'display_name' => "Secretaria del colegio",
+                    'description' => "Secretaria del colegio"
+
+                  ]);
+
     }
 }

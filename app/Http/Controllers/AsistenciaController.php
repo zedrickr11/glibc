@@ -13,6 +13,11 @@ use Carbon\Carbon;
 
 class AsistenciaController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+       $this->middleware('role:admin,prof');
+   }
     public function index()
     {
         $id_persona = auth()->user()->persona->id_persona;
@@ -60,7 +65,7 @@ class AsistenciaController extends Controller
                             ->where('id_persona', $idPersona)
                             ->where('anio', $anio)
                             ->first();
-        
+
         $asistencias = DB::table('asistencia')
                   ->select('asistencia.fecha')
                   ->where('asistencia.id_asignacion_curso', $asignacion_curso->id_asignacion_curso)
@@ -88,7 +93,7 @@ class AsistenciaController extends Controller
       $alumnos=DB::table('inscripcion as insc')
                       ->join('alumno as a','insc.id_alumno','a.id')
                       ->join('ciclo as c','c.id_ciclo','insc.id_ciclo')
-                      ->select('a.primer_nombre', 'a.segundo_nombre', 'a.tercer_nombre', 'a.primer_apellido', 
+                      ->select('a.primer_nombre', 'a.segundo_nombre', 'a.tercer_nombre', 'a.primer_apellido',
                                 'a.segundo_apellido', 'a.id as id_alumno')
                       ->where('insc.id_grado',$idGrado)
                       ->where('c.anio',$anio)
@@ -111,7 +116,7 @@ class AsistenciaController extends Controller
                             ->where('id_persona', $idPersona)
                             ->where('anio', $anio)
                             ->first();
-        
+
         $asistencias = DB::table('asistencia')
                             ->join('alumno', 'asistencia.id_alumno', 'alumno.id')
                             ->select('alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre', 'alumno.primer_apellido', 'alumno.segundo_apellido',
@@ -158,5 +163,5 @@ class AsistenciaController extends Controller
 
         return response()->json([ "success" => true, "curso" => $curso->id_curso, "grado" => $grado->id_grado ]);
     }
-    
+
 }

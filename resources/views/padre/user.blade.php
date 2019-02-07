@@ -12,13 +12,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <label for="password">Contraseña</label>
-                        <input type="password" class="form-control"  name="password" placeholder="Ingrese su contraseña...">
-                        {!!$errors->first('password','<span class=text-danger>:message</span>')!!}
-                    </div>
-                </div><br>
+              
               <input type="hidden" name="name" value="{{$cur->nombres}}{{ " " }}{{ $cur->apellidos }}">
               <input type="hidden" name="email" value="{{$cur->email}}">
               <input type="hidden" name="id_persona" value="{{$cur->id_persona}}">

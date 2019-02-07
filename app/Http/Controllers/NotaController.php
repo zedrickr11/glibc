@@ -19,6 +19,7 @@ class NotaController extends Controller
   public function __construct()
    {
        $this->middleware('auth');
+       $this->middleware('role:admin,prof');
    }
    public function create()
    {
@@ -30,7 +31,7 @@ class NotaController extends Controller
      Nota::updateOrCreate(
       [
         'id_actividad' => $request->id_actividad,
-        
+
         'id_alumno' => $request->id_alumno
       ],
       [

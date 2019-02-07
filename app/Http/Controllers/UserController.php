@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+       $this->middleware('role:admin',['except'=>['edit','update']]);
+   }
     public function index()
     {
       $users= User::all();
@@ -71,7 +76,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-      return view("users.edit",["usuario"=>User::findOrFail($id)]);
+      $usuario=User::findOrFail($id);
+
+      $this->authorize('edit',$usuario);
+      return view("users.edit",compact('usuario'));
     }
     /**
      * Update the specified resource in storage.
@@ -83,6 +91,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
       $usuario=User::findOrFail($id);
+      $this->authorize('update',$usuario);
       $usuario->name=$request->get('name');
       $usuario->email=$request->get('email');
       $usuario->password=bcrypt($request->get('password'));

@@ -17,6 +17,11 @@ use PDF;
 
 class RecordController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+       $this->middleware('role:admin,prof,secre,director');
+   }
     public function index()
     {
         $id_persona = auth()->user()->persona->id_persona;
@@ -68,7 +73,7 @@ class RecordController extends Controller
       $alumnos=DB::table('inscripcion as insc')
                       ->join('alumno as a','insc.id_alumno','a.id')
                       ->join('ciclo as c','c.id_ciclo','insc.id_ciclo')
-                      ->select('a.primer_nombre', 'a.segundo_nombre', 'a.tercer_nombre', 'a.primer_apellido', 
+                      ->select('a.primer_nombre', 'a.segundo_nombre', 'a.tercer_nombre', 'a.primer_apellido',
                                 'a.segundo_apellido', 'a.id as id_alumno')
                       ->where('insc.id_grado',$idGrado)
                       ->where('c.anio',$anio)
@@ -108,7 +113,7 @@ class RecordController extends Controller
                         ->where('anio', $anio)
                         ->orderBy('fecha', 'desc')
                         ->get();
-      
+
       $inasistencias = Asistencia::where('id_alumno', $alumno->id)
                                 ->whereYear('fecha', $anio)
                                 ->where('condicion', 0)
@@ -128,7 +133,7 @@ class RecordController extends Controller
                         ->where('anio', $anio)
                         ->orderBy('fecha', 'desc')
                         ->get();
-      
+
       $data = ['reportes' => $reportes, 'inscripcion' => $inscripcion ];
       $pdf = PDF::loadView('record.reportespdf', $data);
       $pdf->setPaper('A4', 'landscape');
@@ -146,11 +151,11 @@ class RecordController extends Controller
                                 ->where('condicion', 0)
                                 ->orderBy('fecha', 'desc')
                                 ->get();
-      
+
       $data = ['inasistencias' => $inasistencias, 'inscripcion' => $inscripcion ];
       $pdf = PDF::loadView('record.inasistenciaspdf', $data);
       $pdf->setPaper('A4', 'landscape');
       return $pdf->stream('Inasistencias_' . $alumno->primer_nombre . '_' . $alumno->primer_apellido . '.pdf');
     }
-    
+
 }

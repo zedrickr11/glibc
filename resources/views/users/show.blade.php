@@ -27,7 +27,7 @@
                 <div class="form-group">
                   <label for="id_persona">Persona encargada</label>
                   <select name="role_id" class="form-control select2-single" id="select-busqueda">
-                    <option value="">Seleccione un rol: </option>
+                    <option disabled value="">Seleccione un rol: </option>
                     @foreach($role as $rol)
                       <option value="{{$rol->id}}">{{$rol->display_name}}</option>
                        @endforeach

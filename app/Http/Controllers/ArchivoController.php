@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ArchivoController extends Controller
 {
+  public function __construct()
+   {
+       $this->middleware('auth');
+       $this->middleware('role:admin,director,prof');
+   }
     public function index()
     {
         $archivos = Archivo::where('condicion', 1)
