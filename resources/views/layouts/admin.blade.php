@@ -101,7 +101,7 @@
                 <a class="nav-link" href="{{ url('usuarios') }}"><i class="fa fa-caret-right"></i> Usuarios</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-caret-right"></i> Usuarios administrativos</a>
+                <a class="nav-link" href="{{ url('administrativo') }}"><i class="fa fa-caret-right"></i> Usuarios administrativos</a>
               </li>
             </ul>
           </li>
