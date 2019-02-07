@@ -22,6 +22,7 @@ class PagoMensualidadController extends Controller
   public function __construct()
    {
        $this->middleware('auth');
+       $this->middleware('role:admin');
    }
     public function index()
     {
@@ -34,9 +35,9 @@ class PagoMensualidadController extends Controller
                         ->join('seccion', 'grado.id_seccion', '=', 'seccion.id')
                         ->join('carrera', 'grado.id_carrera', '=', 'carrera.id')
                         ->join('jornada', 'carrera.id_jornada', '=', 'jornada.id_jornada')
-                        ->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre', 
-                              'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre', 
-                              'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano', 
+                        ->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre',
+                              'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre',
+                              'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano',
                               'plan.nombre as plan_nombre' ,'inscripcion.cuota')
                         ->where('ciclo.anio', $ano)
                         ->get();
@@ -110,7 +111,7 @@ class PagoMensualidadController extends Controller
           } elseif(($pago->mora + $request->mora) == 0){
             $pago->mora = 0;
           }
-  
+
           $pago->save();
         }
 
@@ -134,7 +135,7 @@ class PagoMensualidadController extends Controller
       $data = ['inscripcion' => $inscripcion, 'pagos' => $pagos, 'mora' => $mora, 'date' => $date, 'mes' => $mes, 'ano' => $ano];
       $pdf = PDF::loadView('pagomensualidad.reporte', $data);
       return $pdf->stream('itsolutionstuff.pdf');
-      
+
     }
 
     public function pdf(Request $request, $id)
@@ -159,26 +160,26 @@ class PagoMensualidadController extends Controller
                         ->where('ciclo.anio', $ano);
 
       $inscripcion_pago = $inscripciones->pluck('inscripcion.id_inscripcion');
-        
-      $inscripcion_info = $inscripciones->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre', 
-                                'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre', 
-                                'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano', 
+
+      $inscripcion_info = $inscripciones->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre',
+                                'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre',
+                                'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano',
                                 'plan.nombre as plan_nombre', 'plan.cantidad as plan_cantidad' ,'inscripcion.cuota', 'inscripcion.pago_inscripcion')
                                 ->orderBy('alumno.primer_apellido', 'asc')
                                 ->orderBy('alumno.segundo_apellido', 'asc')
                                 ->get();
-        
+
       $pagos = PagoMensualidad::whereIn('id_inscripcion', $inscripcion_pago)->get();
 
       //return view ('pagomensualidad.pdf',compact('inscripcion_info', 'pagos', 'mensualidades'));
-      
+
       //  return response()->json($pagos);
 
       $data = ['inscripcion_info' => $inscripcion_info, 'pagos' => $pagos, 'mensualidades' => $mensualidades, 'grado' => $grado];
       $pdf = PDF::loadView('pagomensualidad.pdf', $data);
       $pdf->setPaper('A4', 'landscape');
       return $pdf->stream('Reporte Pagos ' . $grado->nombre . ' Seccion ' . $grado->seccionAsignada->nombre . ' ' . $grado->carrera->jornada->nombre . '.pdf');
-      
+
     }
 
     public function cuotapdf(Request $request, $id)
@@ -201,22 +202,22 @@ class PagoMensualidadController extends Controller
                         ->where('ciclo.anio', $ano);
 
       $inscripcion_pago = $inscripciones->pluck('inscripcion.id_inscripcion');
-        
-      $inscripcion_info = $inscripciones->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre', 
-                                'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre', 
-                                'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano', 
+
+      $inscripcion_info = $inscripciones->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre',
+                                'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre',
+                                'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano',
                                 'plan.nombre as plan_nombre', 'plan.cantidad as plan_cantidad' ,'inscripcion.cuota', 'inscripcion.pago_inscripcion')
                                 ->orderBy('alumno.primer_apellido', 'asc')
                                 ->orderBy('alumno.segundo_apellido', 'asc')
                                 ->get();
-        
+
       $pagos = PagoCuota::whereIn('id_inscripcion', $inscripcion_pago)->get();
 
       $data = ['inscripcion_info' => $inscripcion_info, 'pagos' => $pagos, 'cuotas' => $cuotas, 'grado' => $grado];
       $pdf = PDF::loadView('pagocuota.reporteporgrado', $data);
       $pdf->setPaper('A4', 'landscape');
       return $pdf->stream('Reporte Cuotas ' . $grado->nombre . ' Seccion ' . $grado->seccionAsignada->nombre . ' ' . $grado->carrera->jornada->nombre . '.pdf');
-      
+
     }
-    
+
 }
