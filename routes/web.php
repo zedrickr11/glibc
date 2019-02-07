@@ -64,6 +64,8 @@ Route::get('logout','Auth\LoginController@logout');
 
 Route::post('saveUserMaestro','PersonaController@saveUserMaestro')->name('loginMaestro');
 Route::post('saveUserPadre','PadreController@saveUserPadre')->name('loginPadre');
+Route::post('saveUserAdmin','PersonaAdminController@saveUserAdmin')->name('loginAdmin');
+
 
 Route::get('test', function(){
   $user = new App\User;
@@ -92,6 +94,7 @@ Route::resource('calificar','NotaController');
 Route::resource('usuarios','UserController');
 Route::post('role',['as'=>'usuarios.role','uses' => 'UserController@role']);
 Route::get('usuarios/listado/{id}',['as'=>'usuarios.list','uses' => 'UserController@listRole']);
+Route::resource('administrativo','PersonaAdminController');
 
 Route::resource('asistencia','AsistenciaController');
 Route::get('asistencia/cursos/{idGrado}','AsistenciaController@cursos')->name('asistencia.cursos');
