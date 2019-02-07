@@ -113,7 +113,7 @@
     @push ('scripts')
       <script type="text/javascript">
         $('#tabla-grado').DataTable({
-        "order": [[1, "asc"]],
+        "order": [[0, "asc"]],
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",
