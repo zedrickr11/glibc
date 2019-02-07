@@ -4,6 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Redirect;
+use DB;
+use App\Persona;
+use App\User;
+use App\Role;
+use App\Asignacion;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
+
 class UserController extends Controller
 {
     public function index()
@@ -26,7 +35,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserFormRequest $request)
+    public function store(Request $request)
     {
       $usuario=new User;
       $usuario->name=$request->get('name');
@@ -71,7 +80,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
       $usuario=User::findOrFail($id);
       $usuario->name=$request->get('name');
@@ -91,4 +100,21 @@ class UserController extends Controller
       Asignacion::findOrFail($id)->delete();
       return Redirect::to('usuarios');
     }
+
+    public function listRole($id)
+    {
+      $user=DB::table('users')
+      ->select('name')
+      ->where('id','=',$id)
+      ->first();
+      $listado=DB::table('users as u')
+        ->join('role_user as a','u.id','=','a.user_id')
+        ->join('roles as r','r.id','=','a.role_id')
+        ->select('a.id as id','r.display_name as nombre')
+        ->where('u.id','=',$id)
+        ->get();
+        return view ('users.listado',compact('listado','user'));
+
+    }
+
 }

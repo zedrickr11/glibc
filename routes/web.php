@@ -88,6 +88,11 @@ Route::delete('actividad/delete/{id}', 'ActividadController@destroy')->name('act
 
 Route::resource('calificar','NotaController');
 
+
+Route::resource('usuarios','UserController');
+Route::post('role',['as'=>'usuarios.role','uses' => 'UserController@role']);
+Route::get('usuarios/listado/{id}',['as'=>'usuarios.list','uses' => 'UserController@listRole']);
+
 Route::resource('asistencia','AsistenciaController');
 Route::get('asistencia/cursos/{idGrado}','AsistenciaController@cursos')->name('asistencia.cursos');
 Route::get('asistencia/{idCurso}/{idGrado}','AsistenciaController@asistencias')->name('asistencia.asistencias');

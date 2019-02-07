@@ -75,6 +75,7 @@
             <strong>{{ auth()->user()->name }}</strong>
           </div>
       <div class="divider"></div>
+          <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Mi Cuenta</a>
 
           <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Cerrar Sesión</a>
         </div>
@@ -87,13 +88,23 @@
       <nav class="sidebar-nav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/') }}"><i class="icon-speedometer"></i>Escritorio</a>
+            <a class="nav-link" href="{{ url('/') }}"><i class="icon-speedometer"></i>Inicio</a>
           </li>
-          <li class="divider"></li>
+
           <li class="nav-title">
             Colegio
           </li>
-        
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Administración</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('usuarios') }}"><i class="fa fa-caret-right"></i> Usuarios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-caret-right"></i> Usuarios administrativos</a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item">
 
               <a class="nav-link" href="{{ url('ciclo') }}"><i class="icon-puzzle"></i> Ciclo Escolar </a>

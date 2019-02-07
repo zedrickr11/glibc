@@ -8,7 +8,7 @@
   <meta name="description" content="Colegio Hispanoamericano Salcajá">
   <meta name="author" content="Glib Software">
   <meta name="keyword" content="Sistema Colegio Hispanoamericano Salcajá">
-  
+
   <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
   <title>CHS - LOGIN</title>
@@ -39,10 +39,19 @@
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
                 <input name="email" type="email" class="form-control" placeholder="Correo electrónico">
+
               </div>
               <div class="input-group mb-4">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
                 <input name="password" type="password" class="form-control" placeholder="Contraseña">
+
+
+              </div>
+              <div class="row">
+                <div class="input-group mb-3">
+                  {!!$errors->first('email','<span class=text-danger>:message</span>')!!}
+                </div>
+
               </div>
               <div class="row">
                 <div class="col-6">
