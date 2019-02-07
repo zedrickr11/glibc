@@ -19,7 +19,7 @@ class NotaController extends Controller
   public function __construct()
    {
        $this->middleware('auth');
-       $this->middleware('role:admin');
+       $this->middleware('role:admin,prof');
    }
    public function create()
    {

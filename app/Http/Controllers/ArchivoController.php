@@ -12,7 +12,7 @@ class ArchivoController extends Controller
   public function __construct()
    {
        $this->middleware('auth');
-       $this->middleware('role:admin');
+       $this->middleware('role:admin,director,prof');
    }
     public function index()
     {

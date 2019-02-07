@@ -13,7 +13,7 @@ class AlumnoController extends Controller
   public function __construct()
    {
        $this->middleware('auth');
-       $this->middleware('role:admin');
+       $this->middleware('role:admin,prof,director,secre,padre');
    }
 
     public function index()
