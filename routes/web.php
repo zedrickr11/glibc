@@ -86,3 +86,7 @@ Route::put('actividad/update/{grado}/{curso}/{id}','ActividadController@update')
 Route::delete('actividad/delete/{id}', 'ActividadController@destroy')->name('actividad.destroy');
 
 Route::resource('calificar','NotaController');
+
+Route::resource('usuarios','UserController');
+Route::post('role',['as'=>'usuarios.role','uses' => 'UserController@role']);
+Route::get('usuarios/listado/{id}',['as'=>'usuarios.list','uses' => 'UserController@listRole']);
