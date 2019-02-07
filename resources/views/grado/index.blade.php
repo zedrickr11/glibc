@@ -56,8 +56,8 @@
                           </button>
                           <div class="dropdown-menu">
                             <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.pdf', $grado->id_grado)}}">Mensualidades</a>
-                            <!--<a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Cuotas</a>
-                            <a class="dropdown-item" href="#">Cuotas</a>
+                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Cuotas</a>
+                            <!--<a class="dropdown-item" href="#">Cuotas</a>
                             <a class="dropdown-item" href="#">Alumnos</a>-->
                           </div>
                         </div>

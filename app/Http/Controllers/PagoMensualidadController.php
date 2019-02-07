@@ -212,11 +212,13 @@ class PagoMensualidadController extends Controller
         
       $pagos = PagoCuota::whereIn('id_inscripcion', $inscripcion_pago)->get();
 
-      $data = ['inscripcion_info' => $inscripcion_info, 'pagos' => $pagos, 'cuotas' => $cuotas, 'grado' => $grado];
+      return view ('pagocuota.reporteporgrado',compact('inscripcion_info', 'pagos', 'cuotas', 'grado'));
+
+      /*$data = ['inscripcion_info' => $inscripcion_info, 'pagos' => $pagos, 'cuotas' => $cuotas, 'grado' => $grado];
       $pdf = PDF::loadView('pagocuota.reporteporgrado', $data);
       $pdf->setPaper('A4', 'landscape');
       return $pdf->stream('Reporte Cuotas ' . $grado->nombre . ' Seccion ' . $grado->seccionAsignada->nombre . ' ' . $grado->carrera->jornada->nombre . '.pdf');
-      
+      */
     }
     
 }

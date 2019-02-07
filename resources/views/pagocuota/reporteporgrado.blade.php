@@ -7,8 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
         .texto-vertical-2 {
-          writing-mode: vertical-lr;
-          transform: rotate(270deg);
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+        }
+        .letra {
+            font-size: 10px;
         }
         body {
             margin: 0;
@@ -144,10 +147,10 @@
             <table class="table table-bordered table-striped table-sm">
             <thead>
                 <tr>
-                    <th style="width: 4%; height: 50px;">#</th>
-                    <th style="width: 20%; height: 50px;">Alumno</th>
+                    <th style="width: 4%; height: 100px;">#</th>
+                    <th style="width: 20%; height: 100px;">Alumno</th>
                     @foreach($cuotas as $cu)
-                        <th style="width: 4%; height: 50px;" ><p class="texto-vertical-2">{{ str_limit($cu->nombre, $limit = 4, $end = '') }}</p></th>
+                        <th style="width: 4%; height: 100px;" ><p class="texto-vertical-2 letra">{{ str_limit($cu->nombre, $limit = 15, $end = '') }}</p></th>
                     @endforeach
                 </tr>
             </thead>
@@ -158,12 +161,17 @@
                 @php($contador++)
                 <td>{{$contador}}</td>
                 <td>{{$ins->primer_apellido}} {{$ins->segundo_apellido}} {{$ins->primer_nombre}} {{$ins->segundo_nombre}} {{$ins->tercer_nombre}}</td>
-                @foreach($pagos as $pago)
-                    @foreach($cuotas as $cuota)
-                        @if($pago->id_cuota == $cuota->id_cuota && $pago->id_inscripcion == $ins->id_inscripcion)
-                        <td>{{$pago->monto }}</td>
+                @foreach($cuotas as $cu)
+                @php($contador = 0)
+                    @foreach($pagos as $pago)
+                        @if($pago->id_cuota == $cu->id_cuota && $pago->id_inscripcion == $ins->id_inscripcion)
+                            <td>{{ $pago->monto }}</td>
+                            @php($contador++)
                         @endif
                     @endforeach
+                    @if($contador == 0)
+                        <td>0</td>
+                    @endif
                 @endforeach
             </tr>
             @endforeach
