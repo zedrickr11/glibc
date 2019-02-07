@@ -88,6 +88,7 @@
                         @endif
                       </td>
                       <td>
+                        @if(auth()->user()->hasRole(['admin']))
                         @if($pago->monto == null && $pago->fecha == null && $pago->mora == null)
                           <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#primaryModal-{{$pago->id_pagomensualidad}}">
                             <i class="icon-check"></i>&nbsp;Registrar pago
@@ -98,6 +99,7 @@
                             <i class="icon-check"></i>&nbsp;Editar pago
                           </button>
                           @endif
+                        @endif
                         @endif
                       </td>
                     </tr>
@@ -176,7 +178,7 @@
       var morapendiente = 0;
       var total = 0;
       var saldo = 0;
-      
+
       moracantidad = parseFloat($("#moracantidad").html());
       cuotacantidad = parseFloat($("#cuota").html());
       plancantidad = parseFloat($("#plan").html());
@@ -192,7 +194,7 @@
           morapendiente = morapendiente + moracantidad;
         }
       });
-      
+
       total = (plancantidad * cuotacantidad) + totalMora + morapendiente;
       totalPagado = totalMensualidad + totalMora;
       saldo = total - totalPagado;

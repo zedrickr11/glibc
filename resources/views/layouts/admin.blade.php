@@ -94,6 +94,7 @@
           <li class="nav-title">
             Colegio
           </li>
+            @if (auth()->user()->hasRole(['admin']))
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Administración</a>
             <ul class="nav-dropdown-items">
@@ -187,7 +188,46 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('archivo') }}"><i class="icon-puzzle"></i> Archivos </a>
           </li>
-
+        @elseif(auth()->user()->hasRole(['director']))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('record') }}"><i class="icon-puzzle"></i> Reportar Alumno </a>
+          </li>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('pagomensualidad') }}"><i class="fa fa-caret-right"></i> Mensualidades</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('cuota') }}"><i class="fa fa-caret-right"></i> Cuotas Especiales</a>
+              </li>
+            </ul>
+          </li>
+        @elseif(auth()->user()->hasRole(['secre']))
+        @elseif(auth()->user()->hasRole(['prof']))
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
+            <ul class="nav-dropdown-items">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url('cuota') }}"><i class="fa fa-caret-right"></i> Cuotas Especiales</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('asistencia') }}"><i class="icon-puzzle"></i> Asistencia </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('record') }}"><i class="icon-puzzle"></i> Reportar Alumno </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('notas') }}"><i class="icon-puzzle"></i> Notas </a>
+          </li>
+        @elseif(auth()->user()->hasRole(['padre']))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('notas') }}"><i class="icon-puzzle"></i> Notas </a>
+          </li>
+        @endif
         </ul>
       </nav>
       <button class="sidebar-minimizer brand-minimizer" type="button"></button>
