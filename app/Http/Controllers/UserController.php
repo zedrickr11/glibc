@@ -71,7 +71,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-      return view("users.edit",["usuario"=>User::findOrFail($id)]);
+      $usuario=User::findOrFail($id);
+
+      $this->authorize('edit',$usuario);
+      return view("users.edit",compact('usuario'));
     }
     /**
      * Update the specified resource in storage.
@@ -83,6 +86,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
       $usuario=User::findOrFail($id);
+      $this->authorize('update',$usuario);
       $usuario->name=$request->get('name');
       $usuario->email=$request->get('email');
       $usuario->password=bcrypt($request->get('password'));

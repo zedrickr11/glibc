@@ -75,7 +75,7 @@
             <strong>{{ auth()->user()->name }}</strong>
           </div>
       <div class="divider"></div>
-          <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Mi Cuenta</a>
+          <a class="dropdown-item" href="/usuarios/{{ auth()->id() }}/edit"><i class="fa fa-user"></i> Mi Cuenta</a>
 
           <a class="dropdown-item" href="/logout"><i class="fa fa-lock"></i> Cerrar Sesión</a>
         </div>
