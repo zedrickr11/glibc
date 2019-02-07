@@ -79,7 +79,7 @@ class PadreController extends Controller
           $usuario=new User;
           $usuario->name=$request->get('name');
           $usuario->email=$request->get('email');
-          $usuario->password=bcrypt($request->get('password'));
+          $usuario->password=bcrypt('CHS2019');
           $usuario->id_persona=$request->get('id_persona');
           $usuario->save();
 
