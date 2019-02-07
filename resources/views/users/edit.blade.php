@@ -45,7 +45,7 @@
                       <div class="form-group col-md-4">
 
                         <label for="password">Contraseña</label>
-                        <input required type="password" class="form-control" name="password" value="{{$usuario->password}}">
+                        <input required type="password" class="form-control" name="password" value="">
                         {!!$errors->first('password','<span class=text-danger>:message</span>')!!}
 
 
