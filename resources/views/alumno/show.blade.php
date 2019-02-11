@@ -21,33 +21,19 @@
               <form class="">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <label for=""><strong>Primer Nombre:</strong></label><br>
-                    <label for="">{{ $alumno->primer_nombre }}</label>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <label for=""><strong>Segundo Nombre:</strong></label><br>
-                    <label for="">{{ $alumno->segundo_nombre }}</label>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <label for=""><strong>Tercer Nombre:</strong></label><br>
-                    <label for="">{{ $alumno->tercer_nombre }}</label>
-                  </div>
-                </div><br>
-                <div class="row">
                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <label for=""><strong>Primer Apellido:</strong></label><br>
-                    <label for="">{{ $alumno->primer_apellido }}</label>
+                    <label for=""><strong>Nombres:</strong></label><br>
+                    <label for="">{{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }} {{ $alumno->tercer_nombre }}</label>
                   </div>
                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                    <label for=""><strong>Segundo Apellido:</strong></label><br>
-                    <label for="">{{ $alumno->segundo_apellido }}</label>
+                    <label for=""><strong>Apellidos:</strong></label><br>
+                    <label for="">{{ $alumno->primer_apellido }} {{ $alumno->segundo_apellido }}</label>
                   </div>
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for=""><strong>Persona encargada:</strong></label><br>
-                    <label for="">{{ $alumno->persona->nombres }}</label>
+                    <label for="">{{ $alumno->persona->nombres }} {{ $alumno->persona->apellidos }}</label>
                   </div>
                 </div><br>
                 <div class="row">

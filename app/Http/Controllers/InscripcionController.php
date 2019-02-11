@@ -95,10 +95,12 @@ class InscripcionController extends Controller
 
     public function store(InscripcionFormRequest $request)
     {
+        $id_persona = auth()->user()->persona->id_persona;
         $inscripcion = (new Inscripcion)->fill($request->all());
 
         $date = Carbon::now();
         $inscripcion->fecha = $date;
+        $inscripcion->id_persona = $id_persona;
         $inscripcion->condicion = 1;
         $inscripcion->save();
 
