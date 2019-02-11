@@ -15,12 +15,37 @@
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <strong>Alumno</strong>
+                <strong>Alumno 
+                </strong>
                 <small></small>
               </div>
               <form class="" action="{{ route('alumno.store') }}" method="post" enctype="multipart/form-data">
               {!! csrf_field() !!}
               <div class="card-body">
+                <div class="row">
+                  <div class="col-xs-8 col-sm-8 col-md-10 col-lg-10">
+                    <label for="id_persona">Persona encargada</label>
+                    <select name="id_persona" class="form-control select2-single" id="select-busqueda">
+                      <option value="">Seleccione encargado: </option>
+                      @if($id_padre == null)
+                        @foreach($personas as $persona)
+                          <option value="{{ $persona->id_persona }}" {{ old('id_persona') == $persona->id_persona ? 'selected': '' }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
+                        @endforeach
+                      @else
+                        @foreach($personas as $persona)
+                          <option value="{{ $persona->id_persona }}" {{ $id_padre == $persona->id_persona ? 'selected': '' }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
+                        @endforeach
+                      @endif
+                    </select>
+                    {!!$errors->first('id_persona','<span class=text-danger>:message</span>')!!}
+                  </div>
+                  <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                    <label for=""></label><br>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#largeModal">
+                      <span class="fa fa-plus">&nbsp;Nuevo</span>
+                    </button>
+                  </div>
+                </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
                     <label for="primer_nombre">Primer Nombre*</label>
@@ -48,18 +73,6 @@
                     <label for="segundo_apellido">Segundo Apellido</label>
                     <input type="text" class="form-control" name="segundo_apellido" value="{{ old('segundo_apellido') }}" placeholder="Ingrese segundo apellido...">
                     {!!$errors->first('segundo_apellido','<span class=text-danger>:message</span>')!!}
-                  </div>
-                </div><br>
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_persona">Persona encargada</label>
-                    <select name="id_persona" class="form-control select2-single" id="select-busqueda">
-                      <option value="">Seleccione encargado: </option>
-                      @foreach($personas as $persona)
-                        <option value="{{ $persona->id_persona }}" {{ old('id_persona') == $persona->id_persona ? 'selected': '' }}>{{ $persona->nombres }} {{ $persona->apellidos }}</option>
-                      @endforeach
-                    </select>
-                    {!!$errors->first('id_persona','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
@@ -140,6 +153,7 @@
         </div>
       </div>
     </div>
+    @include('alumno.registrarpadre')
     @push ('scripts')
       <script type="text/javascript">
       $('#select-busqueda').select2({

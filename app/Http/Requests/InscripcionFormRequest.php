@@ -28,7 +28,6 @@ class InscripcionFormRequest extends FormRequest
           'id_ciclo' => 'required|integer',
           'id_grado' => 'required|integer',
           'id_plan' => 'required|integer',
-          'id_persona' => 'required|integer',
           'pago_inscripcion' => 'nullable|numeric',
           'cuota' => 'required|numeric'
         ];

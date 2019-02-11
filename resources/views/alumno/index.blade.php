@@ -74,6 +74,7 @@
       <script type="text/javascript">
       //$('#tabla-alumno').DataTable();
         $('#tabla-alumno').DataTable({
+        "order": [[0, "desc"]],
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",

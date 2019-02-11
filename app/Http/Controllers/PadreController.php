@@ -29,7 +29,7 @@ class PadreController extends Controller
          */
         public function index()
         {
-          $persona=Persona::all()->where('tipo_persona','padre')->where('condicion', 1);
+          $persona=Persona::where('tipo_persona','padre')->where('condicion', 1)->orderBy('id_persona', 'desc')->get();
           return view ('padre.index',compact('persona'));
         }
 
@@ -73,7 +73,18 @@ class PadreController extends Controller
           $persona->tipo_persona="padre";
 
           $persona->save();
-          return redirect()->route('padre.index');
+
+          if($request->has('opcion')){
+            if($request->opcion == 'modal'){
+              //$personas = Persona::where('tipo_persona', 'padre')->get();
+              //return view('alumno.create', compact('personas', 'id_padre'));
+              $id_padre = $persona->id_persona;
+              return redirect()->route('alumno.crear', ['idPadre' => $id_padre]);
+            }
+          }
+          else {
+              return redirect()->route('padre.index');
+          }
         }
         public function saveUserPadre(Request $request)
         {

@@ -81,6 +81,7 @@
     @push ('scripts')
       <script type="text/javascript">
         $('#tabla-seccion').DataTable({
+        "order": [[0, "desc"]],
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",

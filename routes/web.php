@@ -31,6 +31,7 @@ Route::resource('carrera','CarreraController');
 
 Route::resource('alumno','AlumnoController');
 Route::get('alumno/downloadFeEdad/{id}', 'AlumnoController@downloadFeEdad')->name('alumno.downloadFeEdad');
+Route::get('alumno/crear/{idPadre?}', 'AlumnoController@create')->name('alumno.crear');
 
 Route::resource('inscripcion','InscripcionController');
 

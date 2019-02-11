@@ -18,14 +18,15 @@ class AlumnoController extends Controller
 
     public function index()
     {
-        $alumnos = Alumno::all();
+        $alumnos = Alumno::orderBy('id', 'desc')->get();
         return view ('alumno.index',compact('alumnos'));
     }
 
-    public function create()
+    public function create($idPadre = null)
     {
+        $id_padre = $idPadre;
         $personas = Persona::where('tipo_persona', 'padre')->get();
-        return view('alumno.create', compact('personas'));
+        return view('alumno.create', compact('personas', 'id_padre'));
     }
 
     public function store(AlumnoFormRequest $request)

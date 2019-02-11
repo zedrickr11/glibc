@@ -74,18 +74,6 @@
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <label for="id_persona">Persona encargada</label>
-                    <select name="id_persona" class="form-control select2-single" id="id_persona">
-                      <option value="">Seleccione encargado: </option>
-                      @foreach($personas as $persona)
-                        <option value="{{ $persona->id_persona }}" {{ old('id_persona') == $persona->id_persona ? 'selected': '' }}>{{ $persona->nombres }} {{ $persona->apellidos}}</option>
-                      @endforeach
-                    </select>
-                    {!!$errors->first('id_persona','<span class=text-danger>:message</span>')!!}
-                  </div>
-                </div><br>
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="pago_inscripcion">Pago inscripcion</label>
                     <input type="number" class="form-control" value="{{ old('pago_inscripcion') }}" name="pago_inscripcion">
                     {!!$errors->first('pago_inscripcion','<span class=text-danger>:message</span>')!!}
