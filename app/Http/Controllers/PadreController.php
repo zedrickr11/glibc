@@ -81,6 +81,10 @@ class PadreController extends Controller
               $id_padre = $persona->id_persona;
               return redirect()->route('alumno.crear', ['idPadre' => $id_padre]);
             }
+            if($request->opcion == 'porpasos'){
+              $id_padre = $persona->id_persona;
+              return redirect()->route('inscripcion.pasodos', ['idPadre' => $id_padre]);
+            }
           }
           else {
               return redirect()->route('padre.index');

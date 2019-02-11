@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Colegio</li>
       <li class="breadcrumb-item"><a href="#">Inscripciones</a></li>
-      <li class="breadcrumb-item active">Listado</li>
+      <li class="breadcrumb-item active">Listado de alumnos inscritos</li>
       <!-- Breadcrumb Menu-->
 
     </ol>
@@ -15,8 +15,10 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <i class="fa fa-align-justify"></i> Inscripciones
-                <a href="inscripcion/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
+                <i class="fa fa-align-justify"></i> Listado de alumnos inscritos
+                <a href="{{route('inscripcion.pasouno')}}"> <button type="button" class="pull-right  btn btn-success btn-sm"><span class="fa fa-plus">&nbsp;Inscribir</button></a>
+                &nbsp;&nbsp;
+                <!--<a href="inscripcion/create"> <button type="button" class="pull-right  btn btn-success btn-sm"><span class="fa fa-plus">&nbsp;Inscripcion Directa</button></a>-->
               </div>
               <div class="card-body">
                 <table id="tabla-inscripcion" class="display table table-responsive-sm table-striped">

@@ -141,4 +141,28 @@ class InscripcionController extends Controller
 
         return redirect()->route('inscripcion.index');
     }
+
+    public function pasouno(Request $request)
+    {
+        return view('inscripcion.pasouno');
+    }
+
+    public function pasodos($idPadre = null)
+    {
+        $id_padre = $idPadre;
+        $personas = Persona::where('tipo_persona', 'padre')->get();
+        return view('inscripcion.pasodos', compact('personas', 'id_padre'));
+    }
+
+    public function pasotres($idAlumno = null)
+    {
+        $id_alumno = $idAlumno;
+
+        $alumnos = Alumno::where('condicion',1)->get();
+        $planes = Plan::where('condicion',1)->get();
+        $grados = Grado::where('condicion',1)->get();
+        $ciclos = Ciclo::where('condicion',1)->get();
+        $personas = Persona::where('tipo_persona', 'padre')->get();
+        return view('inscripcion.pasotres', compact('alumnos', 'planes', 'ciclos', 'grados', 'personas', 'id_alumno'));
+    }
 }
