@@ -16,7 +16,9 @@
             <div class="card">
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Cuota
-                <a href="cuota/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
+                @if(auth()->user()->hasRole(['admin']))
+                  <a href="cuota/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
+                @endif
               </div>
               <div class="card-body">
                 <table id="tabla-plan" class="table table-responsive-sm table-striped">
@@ -43,6 +45,7 @@
                         @endif
                       </td>
                       <td>
+                      @if(auth()->user()->hasRole(['admin']))
                         <a href="{{route('cuota.edit',$cuota->id_cuota )}}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
                         </a>
@@ -55,6 +58,7 @@
                           <span class="icon-check"></span>
                         </button>
                         @endif
+                      @endif
                         <a href="{{route('pagocuota.grados', $cuota->id_cuota )}}">
                           <button type="button" class="btn btn-primary btn-sm" name="button"><span class="icon-wallet"></span>&nbsp;Pagos</button>
                         </a>

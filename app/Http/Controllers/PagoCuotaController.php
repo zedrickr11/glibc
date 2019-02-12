@@ -16,7 +16,7 @@ class PagoCuotaController extends Controller
   public function __construct()
    {
        $this->middleware('auth');
-       $this->middleware('role:admin');
+       $this->middleware('role:admin,prof');
    }
     public function index()
     {
@@ -50,10 +50,11 @@ class PagoCuotaController extends Controller
 
     public function grados(Request $request, $id)
     {
+      $id_persona = auth()->user()->persona->id_persona;
       $cuota = Cuota::findOrFail($id);
 
-      $ano = Carbon::now()->format('Y');
-      $grados = DB::table('grado')
+      $anio = Carbon::now()->format('Y');
+      /*$grados = DB::table('grado')
               ->join('seccion', 'grado.id_seccion', '=', 'seccion.id')
               ->join('persona', 'grado.id_persona', '=', 'persona.id_persona')
               ->join('carrera', 'grado.id_carrera', '=', 'carrera.id')
@@ -61,10 +62,26 @@ class PagoCuotaController extends Controller
               ->join('detalle', 'carrera.id', '=', 'detalle.id_carrera')
               ->join('ciclo', 'detalle.id_ciclo', '=', 'ciclo.id_ciclo')
               ->select('grado.id_grado', 'grado.condicion', 'grado.nombre as grado_nombre', 'seccion.nombre as seccion_nombre', 'jornada.nombre as nombre_jornada',
-                      'ciclo.anio as ciclo_ano', 'persona.nombres as persona_nombres', 'persona.apellidos as persona_apellidos')
+                      'persona.nombres as persona_nombres', 'persona.apellidos as persona_apellidos')
               ->where('grado.condicion',1)
-              ->where('ciclo.anio', $ano)
-              ->get();
+              ->where('ciclo.anio', $anio)
+              ->get();*/
+      
+      $grados = DB::table('asignacion_curso as a')
+              ->join('grado as g','g.id_grado','a.id_grado')
+              ->join('seccion as s','s.id','g.id_seccion')
+              ->join('carrera as c','c.id','g.id_carrera')
+              ->join('jornada as j', 'j.id_jornada','c.id_jornada')
+              ->select('g.id_grado','g.nombre as grado_nombre','s.nombre as seccion_nombre','j.nombre as nombre_jornada', 'c.nombre as carrera')
+              ->where('a.anio', $anio);
+      
+      if(!auth()->user()->hasRole(['admin', 'secre', 'director'])){
+          $grados = $grados->where('a.id_persona',$id_persona);
+      }
+
+      $grados = $grados->groupBy('g.id_grado','g.nombre','s.nombre','j.nombre', 'c.nombre')
+                      ->orderBy('c.nombre', 'desc')
+                      ->get();
 
       return view ('pagocuota.grados',compact('grados', 'cuota'));
     }

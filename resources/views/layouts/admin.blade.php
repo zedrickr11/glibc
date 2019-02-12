@@ -68,7 +68,11 @@
     <ul class="nav navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <img src="/personas/fotos/{{ auth()->user()->persona->foto }}" class="img-avatar" alt="{{ auth()->user()->persona->foto }}">
+          @if(auth()->user()->persona->foto == null)
+            <img src="/personas/fotos/persona.png" class="img-avatar" alt="persona.png">
+          @else
+            <img src="/personas/fotos/{{ auth()->user()->persona->foto }}" class="img-avatar" alt="{{ auth()->user()->persona->foto }}">
+          @endif
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-header text-center">
@@ -222,6 +226,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('notas') }}"><i class="icon-puzzle"></i> Notas </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('archivo') }}"><i class="icon-puzzle"></i> Archivos </a>
           </li>
         @elseif(auth()->user()->hasRole(['padre']))
           <li class="nav-item">

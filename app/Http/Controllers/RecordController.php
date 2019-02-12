@@ -32,11 +32,15 @@ class RecordController extends Controller
                   ->join('carrera as c','c.id','g.id_carrera')
                   ->join('jornada as j', 'j.id_jornada','c.id_jornada')
                   ->select('g.id_grado','g.nombre as grado','s.nombre as seccion','j.nombre as jornada', 'c.nombre as carrera')
-                  ->where('a.id_persona',$id_persona)
-                  ->where('a.anio', $anio)
-                  ->groupBy('g.id_grado','g.nombre','s.nombre','j.nombre', 'c.nombre')
-                  ->orderBy('c.nombre', 'desc')
-                  ->get();
+                  ->where('a.anio', $anio);
+
+        if(!auth()->user()->hasRole(['admin', 'secre', 'director'])){
+            $grados = $grados->where('a.id_persona',$id_persona);
+        }
+
+        $grados = $grados->groupBy('g.id_grado','g.nombre','s.nombre','j.nombre', 'c.nombre')
+                      ->orderBy('c.nombre', 'desc')
+                      ->get();
 
         return view ('record.grados',compact('grados'));
     }
@@ -46,13 +50,18 @@ class RecordController extends Controller
       $id_persona = auth()->user()->persona->id_persona;
       $grado = Grado::findOrFail($idGrado);
 
-      $cursos=DB::table('asignacion_curso as a')
+      $cursos = DB::table('asignacion_curso as a')
               ->join('curso as c','a.id_curso','c.id_curso')
               ->select('c.id_curso','c.nombre')
-              ->where('a.id_persona',$id_persona)
-              ->where('a.id_grado',$idGrado)
-              ->orderBy('c.nombre', 'asc')
-              ->get();
+              ->where('a.id_grado',$idGrado);
+
+      if(!auth()->user()->hasRole(['admin', 'secre', 'director'])){
+          $cursos = $cursos->where('a.id_persona',$id_persona);
+      }
+
+      $cursos = $cursos->orderBy('c.nombre', 'asc')
+                      ->get();
+
       return view ('record.cursos',compact('cursos','grado'));
     }
 
@@ -78,6 +87,7 @@ class RecordController extends Controller
                       ->where('insc.id_grado',$idGrado)
                       ->where('c.anio',$anio)
                       ->orderBy('a.primer_apellido', 'asc')
+                      ->orderBy('a.segundo_apellido', 'asc')
                       ->get();
 
       return view('record.alumnos',compact('alumnos','asignacion_curso', 'curso', 'grado', 'idPersona'));

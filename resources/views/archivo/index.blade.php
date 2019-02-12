@@ -15,7 +15,9 @@
             <div class="card">
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Archivos Subidos
-                <a href="archivo/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
+                @if(auth()->user()->hasRole(['admin']))
+                  <a href="archivo/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
+                @endif
               </div>
               <div class="card-body">
                 <table id="tabla-curso" class="display table table-responsive-sm table-striped">
@@ -23,7 +25,9 @@
                     <tr>
                       <th>Nombre del archivo</th>
                       <th>Link de Descarga</th>
+                      @if(auth()->user()->hasRole(['admin']))
                       <th>Opciones</th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
@@ -31,14 +35,16 @@
                     <tr>
                       <td>{{ $archivo->nombre }}</td>
                       <td><a href="{{route('archivo.downloadArchivo',$archivo->id_archivo )}}">Descargar Archivo</a> </td>
+                      @if(auth()->user()->hasRole(['admin']))
                       <td>
-                        <a href="{{route('archivo.edit',$archivo->id_archivo )}}">
-                          <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
-                        </a>
-                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$archivo->id_archivo}}">
-                          <span class="fa fa-trash-o"></span>
-                        </button>
+                          <a href="{{route('archivo.edit',$archivo->id_archivo )}}">
+                            <button type="button" class="btn btn-warning btn-sm" name="button"><span class="fa fa-pencil-square-o"></span></button>
+                          </a>
+                          <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#dangerModal-{{$archivo->id_archivo}}">
+                            <span class="fa fa-trash-o"></span>
+                          </button>
                       </td>
+                      @endif
                     </tr>
                     @include('archivo.modal')
                     @endforeach

@@ -31,8 +31,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Apellidos</th>
-                      <th>Nombres</th>
+                      <th>Alumno</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -43,10 +42,7 @@
                     <tr>
                       <td>{{ $cont }}</td>
                       <td>
-                         {{ $alumno->primer_apellido }}  {{ $alumno->segundo_apellido }}
-                      </td>
-                      <td>
-                        {{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }} {{ $alumno->tercer_nombre }}
+                         {{ $alumno->primer_apellido }}  {{ $alumno->segundo_apellido }} {{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }} {{ $alumno->tercer_nombre }}
                       </td>
                       <td>
                         <button type="button" class=" btn btn-primary btn-sm" data-toggle="modal" data-target="#primaryModal-{{$alumno->id_alumno}}">

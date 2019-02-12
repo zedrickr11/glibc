@@ -24,8 +24,7 @@
                       <th>Nombre</th>
                       <th>Seccion</th>
                       <th>Jornada</th>
-                      <th>Maestro Guia</th>
-                      <th>Estado</th>
+                      <th>Nivel</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
@@ -35,14 +34,7 @@
                       <td>{{ $grado->grado_nombre }}</td>
                       <td>{{ $grado->seccion_nombre }}</td>
                       <td>{{ $grado->nombre_jornada }}</td>
-                      <td>{{ $grado->persona_nombres }} {{ $grado->persona_apellidos }}</td>
-                      <td>
-                        @if ($grado->condicion==1)
-                          <span class="badge badge-success">Activo</span>
-                        @else
-                          <span class="badge badge-danger">Inactivo</span>
-                        @endif
-                      </td>
+                      <td>{{ $grado->carrera }}</td>
                       <td>
                         <a href="{{route('pagocuota.alumnos', ['idCuota' => $cuota->id_cuota, 'idGrado' => $grado->id_grado])}}">
                           <button type="button" class="btn btn-primary btn-sm" name="button"><span class="icon-wallet"></span>&nbsp; Pagos</button>
@@ -65,6 +57,7 @@
     @push ('scripts')
       <script type="text/javascript">
         $('#tabla-grado').DataTable({
+        "order": [[3, "desc"]],
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",
