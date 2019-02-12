@@ -11,7 +11,7 @@ class CuotaController extends Controller
   public function __construct()
    {
        $this->middleware('auth');
-       $this->middleware('role:admin,director,secre');
+       $this->middleware('role:admin,director,secre,prof');
    }
     public function index()
     {

@@ -22,19 +22,25 @@ class AsistenciaController extends Controller
     {
         $id_persona = auth()->user()->persona->id_persona;
         $anio = Carbon::now()->format('Y');
+        $user = "";
+        
         $grados = DB::table('asignacion_curso as a')
                   ->join('grado as g','g.id_grado','a.id_grado')
                   ->join('seccion as s','s.id','g.id_seccion')
                   ->join('carrera as c','c.id','g.id_carrera')
                   ->join('jornada as j', 'j.id_jornada','c.id_jornada')
                   ->select('g.id_grado','g.nombre as grado','s.nombre as seccion','j.nombre as jornada', 'c.nombre as carrera')
-                  ->where('a.id_persona',$id_persona)
-                  ->where('a.anio', $anio)
-                  ->groupBy('g.id_grado','g.nombre','s.nombre','j.nombre', 'c.nombre')
-                  ->orderBy('c.nombre', 'desc')
-                  ->get();
+                  ->where('a.anio', $anio);
 
-        return view ('asistencia.grados',compact('grados'));
+        if(!auth()->user()->hasRole(['admin'])){
+            $grados = $grados->where('a.id_persona',$id_persona);
+        }
+
+        $grados = $grados->groupBy('g.id_grado','g.nombre','s.nombre','j.nombre', 'c.nombre')
+                        ->orderBy('c.nombre', 'desc')
+                        ->get();
+
+        return view ('asistencia.grados',compact('grados', 'user'));
     }
 
     public function cursos($idGrado)
@@ -45,10 +51,15 @@ class AsistenciaController extends Controller
       $cursos=DB::table('asignacion_curso as a')
               ->join('curso as c','a.id_curso','c.id_curso')
               ->select('c.id_curso','c.nombre')
-              ->where('a.id_persona',$id_persona)
-              ->where('a.id_grado',$idGrado)
-              ->orderBy('c.nombre', 'asc')
-              ->get();
+              ->where('a.id_grado',$idGrado);
+
+      if(!auth()->user()->hasRole(['admin'])){
+        $cursos = $cursos->where('a.id_persona',$id_persona);
+      }
+
+      $cursos = $cursos->orderBy('c.nombre', 'asc')
+                        ->get();
+
       return view ('asistencia.cursos',compact('cursos','grado'));
     }
 
@@ -62,9 +73,13 @@ class AsistenciaController extends Controller
 
         $asignacion_curso = AsignacionCurso::where('id_grado', $idGrado)
                             ->where('id_curso', $idCurso)
-                            ->where('id_persona', $idPersona)
-                            ->where('anio', $anio)
-                            ->first();
+                            ->where('anio', $anio);
+
+        if(!auth()->user()->hasRole(['admin'])){
+            $asignacion_curso = $asignacion_curso->where('id_persona', $idPersona);
+        }
+
+        $asignacion_curso = $asignacion_curso->first();
 
         $asistencias = DB::table('asistencia')
                   ->select('asistencia.fecha')
@@ -86,9 +101,13 @@ class AsistenciaController extends Controller
 
       $asignacion_curso = AsignacionCurso::where('id_grado', $idGrado)
                             ->where('id_curso', $idCurso)
-                            ->where('id_persona', $idPersona)
-                            ->where('anio', $anio)
-                            ->first();
+                            ->where('anio', $anio);
+                            
+      if(!auth()->user()->hasRole(['admin'])){
+          $asignacion_curso = $asignacion_curso->where('id_persona', $idPersona);
+      }
+
+      $asignacion_curso = $asignacion_curso->first();
 
       $alumnos=DB::table('inscripcion as insc')
                       ->join('alumno as a','insc.id_alumno','a.id')
@@ -98,6 +117,7 @@ class AsistenciaController extends Controller
                       ->where('insc.id_grado',$idGrado)
                       ->where('c.anio',$anio)
                       ->orderBy('a.primer_apellido', 'asc')
+                      ->orderBy('a.segundo_apellido', 'asc')
                       ->get();
 
       return view('asistencia.alumnos',compact('alumnos','asignacion_curso', 'curso', 'grado'));
@@ -113,9 +133,13 @@ class AsistenciaController extends Controller
 
         $asignacion_curso = AsignacionCurso::where('id_grado', $idGrado)
                             ->where('id_curso', $idCurso)
-                            ->where('id_persona', $idPersona)
-                            ->where('anio', $anio)
-                            ->first();
+                            ->where('anio', $anio);
+        
+        if(!auth()->user()->hasRole(['admin'])){
+            $asignacion_curso = $asignacion_curso->where('id_persona', $idPersona);
+        }
+    
+        $asignacion_curso = $asignacion_curso->first();
 
         $asistencias = DB::table('asistencia')
                             ->join('alumno', 'asistencia.id_alumno', 'alumno.id')
@@ -123,6 +147,8 @@ class AsistenciaController extends Controller
                                     'asistencia.condicion', 'asistencia.observacion')
                             ->where('asistencia.id_asignacion_curso', $asignacion_curso->id_asignacion_curso)
                             ->where('asistencia.fecha', $fecha)
+                            ->orderBy('alumno.primer_apellido', 'asc')
+                            ->orderBy('alumno.segundo_apellido', 'asc')
                             ->get();
 
         return view('asistencia.ver',compact('asistencias','fecha', 'curso', 'grado'));
@@ -142,9 +168,12 @@ class AsistenciaController extends Controller
 
         $comprobar_asignacion = AsignacionCurso::where('id_grado', $grado->id_grado)
                                     ->where('id_curso', $curso->id_curso)
-                                    ->where('id_persona', $idPersona)
-                                    ->where('anio', $anio)
-                                    ->first();
+                                    ->where('anio', $anio);
+        
+        if(!auth()->user()->hasRole(['admin'])){
+            $comprobar_asignacion = $comprobar_asignacion->where('id_persona', $idPersona);
+        }
+        $comprobar_asignacion = $comprobar_asignacion->first();
 
         if($comprobar_asignacion->id_asignacion_curso != $id_asignacion_curso){
             return response()->json(["success" => false]);
