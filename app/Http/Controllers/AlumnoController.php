@@ -53,8 +53,13 @@ class AlumnoController extends Controller
         $alumno->save();
 
         if($request->has('opcion')){
-            if($request->opcion == 'modal')
-            return redirect()->route('inscripcion.create');
+            if($request->opcion == 'modal'){
+                return redirect()->route('inscripcion.create');
+            }
+            if($request->opcion == 'porpasos'){
+                $id_alumno = $alumno->id;
+                return redirect()->route('inscripcion.pasotres', ['idAlumno' => $id_alumno]);
+            }
         }
         else {
             return redirect()->route('alumno.index');
