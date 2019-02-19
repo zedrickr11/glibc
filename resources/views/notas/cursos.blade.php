@@ -34,9 +34,29 @@
 
 
                       <td>
-                        <a href="{{ route('notas.actividades',[$id_grado,$curso->id_curso]) }}">
-                          <button type="button" class="btn btn-primary btn-sm" name="button"> Actividades</button>
-                        </a>
+                        @if (!auth()->user()->hasRole(['admin']))
+                          <a href="{{ route('notas.actividades',[$id_grado,$curso->id_curso]) }}">
+                            <button type="button" class="btn btn-primary btn-sm" name="button"> Actividades</button>
+                          </a>
+                        @endif
+
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reportes
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" target="_blank" href="">Primera Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="">Segunda Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="">Tercera Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="">Cuarta Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="">Quinta Unidad</a>
+
+
+
+                            <!--<a class="dropdown-item" href="#">Cuotas</a>
+                            <a class="dropdown-item" href="#">Alumnos</a>-->
+                          </div>
+                        </div>
 
 
                       </td>

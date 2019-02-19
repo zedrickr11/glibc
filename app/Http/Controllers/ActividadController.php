@@ -27,16 +27,31 @@ class ActividadController extends Controller
     {
         $id_persona = auth()->user()->persona->id_persona;
         $anio = Carbon::now()->format('Y');
-        $grados = DB::table('asignacion_curso as a')
-                  ->join('grado as g','g.id_grado','a.id_grado')
-                  ->join('seccion as s','s.id','g.id_seccion')
-                  ->join('carrera as c','c.id','g.id_carrera')
-                  ->join('jornada as j', 'j.id_jornada','c.id_jornada')
-                  ->select('g.id_grado','g.nombre as grado','s.nombre as seccion','j.nombre as jornada', 'c.nombre as carrera')
-                  ->where('a.id_persona',$id_persona)
-                  ->where('a.anio', $anio)
-                  ->groupBy('g.id_grado','g.nombre','s.nombre','j.nombre', 'c.nombre')
-                  ->get();
+        if (!auth()->user()->hasRole(['admin']))
+        {
+          $grados = DB::table('asignacion_curso as a')
+                    ->join('grado as g','g.id_grado','a.id_grado')
+                    ->join('seccion as s','s.id','g.id_seccion')
+                    ->join('carrera as c','c.id','g.id_carrera')
+                    ->join('jornada as j', 'j.id_jornada','c.id_jornada')
+                    ->select('g.id_grado','g.nombre as grado','s.nombre as seccion','j.nombre as jornada', 'c.nombre as carrera')
+                    ->where('a.id_persona',$id_persona)
+                    ->where('a.anio', $anio)
+                    ->groupBy('g.id_grado','g.nombre','s.nombre','j.nombre', 'c.nombre')
+                    ->get();
+        }elseif (auth()->user()->hasRole(['admin'])) {
+          $grados = DB::table('asignacion_curso as a')
+                    ->join('grado as g','g.id_grado','a.id_grado')
+                    ->join('seccion as s','s.id','g.id_seccion')
+                    ->join('carrera as c','c.id','g.id_carrera')
+                    ->join('jornada as j', 'j.id_jornada','c.id_jornada')
+                    ->select('g.id_grado','g.nombre as grado','s.nombre as seccion','j.nombre as jornada', 'c.nombre as carrera')
+                    //->where('a.id_persona',$id_persona)
+                    ->where('a.anio', $anio)
+                    ->groupBy('g.id_grado','g.nombre','s.nombre','j.nombre', 'c.nombre')
+                    ->get();
+        }
+
 
 
         return view ('notas.grados',compact('grados'));
@@ -45,13 +60,22 @@ class ActividadController extends Controller
     {
       $id_persona = auth()->user()->persona->id_persona;
       $id_grado=$id;
-
+      if (!auth()->user()->hasRole(['admin']))
+      {
       $cursos=DB::table('asignacion_curso as a')
               ->join('curso as c','a.id_curso','c.id_curso')
               ->select('c.id_curso','c.nombre')
               ->where('a.id_persona',$id_persona)
               ->where('a.id_grado',$id)
               ->get();
+      }elseif (auth()->user()->hasRole(['admin'])) {
+        $cursos=DB::table('asignacion_curso as a')
+                ->join('curso as c','a.id_curso','c.id_curso')
+                ->select('c.id_curso','c.nombre')
+                //->where('a.id_persona',$id_persona)
+                ->where('a.id_grado',$id)
+                ->get();
+      }
       return view ('notas.cursos',compact('cursos','id_grado'));
     }
     public function actividades($id_grado,$id_curso)
