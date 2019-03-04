@@ -45,11 +45,11 @@
                             Reportes
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" target="_blank" href="">Primera Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="">Segunda Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="">Tercera Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="">Cuarta Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="">Quinta Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,1]) }}">Primera Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,2]) }}">Segunda Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,3]) }}">Tercera Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,4]) }}">Cuarta Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,5]) }}">Quinta Unidad</a>
 
 
 

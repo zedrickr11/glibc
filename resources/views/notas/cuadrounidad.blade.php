@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Reporte pagos mensualidad</title>
+  <title>Cuadro de registro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
         .texto-vertical-2 {
@@ -110,7 +110,7 @@
         #encabezado{
             text-align: center;
             margin-left: 10%;
-            margin-right: 35%;
+            margin-right: 37%;
             font-size: 15px;
         }
 
@@ -121,6 +121,10 @@
         #leyenda{
             font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
             font-size: 10px;
+        }
+        #gris{
+          background-color: #e6e6e6;
+           font-weight: bold;
         }
   </style>
 </head>
@@ -133,8 +137,9 @@
         <div id="datos">
             <p id="encabezado">
                <span id="hispano"> <strong>COLEGIO CRISTIANO HISPANOAMERICANO</strong></span>
-               <br> <span id="leyenda"> CREEMOS, CONFIAMOS Y SERVIMOS A DIOS </span><br> REPORTE DE PAGOS DE MENSUALIDAD <br>
-               &nbsp;{{$grado->nombre}} {{$grado->seccionAsignada->nombre}} {{$grado->carrera->jornada->nombre}}
+               <br> <span id="leyenda"> CREEMOS, CONFIAMOS Y SERVIMOS A DIOS </span><br> CUADRO DE REGISTRO <br>
+               &nbsp;{{ $prof_curso->nombres }} {{ $prof_curso->apellidos }} <br>
+              &nbsp;  {{$grado->nombre}} {{$grado->seccionAsignada->nombre}} {{$grado->carrera->jornada->nombre}} - {{ $unidades->nombre }}
             </p>
         </div>
     </header>
@@ -143,15 +148,39 @@
         <div>
             <table class="table table-bordered table-striped table-sm">
             <thead>
+              <tr>
+                <th colspan="2"></th>
+
+
+                @foreach ($tipoActividad as $ta)
+                  @if ($ta->id_tipo_actividad==1)
+                    <th colspan="{{ $cont1->cont1 }}"><div align="center">{{ $ta->nombre }}</div></th>
+                  @endif
+                  @if ($ta->id_tipo_actividad==2)
+                    <th colspan="{{ $cont2->cont2 }}"><div align="center">{{ $ta->nombre }}</div></th>
+                  @endif
+                  @if ($ta->id_tipo_actividad==3)
+                    <th colspan="{{ $cont3->cont3+2 }}"><div align="center">{{ $ta->nombre }}</div></th>
+                  @endif
+
+              @endforeach
+
                 <tr>
-                    <th style="width: 4%; height: 50px;">#</th>
-                    <th style="width: 20%; height: 50px;">Alumno</th>
-                    <th style="width: 4%; height: 50px;"><p class="texto-vertical-2">Insc</p></th>
-                    <th style="width: 4%; height: 50px;"><p class="texto-vertical-2">Plan</p></th>
-                    <th style="width: 4%; height: 50px;"><p class="texto-vertical-2">Cuot</p></th>
-                    @foreach($mensualidades as $me)
-                        <th style="width: 4%; height: 50px;" ><p class="texto-vertical-2">{{ str_limit($me->nombre, $limit = 4, $end = '') }}</p></th>
+                    <th style="width: 4%; height: 60px;">#</th>
+                    <th style="width: 20%; height: 60px;">Alumno</th>
+                    @foreach ($tipoActividad as $ta)
+                      @foreach($actividades as $act)
+                        @if ($ta->id_tipo_actividad==$act->id_tipo_actividad)
+                          <th style="width: 4%; height: 60px;"><p class="texto-vertical-2">{{ str_limit($act->nombre, $limit = 4, $end = '.') }}</p></th>
+
+                        @endif
+                      @endforeach
+
                     @endforeach
+                    <th id="gris" style="width: 4%; height: 60px;"><p class="texto-vertical-2">Zona</p></th>
+
+                    <th id="gris" style="width: 4%; height: 60px;"><p class="texto-vertical-2">Total</p></th>
+
                 </tr>
             </thead>
             <tbody>
@@ -161,15 +190,28 @@
                 @php($contador++)
                 <td>{{$contador}}</td>
                 <td>{{$ins->primer_apellido}} {{$ins->segundo_apellido}} {{$ins->primer_nombre}} {{$ins->segundo_nombre}} </td>
-                <td>{{ number_format( $ins->pago_inscripcion, 0) }}</td>
-                <td>{{$ins->plan_cantidad}}</td>
-                <td>{{ number_format($ins->cuota) }}</td>
-                @foreach($pagos as $pa)
-                @foreach($mensualidades as $me)
-                    @if($pa->id_mensualidad == $me->id_mensualidad && $pa->id_inscripcion == $ins->id_inscripcion)
-                    <td>{{$pa->monto + $pa->mora}}</td>
+                @foreach($notas as $nota)
+                @foreach($actividades as $act)
+
+                    @if($nota->id_actividad == $act->id_actividad && $nota->id_alumno == $ins->id_inscripcion)
+                    <td>{{$nota->nota}}</td>
+
+
                     @endif
                 @endforeach
+                @endforeach
+                @foreach ($total_prom as $tp)
+                  @foreach ($zona as $z)
+
+
+                  @if ($tp->id_alumno == $ins->id_inscripcion&&$z->id_alumno==$ins->id_inscripcion)
+
+                    <td id="gris">{{ $z->zona }}</td>
+
+                  <td id="gris">{{ $tp->total }}</td>
+
+                    @endif
+                    @endforeach
                 @endforeach
             </tr>
             @endforeach
