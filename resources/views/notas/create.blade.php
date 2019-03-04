@@ -4,7 +4,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Colegio</li>
-      <li class="breadcrumb-item"><a href="#">Grado</a></li>
+      <li class="breadcrumb-item"><a href="#">Actividad</a></li>
       <li class="breadcrumb-item active">Nuevo</li>
       <!-- Breadcrumb Menu-->
     </ol>
@@ -24,7 +24,7 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="nombre">Nombre*</label>
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre del grado...">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la actividad..." value="{{ old('nombre') }}">
                     {!!$errors->first('nombre','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
@@ -32,28 +32,28 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="descripcion">Descripción</label>
-                    <input type="text" class="form-control" name="descripcion" placeholder="Ingrese una descripción...">
+                    <input type="text" class="form-control" name="descripcion" placeholder="Ingrese una descripción..." value="{{ old('descripcion') }}">
                     {!!$errors->first('descripcion','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="valor_nota">Nota</label>
-                    <input type="number" class="form-control" name="valor_nota" placeholder="Nota...">
+                    <input type="number" class="form-control" name="valor_nota" placeholder="Nota..." value="{{ old('valor_nota') }}">
                     {!!$errors->first('valor_nota','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="fecha">Fecha de entrega</label>
-                    <input type="date" class="form-control" name="fecha" >
+                    <input type="date" class="form-control" name="fecha" value="{{ old('fecha') }}">
                     {!!$errors->first('fecha','<span class=text-danger>:message</span>')!!}
                   </div>
                 </div><br>
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="id_tipo_actividad">Tipo de Actividad*</label>
-                    <select name="id_tipo_actividad" class="form-control select2-single" id="id_persona">
+                    <select name="id_tipo_actividad" class="form-control select2-single" id="id_persona" value="{{ old('id_tipo_actividad') }}">
                       <option value="">Seleccione: </option>
                       @foreach($tipos as $tipo)
                         <option value="{{ $tipo->id_tipo_actividad }}">{{ $tipo->nombre }}</option>
@@ -65,8 +65,8 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label for="id_unidad">Unidad*</label>
-                    <select name="id_unidad" class="form-control select2-single" id="id_carrera">
-                      <option value="">Seleccione carrera: </option>
+                    <select name="id_unidad" class="form-control select2-single" id="id_carrera" value="{{ old('id_unidad') }}">
+                      <option value="">Seleccione unidad: </option>
                       @foreach($unidades as $unidad)
                         <option value="{{ $unidad->id_unidad }}">{{ $unidad->nombre }} </option>
                       @endforeach

@@ -168,9 +168,9 @@ class PagoMensualidadController extends Controller
                                 ->orderBy('alumno.primer_apellido', 'asc')
                                 ->orderBy('alumno.segundo_apellido', 'asc')
                                 ->get();
-
+//dd($inscripcion_info);
       $pagos = PagoMensualidad::whereIn('id_inscripcion', $inscripcion_pago)->get();
-
+  //dd($pagos);
       //return view ('pagomensualidad.pdf',compact('inscripcion_info', 'pagos', 'mensualidades'));
 
       //  return response()->json($pagos);

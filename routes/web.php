@@ -115,3 +115,7 @@ Route::get('record/alumnos/{idCurso}/{idGrado}','RecordController@alumnos')->nam
 Route::get('record/{idInscripcion}/alumno','RecordController@alumno')->name('record.alumno');
 Route::get('record/{idInscripcion}/reportespdf','RecordController@reportespdf')->name('record.reportespdf');
 Route::get('record/{idInscripcion}/inasistenciaspdf','RecordController@inasistenciaspdf')->name('record.inasistenciaspdf');
+
+
+//reporte de notas
+Route::get('cuadrounidad/{idGrado}/{idCurso}/{idUnidad}/pdf', ['as' => 'notas.cuadrounidad', 'uses' => 'NotaController@cursoUnidad']);

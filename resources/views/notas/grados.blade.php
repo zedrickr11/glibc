@@ -15,7 +15,7 @@
             <div class="card">
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Grados
-                
+
               </div>
               <div class="card-body">
                 <table id="tabla-grado" class="display table table-responsive-sm table-striped">
@@ -41,6 +41,23 @@
                         <a href="{{route('notas.cursos', $grado->id_grado)}}">
                           <button type="button" class="btn btn-primary btn-sm" name="button"> Cursos</button>
                         </a>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Reportes
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.pdf', $grado->id_grado)}}">Primera Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Segunda Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Tercera Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Cuarta Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Quinta Unidad</a>
+                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Final</a>
+
+
+                            <!--<a class="dropdown-item" href="#">Cuotas</a>
+                            <a class="dropdown-item" href="#">Alumnos</a>-->
+                          </div>
+                        </div>
 
 
                       </td>
