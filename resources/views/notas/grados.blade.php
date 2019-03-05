@@ -41,23 +41,28 @@
                         <a href="{{route('notas.cursos', $grado->id_grado)}}">
                           <button type="button" class="btn btn-primary btn-sm" name="button"> Cursos</button>
                         </a>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Reportes
-                          </button>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.pdf', $grado->id_grado)}}">Primera Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Segunda Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Tercera Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Cuarta Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Quinta Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{route('pagomensualidad.cuotapdf', $grado->id_grado)}}">Final</a>
+
+                          @if (auth()->user()->hasRole(['admin','director']))
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Reportes
+                              </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" target="_blank" href="{{route('notas.cuadrofinal', [$grado->id_grado,1])}}">Primera Unidad</a>
+                              <a class="dropdown-item" target="_blank" href="{{route('notas.cuadrofinal', [$grado->id_grado,2])}}">Segunda Unidad</a>
+                              <a class="dropdown-item" target="_blank" href="{{route('notas.cuadrofinal', [$grado->id_grado,3])}}">Tercera Unidad</a>
+                              <a class="dropdown-item" target="_blank" href="{{route('notas.cuadrofinal', [$grado->id_grado,4])}}">Cuarta Unidad</a>
+                              <a class="dropdown-item" target="_blank" href="{{route('notas.cuadrofinal', [$grado->id_grado,5])}}">Quinta Unidad</a>
 
 
-                            <!--<a class="dropdown-item" href="#">Cuotas</a>
-                            <a class="dropdown-item" href="#">Alumnos</a>-->
-                          </div>
-                        </div>
+
+                              <!--<a class="dropdown-item" href="#">Cuotas</a>
+                              <a class="dropdown-item" href="#">Alumnos</a>-->
+                            </div>
+                              </div>
+                          @endif
+
+
 
 
                       </td>
