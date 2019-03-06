@@ -53,6 +53,7 @@
                               <a class="dropdown-item" target="_blank" href="{{route('notas.cuadrofinal', [$grado->id_grado,3])}}">Tercera Unidad</a>
                               <a class="dropdown-item" target="_blank" href="{{route('notas.cuadrofinal', [$grado->id_grado,4])}}">Cuarta Unidad</a>
                               <a class="dropdown-item" target="_blank" href="{{route('notas.cuadrofinal', [$grado->id_grado,5])}}">Quinta Unidad</a>
+                              <a class="dropdown-item" target="_blank" href="{{route('notas.tarjetas', [$grado->id_grado,2])}}">Imprimir Tarjetas</a>
 
 
 
@@ -60,6 +61,23 @@
                               <a class="dropdown-item" href="#">Alumnos</a>-->
                             </div>
                               </div>
+                              <div class="btn-group">
+                                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Imprimir Tarjetas
+                                </button>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" target="_blank" href="{{route('notas.tarjetas', [$grado->id_grado,1])}}">Primera Unidad</a>
+                                <a class="dropdown-item" target="_blank" href="{{route('notas.tarjetas', [$grado->id_grado,2])}}">Segunda Unidad</a>
+                                <a class="dropdown-item" target="_blank" href="{{route('notas.tarjetas', [$grado->id_grado,3])}}">Tercera Unidad</a>
+                                <a class="dropdown-item" target="_blank" href="{{route('notas.tarjetas', [$grado->id_grado,4])}}">Cuarta Unidad</a>
+                                <a class="dropdown-item" target="_blank" href="{{route('notas.tarjetas', [$grado->id_grado,5])}}">Quinta Unidad</a>
+
+
+
+                                <!--<a class="dropdown-item" href="#">Cuotas</a>
+                                <a class="dropdown-item" href="#">Alumnos</a>-->
+                              </div>
+                                </div>
                           @endif
 
 

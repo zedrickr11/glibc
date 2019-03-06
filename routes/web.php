@@ -120,3 +120,4 @@ Route::get('record/{idInscripcion}/inasistenciaspdf','RecordController@inasisten
 //reporte de notas
 Route::get('cuadrounidad/{idGrado}/{idCurso}/{idUnidad}/pdf', ['as' => 'notas.cuadrounidad', 'uses' => 'NotaController@cursoUnidad']);
 Route::get('cuadrofinal/{idGrado}/{idUnidad}/pdf', ['as' => 'notas.cuadrofinal', 'uses' => 'NotaController@cursoFinal']);
+Route::get('tarjetas/{idGrado}/{idUnidad}/pdf', ['as' => 'notas.tarjetas', 'uses' => 'NotaController@tarjetas']);

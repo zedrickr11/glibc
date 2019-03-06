@@ -267,4 +267,85 @@ class NotaController extends Controller
 
 
    }
+
+   public function tarjetas(Request $request, $id,$idUnidad)
+   {
+     $grado = Grado::findOrFail($id);
+     $ano = Carbon::now()->format('Y');
+
+     $unidades=Unidad::whereBetween('id_unidad',[1,$idUnidad])->get();
+     //alumnos inscritos en el año y grado
+     $inscripciones = DB::table('inscripcion')
+                       ->join('ciclo', 'inscripcion.id_ciclo', '=', 'ciclo.id_ciclo')
+                       ->join('alumno', 'inscripcion.id_alumno', '=', 'alumno.id')
+                       ->join('persona', 'alumno.id_persona','persona.id_persona')
+                       ->join('plan', 'inscripcion.id_plan', '=', 'plan.id')
+                       ->join('grado', 'inscripcion.id_grado', '=', 'grado.id_grado')
+                       ->join('seccion', 'grado.id_seccion', '=', 'seccion.id')
+                       ->join('carrera', 'grado.id_carrera', '=', 'carrera.id')
+                       ->join('jornada', 'carrera.id_jornada', '=', 'jornada.id_jornada')
+                       ->where('inscripcion.id_grado', $id)
+                       ->where('inscripcion.condicion', 1)
+                       ->where('ciclo.anio', $ano);
+
+     $inscripcion_pago = $inscripciones->pluck('inscripcion.id_alumno');
+
+     $inscripcion_info = $inscripciones->select('inscripcion.id_inscripcion', 'alumno.primer_nombre', 'alumno.segundo_nombre', 'alumno.tercer_nombre',
+                               'alumno.primer_apellido', 'alumno.segundo_apellido', 'grado.nombre as grado_nombre',
+                               'seccion.nombre as seccion_nombre', 'jornada.nombre as jornada_nombre', 'ciclo.anio as ciclo_ano',
+                               'plan.nombre as plan_nombre', 'plan.cantidad as plan_cantidad' ,'inscripcion.cuota', 'inscripcion.pago_inscripcion','persona.nombres','persona.apellidos',
+                               'persona.direccion','persona.telefono')
+                               ->orderBy('alumno.primer_apellido', 'asc')
+                               ->orderBy('alumno.segundo_apellido', 'asc')
+                               ->get();
+//cursos del grado
+  $materia=DB::table('asignacion_curso as asig')
+            ->join('curso as c','c.id_curso','asig.id_curso')
+            ->select('c.nombre','c.id_curso')
+            ->where('id_grado',$id)
+            ->where('anio',$ano)
+            ->get();
+     $cursos=DB::table('asignacion_curso')
+               ->where('id_grado',$id)
+               ->where('anio',$ano);
+
+     $curso=$cursos->pluck('id_curso');
+
+     //notas finales
+
+     $notas=DB::table('tipo_actividad as ta')
+                ->join('actividad as act','ta.id_tipo_actividad','act.id_tipo_actividad')
+                ->join('asignacion_curso as asig','asig.id_asignacion_curso','act.id_asignacion_curso')
+                ->join('nota as n', 'n.id_actividad','act.id_actividad')
+                ->join('alumno as a','a.id','n.id_alumno')
+                ->select('a.id as id_alumno','asig.id_curso','act.id_unidad',DB::raw('sum(n.nota) as notaf'))
+                ->whereBetween('act.id_unidad',[1,$idUnidad])
+                ->where('act.anio',$ano)
+                ->where('asig.id_grado',$id)
+                ->whereIn('asig.id_curso',$curso)
+                ->groupBy('a.id','asig.id_curso','act.id_unidad')
+                ->get();
+    $sumafinal=DB::table('tipo_actividad as ta')
+               ->join('actividad as act','ta.id_tipo_actividad','act.id_tipo_actividad')
+               ->join('asignacion_curso as asig','asig.id_asignacion_curso','act.id_asignacion_curso')
+               ->join('nota as n', 'n.id_actividad','act.id_actividad')
+               ->join('alumno as a','a.id','n.id_alumno')
+               ->select('a.id as id_alumno','act.id_unidad','asig.id_curso',DB::raw('sum(n.nota) as notaf'))
+
+               ->where('act.anio',$ano)
+               ->where('asig.id_grado',$id)
+               ->whereIn('asig.id_curso',$curso)
+               ->groupBy('a.id','act.id_unidad','asig.id_curso')
+               ->get();
+
+//dd($sumafinal);
+
+
+     $data = ['inscripcion_info' => $inscripcion_info,'grado'=>$grado,'notas'=>$notas,
+     'materia'=>$materia,'curso'=>$curso,'sumafinal'=>$sumafinal,'unidades'=>$unidades];
+     $pdf = PDF::loadView('notas.tarjetas',$data);
+     $pdf->setPaper('letter', 'portrait');
+     return $pdf->stream('Tarjetas de calificaciones ' . $grado->nombre . ' Seccion ' . $grado->seccionAsignada->nombre . ' ' . $grado->carrera->jornada->nombre . '.pdf');
+
+   }
 }
