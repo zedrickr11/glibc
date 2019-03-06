@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cuadro de registro</title>
+  <title>Cuadro Final de Registro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
         .texto-vertical-2 {
@@ -130,57 +130,42 @@
 </head>
 <body>
 
-  <header>
-      <div id="logo">
-          <img src="{{public_path('vendors/img/logo-individual.jpeg')}}" id="imagen" alt="">
-      </div>
-      <div id="datos">
-          <p id="encabezado">
-             <span id="hispano"> <strong>COLEGIO CRISTIANO HISPANOAMERICANO</strong></span>
-             <br> <span id="leyenda"> CREEMOS, CONFIAMOS Y SERVIMOS A DIOS </span><br> CUADRO DE REGISTRO <br>
-             &nbsp;{{ $prof_curso->nombre }} - {{ $unidades->nombre }}<br>
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $prof_curso->nombres }} {{ $prof_curso->apellidos }}<br>
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$grado->nombre}} {{$grado->seccionAsignada->nombre}} {{$grado->carrera->jornada->nombre}}
-          </p>
-      </div>
-  </header>
+    <header>
+        <div id="logo">
+            <img src="{{public_path('vendors/img/logo-individual.jpeg')}}" id="imagen" alt="">
+        </div>
+        <div id="datos">
+            <p id="encabezado">
+               <span id="hispano"> <strong>COLEGIO CRISTIANO HISPANOAMERICANO</strong></span>
+               <br> <span id="leyenda"> CREEMOS, CONFIAMOS Y SERVIMOS A DIOS </span>
+               <br> CUADRO FINAL DE REGISTRO <br>
+               {{ $unidades->nombre }} -
+               &nbsp;{{$grado->carrera->nombre}} {{$grado->seccionAsignada->nombre}} {{$grado->carrera->jornada->nombre}}
+            </p>
+        </div>
+    </header>
 
       <section>
         <div>
             <table class="table table-bordered table-striped table-sm">
             <thead>
-              <tr>
-                <th colspan="2"></th>
-
-
-                @foreach ($tipoActividad as $ta)
-                  @if ($ta->id_tipo_actividad==1)
-                    <th colspan="{{ $cont1->cont1 }}"><div align="center">{{ $ta->nombre }}</div></th>
-                  @endif
-                  @if ($ta->id_tipo_actividad==2)
-                    <th colspan="{{ $cont2->cont2 }}"><div align="center">{{ $ta->nombre }}</div></th>
-                  @endif
-                  @if ($ta->id_tipo_actividad==3)
-                    <th colspan="{{ $cont3->cont3+2 }}"><div align="center">{{ $ta->nombre }}</div></th>
-                  @endif
-
-              @endforeach
-
                 <tr>
-                    <th style="width: 4%; height: 60px;">#</th>
-                    <th style="width: 20%; height: 60px;">Alumno</th>
-                    @foreach ($tipoActividad as $ta)
-                      @foreach($actividades as $act)
-                        @if ($ta->id_tipo_actividad==$act->id_tipo_actividad)
-                          <th style="width: 4%; height: 60px;"><p class="texto-vertical-2">{{ str_limit($act->nombre, $limit = 4, $end = '.') }}</p></th>
-
+                    <th style="width: 4%; height: 70px;">#</th>
+                    <th style="width: 20%; height: 70px;">Alumno</th>
+                    @php($cont=0)
+                    @foreach ($materia as $m)
+                      @foreach ($curso as $id)
+                        @if ($m->id_curso==$id)
+                          <th style="width: 4%; height: 70px;" ><p class="texto-vertical-2">{{ str_limit($m->nombre, $limit = 4, $end = '') }}</p></th>
+                            @php($cont++)
                         @endif
+
                       @endforeach
 
                     @endforeach
-                    <th id="gris" style="width: 4%; height: 60px;"><p class="texto-vertical-2">Zona</p></th>
 
-                    <th id="gris" style="width: 4%; height: 60px;"><p class="texto-vertical-2">Total</p></th>
+                    <th style="width: 4%; height: 70px;" ><p class="texto-vertical-2">Prom</p></th>
+
 
                 </tr>
             </thead>
@@ -191,28 +176,19 @@
                 @php($contador++)
                 <td>{{$contador}}</td>
                 <td>{{$ins->primer_apellido}} {{$ins->segundo_apellido}} {{$ins->primer_nombre}} {{$ins->segundo_nombre}} </td>
+
                 @foreach($notas as $nota)
-                @foreach($actividades as $act)
-
-                    @if($nota->id_actividad == $act->id_actividad && $nota->id_alumno == $ins->id_inscripcion)
-                    <td>{{$nota->nota}}</td>
-
-
+                @foreach($materia as $ma)
+                    @if($nota->id_curso == $ma->id_curso && $nota->id_alumno == $ins->id_inscripcion)
+                    <td>{{$nota->notaf}}</td>
                     @endif
                 @endforeach
                 @endforeach
-                @foreach ($total_prom as $tp)
-                  @foreach ($zona as $z)
+                @foreach ($sumafinal as $sf)
+                  @if ($sf->id_alumno == $ins->id_inscripcion)
+                    <td>{{$sf->notaf/$cont}}</td>
 
-
-                  @if ($tp->id_alumno == $ins->id_inscripcion&&$z->id_alumno==$ins->id_inscripcion)
-
-                    <td id="gris">{{ $z->zona }}</td>
-
-                  <td id="gris">{{ $tp->total }}</td>
-
-                    @endif
-                    @endforeach
+                  @endif
                 @endforeach
             </tr>
             @endforeach
