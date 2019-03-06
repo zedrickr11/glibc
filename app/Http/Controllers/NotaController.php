@@ -299,7 +299,7 @@ class NotaController extends Controller
                                ->orderBy('alumno.segundo_apellido', 'asc')
                                ->get();
 //cursos del grado
-  $materia=DB::table('asignacion_curso as asig')
+    $materia=DB::table('asignacion_curso as asig')
             ->join('curso as c','c.id_curso','asig.id_curso')
             ->select('c.nombre','c.id_curso')
             ->where('id_grado',$id)

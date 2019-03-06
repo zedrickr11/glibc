@@ -85,7 +85,7 @@ Route::get('test', function(){
 Route::get('notas','ActividadController@grados')->name('notas.grados');
 Route::get('notas/cursos/{id}','ActividadController@cursos')->name('notas.cursos');
 Route::get('notas/actividades/{grado}/{curso}','ActividadController@actividades')->name('notas.actividades');
-Route::get('notas/alumnos/{grado}/{actividad}','ActividadController@alumnos')->name('notas.alumnos');
+Route::get('notas/alumnos/{grado}/{curso}/{actividad}','ActividadController@alumnos')->name('notas.alumnos');
 Route::get('actividad/create/{grado}/{curso}/{id}','ActividadController@create')->name('actividad.create');
 Route::post('actividad/store/{grado}/{curso}','ActividadController@store')->name('actividad.store');
 Route::get('actividad/edit/{grado}/{curso}/{asignacion}/{id}','ActividadController@edit')->name('actividad.edit');
@@ -121,3 +121,7 @@ Route::get('record/{idInscripcion}/inasistenciaspdf','RecordController@inasisten
 Route::get('cuadrounidad/{idGrado}/{idCurso}/{idUnidad}/pdf', ['as' => 'notas.cuadrounidad', 'uses' => 'NotaController@cursoUnidad']);
 Route::get('cuadrofinal/{idGrado}/{idUnidad}/pdf', ['as' => 'notas.cuadrofinal', 'uses' => 'NotaController@cursoFinal']);
 Route::get('tarjetas/{idGrado}/{idUnidad}/pdf', ['as' => 'notas.tarjetas', 'uses' => 'NotaController@tarjetas']);
+
+//portal padres
+Route::get('hijos', ['as' => 'portalpadres.hijos', 'uses' => 'PortalPadreController@hijos']);
+Route::get('hijos/notas/{idAlumno}/{idGrado}', ['as' => 'portalpadres.notas', 'uses' => 'PortalPadreController@pnotas']);

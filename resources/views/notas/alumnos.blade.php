@@ -13,9 +13,13 @@
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-lg-12">
+            
+              <a href="{{ route('notas.actividades',[$grado,$curso]) }}"> <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-toggle-left"></i> Atrás</button></a>
+
+
             <div class="card">
               <div class="card-header">
-                <i class="fa fa-align-justify"></i> Alumnos
+                <i class="fa fa-align-justify"></i>  Alumnos
             </div>
               <div class="card-body">
                 <table id="tabla-alumno" class="display table table-responsive-sm table-striped">
@@ -45,7 +49,7 @@
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#dangerModal-{{$alumno->id}}">
                           Nota
                         </button>
-                        
+
                       </td>
 
                     </tr>

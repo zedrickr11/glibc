@@ -12,6 +12,8 @@
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-lg-12">
+            <a href="{{ route('notas.cursos',$grado) }}"> <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-toggle-left"></i> Atrás</button></a>
+
             <div class="card">
               <div class="card-header">
                 <i class="fa fa-align-justify"></i> Actividades
@@ -39,17 +41,13 @@
                       <td>{{ $act->unidad->nombre }}</td>
 
                       <td>
-                        <a href="{{ route('notas.alumnos',[$grado,$act->id_actividad]) }}">
+                        <a href="{{ route('notas.alumnos',[$grado,$curso,$act->id_actividad]) }}">
                           <button type="button" class="btn btn-primary btn-sm" name="button"> Calificar</button>
                         </a>
                         <a href="{{ route('actividad.edit',[$grado,$curso,$id_asignacion->id_asignacion_curso,$act->id_actividad]) }}">
                           <button type="button" class="btn btn-warning btn-sm" name="button"> Editar</button>
                         </a>
-                        <form style="display: inline" method="POST" action="{{route('actividad.destroy',$act->id_actividad)}}">
-                        {!!method_field('DELETE')!!}
-                        {!!csrf_field()!!}
-                          <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-                        </form>
+
 
                       </td>
                     </tr>

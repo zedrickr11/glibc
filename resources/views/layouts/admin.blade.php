@@ -212,7 +212,7 @@
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
             <ul class="nav-dropdown-items">
-              
+
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('cuota') }}"><i class="fa fa-caret-right"></i> Cuotas Especiales</a>
               </li>
@@ -232,7 +232,7 @@
           </li>
         @elseif(auth()->user()->hasRole(['padre']))
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('notas') }}"><i class="icon-puzzle"></i> Notas </a>
+            <a class="nav-link" href="{{ url('hijos') }}"><i class="icon-puzzle"></i> Notas </a>
           </li>
         @endif
         </ul>
