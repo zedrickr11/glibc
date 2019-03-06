@@ -186,7 +186,7 @@
                 @endforeach
                 @foreach ($sumafinal as $sf)
                   @if ($sf->id_alumno == $ins->id_inscripcion)
-                    <td>{{$sf->notaf/$cont}}</td>
+                    <td>{{number_format($sf->notaf/$cont, 2, '.', '')}}</td>
 
                   @endif
                 @endforeach

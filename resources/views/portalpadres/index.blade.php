@@ -3,62 +3,41 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <li class="breadcrumb-item">Colegio</li>
-      <li class="breadcrumb-item"><a href="#">Cursos</a></li>
+      <li class="breadcrumb-item"><a href="#">Alumnos</a></li>
       <li class="breadcrumb-item active">Listado</li>
       <!-- Breadcrumb Menu-->
+
     </ol>
 
     <div class="container-fluid">
       <div class="animated fadeIn">
         <div class="row">
           <div class="col-lg-12">
-            <a href="{{ route('notas.grados') }}"> <button type="button" class="btn btn-sm btn-warning"><i class="fa fa-toggle-left"></i> Atrás</button></a>
-
             <div class="card">
               <div class="card-header">
-                <i class="fa fa-align-justify"></i> Cursos
-
+                <i class="fa fa-align-justify"></i> Alumnos
+                <a href="alumno/create"> <button type="button" class="pull-right  btn btn-success btn-sm"> <span class="fa fa-plus"></button></a>
               </div>
               <div class="card-body">
-                <table id="tabla-grado" class="display table table-responsive-sm table-striped">
+                <table id="tabla-alumno" class="display table table-responsive-sm table-striped dt-responsive dt-bootstrap4">
                   <thead>
                     <tr>
-                      <th>Curso</th>
-
-
+                      <th>#</th>
+                      <th>Nombre</th>
+                      <th>Grado</th>
                       <th>Opciones</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($cursos as $curso)
+                    @foreach ($hijos as $alumno)
                     <tr>
-                      <td>{{ $curso->nombre }}</td>
-
-
+                      <td>{{ $alumno->id }}</td>
+                      <td>{{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }}, {{ $alumno->primer_apellido }}  {{ $alumno->segundo_apellido }}</td>
+                      <td>{{ $alumno->nombre }}</td>
                       <td>
-                        @if (!auth()->user()->hasRole(['admin']))
-                          <a href="{{ route('notas.actividades',[$id_grado,$curso->id_curso]) }}">
-                            <button type="button" class="btn btn-primary btn-sm" name="button"> Actividades</button>
-                          </a>
-                        @endif
-
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Reportes
-                          </button>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,1]) }}">Primera Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,2]) }}">Segunda Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,3]) }}">Tercera Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,4]) }}">Cuarta Unidad</a>
-                            <a class="dropdown-item" target="_blank" href="{{ route('notas.cuadrounidad',[$id_grado,$curso->id_curso,5]) }}">Quinta Unidad</a>
-
-
-
-                            <!--<a class="dropdown-item" href="#">Cuotas</a>
-                            <a class="dropdown-item" href="#">Alumnos</a>-->
-                          </div>
-                        </div>
+                        <a href="{{route('portalpadres.unidades',[$alumno->id,$alumno->id_grado])}}">
+                          <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
+                        </a>
 
 
                       </td>
@@ -76,7 +55,9 @@
     <!-- /.conainer-fluid -->
     @push ('scripts')
       <script type="text/javascript">
-        $('#tabla-grado').DataTable({
+      //$('#tabla-alumno').DataTable();
+        $('#tabla-alumno').DataTable({
+        "order": [[0, "desc"]],
         "pagingType": "full_numbers",
         "language": {
           "sProcessing":     "Procesando...",

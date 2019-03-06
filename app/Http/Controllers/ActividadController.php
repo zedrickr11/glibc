@@ -102,8 +102,10 @@ class ActividadController extends Controller
 
       return view('notas.actividades',compact('actividades','grado','curso','id_asignacion'));
     }
-    public function alumnos($grado,$actividad)
+    public function alumnos($grado,$curso,$actividad)
     {
+
+
       $anio = Carbon::now()->format('Y');
       $alumnos=DB::table('inscripcion as insc')
                       ->join('alumno as a','insc.id_alumno','a.id')
@@ -123,7 +125,7 @@ class ActividadController extends Controller
                       ->where('n.id_actividad',$actividad)
                       ->get();
 
-      return view('notas.alumnos',compact('alumnos','grado','nota','actividad'));
+      return view('notas.alumnos',compact('alumnos','grado','nota','actividad','curso'));
     }
 
     public function create($id_grado,$id_curso,$asignacion)

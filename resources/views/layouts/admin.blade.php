@@ -24,6 +24,7 @@
   <link href="{{asset('vendors/css/toastr.min.css')}}" rel="stylesheet">
   <link href="{{asset('vendors/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
   <link href="{{asset('vendors/css/select2.min.css')}}" rel="stylesheet">
+  <link href="{{asset('vendors/css/gauge.min.css')}}" rel="stylesheet">
 
 
 </head>
@@ -212,7 +213,7 @@
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
             <ul class="nav-dropdown-items">
-              
+
               <li class="nav-item">
                 <a class="nav-link" href="{{ url('cuota') }}"><i class="fa fa-caret-right"></i> Cuotas Especiales</a>
               </li>
@@ -232,7 +233,7 @@
           </li>
         @elseif(auth()->user()->hasRole(['padre']))
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('notas') }}"><i class="icon-puzzle"></i> Notas </a>
+            <a class="nav-link" href="{{ url('hijos') }}"><i class="icon-puzzle"></i> Notas </a>
           </li>
         @endif
         </ul>
@@ -270,7 +271,7 @@
   <script src="{{asset('vendors/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('vendors/js/dataTables.bootstrap4.min.js')}}"></script>
   <script src="{{asset('vendors/js/select2.min.js')}}"></script>
-
+<script src="{{asset('vendors/js/Chart.min.js')}}"></script>
   <!-- Custom scripts required by this view -->
   <script src="{{asset('js/views/main.js')}}"></script>
 

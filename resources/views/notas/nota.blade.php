@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <label for="nota">Nota</label>
-                        <input required type="number" min="0" step="0.1" class="form-control" name="nota" placeholder="Ingrese la nota del curso...">
+                        <input autofocus required type="number" min="0" step="0.1" class="form-control" name="nota" placeholder="Ingrese la nota del curso...">
                         {!!$errors->first('nota','<span class=text-danger>:message</span>')!!}
                     </div>
                 </div><br>

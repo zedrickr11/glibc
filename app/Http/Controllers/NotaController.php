@@ -299,7 +299,7 @@ class NotaController extends Controller
                                ->orderBy('alumno.segundo_apellido', 'asc')
                                ->get();
 //cursos del grado
-  $materia=DB::table('asignacion_curso as asig')
+    $materia=DB::table('asignacion_curso as asig')
             ->join('curso as c','c.id_curso','asig.id_curso')
             ->select('c.nombre','c.id_curso')
             ->where('id_grado',$id)
@@ -330,16 +330,15 @@ class NotaController extends Controller
                ->join('asignacion_curso as asig','asig.id_asignacion_curso','act.id_asignacion_curso')
                ->join('nota as n', 'n.id_actividad','act.id_actividad')
                ->join('alumno as a','a.id','n.id_alumno')
-               ->select('a.id as id_alumno','act.id_unidad','asig.id_curso',DB::raw('sum(n.nota) as notaf'))
-
+               ->select('a.id as id_alumno','asig.id_curso','a.primer_nombre',DB::raw('sum(n.nota) as notaf'))
                ->where('act.anio',$ano)
                ->where('asig.id_grado',$id)
                ->whereIn('asig.id_curso',$curso)
-               ->groupBy('a.id','act.id_unidad','asig.id_curso')
+               ->groupBy('a.id','asig.id_curso','a.primer_nombre')
                ->get();
 
 //dd($sumafinal);
-
+ 
 
      $data = ['inscripcion_info' => $inscripcion_info,'grado'=>$grado,'notas'=>$notas,
      'materia'=>$materia,'curso'=>$curso,'sumafinal'=>$sumafinal,'unidades'=>$unidades];

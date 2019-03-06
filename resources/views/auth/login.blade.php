@@ -38,12 +38,12 @@
               <p class="text-muted">Iniciar sesión en su cuenta</p>
               <div class="input-group mb-3">
                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                <input name="email" type="email" class="form-control" placeholder="Correo electrónico">
+                <input name="email" type="email" class="form-control" placeholder="Correo electrónico" value="{{ old('email') }}">
 
               </div>
               <div class="input-group mb-4">
                 <span class="input-group-addon"><i class="icon-lock"></i></span>
-                <input name="password" type="password" class="form-control" placeholder="Contraseña">
+                <input name="password" type="password" class="form-control" placeholder="Contraseña" value="{{ old('password') }}">
 
 
               </div>
