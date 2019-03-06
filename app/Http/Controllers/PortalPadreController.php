@@ -39,7 +39,13 @@ class PortalPadreController extends Controller
 
           return view('portalpadres.index',compact('hijos'));
         }
-        public function pnotas($idAlumno,$id)
+        public function unidades($idAlumno,$id)
+        {
+          return view('portalpadres.unidades',compact('idAlumno','id'));
+        }
+
+
+        public function pnotas($idAlumno,$id,$idUnidad)
         {
           $id_persona = auth()->user()->persona->id_persona;
           $ano = Carbon::now()->format('Y');
@@ -49,7 +55,7 @@ class PortalPadreController extends Controller
                       ->where('id_persona',$id_persona)
                       ->first();
                       //dd($alumno);
-          $unidades=Unidad::all();
+          $unidades=Unidad::whereBetween('id_unidad',[1,$idUnidad])->get();
 
           $materia=DB::table('asignacion_curso as asig')
                   ->join('curso as c','c.id_curso','asig.id_curso')
@@ -71,7 +77,7 @@ class PortalPadreController extends Controller
                       ->join('nota as n', 'n.id_actividad','act.id_actividad')
                       ->join('alumno as a','a.id','n.id_alumno')
                       ->select('a.id as id_alumno','asig.id_curso','act.id_unidad',DB::raw('sum(n.nota) as notaf'))
-
+                      ->whereBetween('act.id_unidad',[1,$idUnidad])
                       ->where('act.anio',$ano)
                       ->where('asig.id_grado',$id)
                       ->where('a.id',$idAlumno)
@@ -84,16 +90,16 @@ class PortalPadreController extends Controller
                      ->join('asignacion_curso as asig','asig.id_asignacion_curso','act.id_asignacion_curso')
                      ->join('nota as n', 'n.id_actividad','act.id_actividad')
                      ->join('alumno as a','a.id','n.id_alumno')
-                     ->select('a.id as id_alumno','act.id_unidad','asig.id_curso',DB::raw('sum(n.nota) as notaf'))
+                     ->select('a.id as id_alumno','asig.id_curso',DB::raw('sum(n.nota) as notaf'))
 
                      ->where('act.anio',$ano)
                      ->where('asig.id_grado',$id)
                      ->whereIn('asig.id_curso',$curso)
-                     ->groupBy('a.id','act.id_unidad','asig.id_curso')
+                     ->groupBy('a.id','asig.id_curso')
                      ->get();
-
+//dd($sumafinal);
           $records=Record::where('id_alumno',$idAlumno)->get();
-          return view('portalpadres.notas',compact('alumno','unidades','notas','cursos','materia','records'));
+          return view('portalpadres.notas',compact('alumno','unidades','notas','cursos','materia','records','sumafinal'));
 
         }
 

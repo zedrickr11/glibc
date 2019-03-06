@@ -330,16 +330,15 @@ class NotaController extends Controller
                ->join('asignacion_curso as asig','asig.id_asignacion_curso','act.id_asignacion_curso')
                ->join('nota as n', 'n.id_actividad','act.id_actividad')
                ->join('alumno as a','a.id','n.id_alumno')
-               ->select('a.id as id_alumno','act.id_unidad','asig.id_curso',DB::raw('sum(n.nota) as notaf'))
-
+               ->select('a.id as id_alumno','asig.id_curso','a.primer_nombre',DB::raw('sum(n.nota) as notaf'))
                ->where('act.anio',$ano)
                ->where('asig.id_grado',$id)
                ->whereIn('asig.id_curso',$curso)
-               ->groupBy('a.id','act.id_unidad','asig.id_curso')
+               ->groupBy('a.id','asig.id_curso','a.primer_nombre')
                ->get();
 
 //dd($sumafinal);
-
+ 
 
      $data = ['inscripcion_info' => $inscripcion_info,'grado'=>$grado,'notas'=>$notas,
      'materia'=>$materia,'curso'=>$curso,'sumafinal'=>$sumafinal,'unidades'=>$unidades];

@@ -24,6 +24,7 @@
   <link href="{{asset('vendors/css/toastr.min.css')}}" rel="stylesheet">
   <link href="{{asset('vendors/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
   <link href="{{asset('vendors/css/select2.min.css')}}" rel="stylesheet">
+  <link href="{{asset('vendors/css/gauge.min.css')}}" rel="stylesheet">
 
 
 </head>
@@ -270,7 +271,7 @@
   <script src="{{asset('vendors/js/jquery.dataTables.min.js')}}"></script>
   <script src="{{asset('vendors/js/dataTables.bootstrap4.min.js')}}"></script>
   <script src="{{asset('vendors/js/select2.min.js')}}"></script>
-
+<script src="{{asset('vendors/js/Chart.min.js')}}"></script>
   <!-- Custom scripts required by this view -->
   <script src="{{asset('js/views/main.js')}}"></script>
 

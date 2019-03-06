@@ -18,7 +18,7 @@
           <div class="col-lg-12">
             <div class="card">
               <div class="card-header">
-                <i class="icon-check"></i>{{ $alumno->primer_nombre }}
+                <i class="icon-check"></i>{{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }} {{ $alumno->primer_apellido }} {{ $alumno->segundo_apellido }}
                 <ul class="nav nav-tabs float-right" role="tablist">
                    <li class="nav-item">
                     <a tab="" class="nav-link active" data-toggle="tab" href="#tasks" role="tab">Notas</a>
@@ -57,10 +57,20 @@
                         @foreach($notas as $nota)
 
                             @if($nota->id_curso == $m->id_curso )
-                            <td>{{$nota->notaf}}</td>
+
+
+                                <td>{{$nota->notaf}}</td>
+
+
 
                             @endif
 
+                        @endforeach
+                        @foreach ($sumafinal as $sf)
+                          @if ( $sf->id_curso==$m->id_curso && $sf->id_alumno==$alumno->id)
+                            <td>{{number_format($sf->notaf/$cont, 2, '.', '')}}</td>
+
+                          @endif
                         @endforeach
 
 

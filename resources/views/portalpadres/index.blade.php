@@ -35,7 +35,7 @@
                       <td>{{ $alumno->primer_nombre }} {{ $alumno->segundo_nombre }}, {{ $alumno->primer_apellido }}  {{ $alumno->segundo_apellido }}</td>
                       <td>{{ $alumno->nombre }}</td>
                       <td>
-                        <a href="{{route('portalpadres.notas',[$alumno->id,$alumno->id_grado])}}">
+                        <a href="{{route('portalpadres.unidades',[$alumno->id,$alumno->id_grado])}}">
                           <button type="button" class="btn btn-info btn-sm" name="button"> <span class="fa fa-eye"></span> </button>
                         </a>
 

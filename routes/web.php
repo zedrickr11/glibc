@@ -124,4 +124,5 @@ Route::get('tarjetas/{idGrado}/{idUnidad}/pdf', ['as' => 'notas.tarjetas', 'uses
 
 //portal padres
 Route::get('hijos', ['as' => 'portalpadres.hijos', 'uses' => 'PortalPadreController@hijos']);
-Route::get('hijos/notas/{idAlumno}/{idGrado}', ['as' => 'portalpadres.notas', 'uses' => 'PortalPadreController@pnotas']);
+Route::get('hijos/unidades/{idAlumno}/{idGrado}', ['as' => 'portalpadres.unidades', 'uses' => 'PortalPadreController@unidades']);
+Route::get('hijos/notas/{idAlumno}/{idGrado}/{idUnidad}', ['as' => 'portalpadres.notas', 'uses' => 'PortalPadreController@pnotas']);
