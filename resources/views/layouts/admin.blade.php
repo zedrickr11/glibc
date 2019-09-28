@@ -193,7 +193,17 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('archivo') }}"><i class="icon-puzzle"></i> Archivos </a>
           </li>
-        @elseif(auth()->user()->hasRole(['director']))
+        @endif
+        @if(auth()->user()->hasRole(['director']))
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url('inscripcion') }}"><i class="icon-puzzle"></i> Inscripciones </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('alumno') }}"><i class="icon-puzzle"></i> Alumnos </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('padre') }}"><i class="icon-puzzle"></i> Padres o Encargados </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('record') }}"><i class="icon-puzzle"></i> Reportar Alumno </a>
           </li>
@@ -208,8 +218,10 @@
               </li>
             </ul>
           </li>
-        @elseif(auth()->user()->hasRole(['secre']))
-        @elseif(auth()->user()->hasRole(['prof']))
+        @endif
+        @if(auth()->user()->hasRole(['secre']))
+        @endif
+        @if(auth()->user()->hasRole(['prof']))
           <li class="nav-item nav-dropdown">
             <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Pagos</a>
             <ul class="nav-dropdown-items">
@@ -231,7 +243,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url('archivo') }}"><i class="icon-puzzle"></i> Archivos </a>
           </li>
-        @elseif(auth()->user()->hasRole(['padre']))
+        @endif
+        @if(auth()->user()->hasRole(['padre']))
           <li class="nav-item">
             <a class="nav-link" href="{{ url('hijos') }}"><i class="icon-puzzle"></i> Notas </a>
           </li>
